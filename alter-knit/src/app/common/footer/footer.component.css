@@ -1,0 +1,12 @@
+footer {
+  background: #b68c13;
+}
+
+.footer-line {
+  border-bottom: 3px solid white;
+}
+
+.copyright {
+  background: #353535;
+  height: 60px;
+}

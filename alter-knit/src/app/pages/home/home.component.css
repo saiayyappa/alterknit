@@ -1,0 +1,14 @@
+/* .home-text {
+  font-family: Gramatika-Bold !important;
+  font-weight: 700;
+  size: 18px;
+  letter-spacing: 0em;
+  line-height: 31.11px;
+} */
+.hero-image {
+    background: url(../../../assets/images/home-bg.jpg);
+    /* -webkit-background-size: cover; */
+    /* -moz-background-size: cover; */
+    /* -o-background-size: cover; */
+    /* background-size: cover; */
+}
