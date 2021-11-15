@@ -1,0 +1,50 @@
+.section-intro {
+    height: 400px;
+    background-color: #B68C13;
+}
+
+.section-intro-content {
+    margin: auto;
+    width: 75%;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.f-36  {
+    font-size: 36px
+}
+
+.section-image-sewing {
+    background: url(../../../assets/images/sewing-machine.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 420px;
+}
+
+.question {
+    font-size: 18px;
+    color: #B68C13;
+}
+
+.faq-section {
+    background: #1D262F;
+}
+
+.logo-2 {
+    position: relative;
+    left: -25px;
+    background: url("../../../assets/images/AKNY-LOGO_complete_black.svg");
+    background-repeat: no-repeat;
+    width: 184px;
+    height: 184px;
+}
+
+.faq-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

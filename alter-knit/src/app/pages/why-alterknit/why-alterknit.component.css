@@ -1,0 +1,50 @@
+.section-intro {
+    height: 400px;
+    background-color: #B68C13;
+}
+
+.section-intro-content {
+    margin: auto;
+    width: 75%;
+}
+
+.sweater-repair-image {
+    background: url(../../../assets/images/sweater-image-1.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 400px;
+}
+
+.suit-repair-image {
+    background: url(../../../assets/images/sewing-machine-monochrome.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 665px;
+}
+
+.de-pill-image {
+    background: url(../../../assets/images/sewing-machine-2.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 400px;
+}
+
+.content-image {
+    background: url(../../../assets/images/Group_29.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 684px;
+}
+
+.content {
+    line-height: 30px;
+    color: #5C5C5C;
+}
