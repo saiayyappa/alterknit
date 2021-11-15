@@ -6,9 +6,36 @@
   line-height: 31.11px;
 } */
 .hero-image {
-    background: url(../../../assets/images/home-bg.jpg);
-    /* -webkit-background-size: cover; */
-    /* -moz-background-size: cover; */
-    /* -o-background-size: cover; */
-    /* background-size: cover; */
+  background: url(../../../assets/images/home-bg.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 1000px;
+}
+
+.home-card {
+  margin-left: 3rem;
+  margin-top: 10rem;
+}
+
+.sweater-bg {
+  background: linear-gradient(rgba(29, 38, 47, 0.9), rgba(29, 38, 47, 0.9)),
+    url(../../../assets/images/sweater.png) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 1000px;
+  position: relative;
+}
+
+.feedback {
+  font-size: 0.6rem;
+  font-weight: 400;
+  margin-bottom: 10%;
+}
+
+.margin-spacer {
+  margin-bottom: 6.5rem;
 }

@@ -11,10 +11,11 @@
 
 * {
   box-sizing: border-box;
+  font-size: 18px;
   margin: 0;
   padding: 0;
-  font-family: Gramatika-Regular, "Segoe UI", "Helvetica Neue", Arial,
-    "Noto Sans", "Liberation Sans";
+  /* font-family: Gramatika-Regular, "Segoe UI", "Helvetica Neue", Arial,
+    "Noto Sans", "Liberation Sans"; */
 }
 
 .bg-transparent {
@@ -26,9 +27,39 @@
   color: white;
 }
 
+.text-gold {
+  color: #b68c13;
+}
+
+.text-gray {
+  color: #5C5C5C;
+}
+
 .logo {
   background: url("assets/images/AKNY-LOGO_complete.svg");
   background-repeat: no-repeat;
   width: 48px;
   height: 48px;
+}
+
+.home-title {
+  font-size: 2rem;
+  line-height: 3.5rem;
+}
+
+.home-text {
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+.home-box-link-light {
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.home-box-link-dark {
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  width: 40%;
 }

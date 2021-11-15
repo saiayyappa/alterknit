@@ -4,9 +4,46 @@ footer {
 
 .footer-line {
   border-bottom: 3px solid white;
+  padding-bottom: 1.5rem;
+  width: 40%;
+}
+.footer-line > p {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 }
 
 .copyright {
   background: #353535;
   height: 60px;
+}
+
+input[type="email"] {
+  background-color: #b68c13;
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+.home-box-link-light {
+  width: 75%;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: white;
+}
+input[type="email"]:focus {
+  outline: none !important;
 }
