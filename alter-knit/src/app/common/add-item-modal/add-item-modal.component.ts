@@ -16,11 +16,19 @@ export class AddItemModalComponent implements OnInit {
 
   @Input() open: boolean = false;
   @Output() close = new EventEmitter();
+  @Output() addItemFinal = new EventEmitter();
   @Input() item!: Garment;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submit() {
+    // construct the object and then emit
+    // TODO
+    this.addItemFinal.emit({});
+    this.close.emit();
   }
 
 }

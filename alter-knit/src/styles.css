@@ -91,6 +91,10 @@
 .background-gold {
   background-color: #b68c13;
 }
+
+.background-gray {
+  background-color: #656565;
+}
 /* remove stying of anchor tag */
 a:link {
   text-decoration: none;

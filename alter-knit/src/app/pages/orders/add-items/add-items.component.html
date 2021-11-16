@@ -72,5 +72,5 @@
     </table>
     <a class="text-gold f-24" (click)="addItem()"><strong>+ add additional Garment?</strong></a>
     <!-- form to add item -->
-    <app-add-item-modal [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false"></app-add-item-modal>
+    <app-add-item-modal [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false" (addItemFinal)="checkItem($event)"></app-add-item-modal>
 </section>

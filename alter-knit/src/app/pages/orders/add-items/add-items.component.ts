@@ -45,4 +45,8 @@ export class AddItemsComponent implements OnInit {
     console.log('removeItem')
   }
 
+  checkItem(item: any) {
+    console.log(item);
+  }
+
 }

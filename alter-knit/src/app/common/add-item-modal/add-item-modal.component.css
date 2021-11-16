@@ -69,3 +69,7 @@ textarea {
   border: 1px solid #b68c13;
   transform: rotate(90deg);
 }
+
+button {
+    border-radius: 0px;
+}
