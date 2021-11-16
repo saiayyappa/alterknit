@@ -13,6 +13,12 @@ import { OurWorkComponent } from './pages/our-work/our-work.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.component';
+import { ShipmentMethodComponent } from './pages/orders/shipment-method/shipment-method.component';
+import { AddItemsComponent } from './pages/orders/add-items/add-items.component';
+import { ShippingAddressComponent } from './pages/orders/shipping-address/shipping-address.component';
+import { PickupAddressComponent } from './pages/orders/pickup-address/pickup-address.component';
+import { ReviewComponent } from './pages/orders/review/review.component';
+import { AddItemModalComponent } from './common/add-item-modal/add-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,13 @@ import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.compo
     OrdersComponent,
     SigninComponent,
     ThankYouComponent,
-    ImageViewerComponent
+    ImageViewerComponent,
+    ShipmentMethodComponent,
+    AddItemsComponent,
+    ShippingAddressComponent,
+    PickupAddressComponent,
+    ReviewComponent,
+    AddItemModalComponent
   ],
   imports: [
     BrowserModule,

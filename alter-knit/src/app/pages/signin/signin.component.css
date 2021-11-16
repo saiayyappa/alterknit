@@ -1,12 +1,8 @@
-.header {
-    height: 165px;
-    background-color: #B68C13;
-}
 .sign-in {
     min-height: 400px
 }
 
 .sign-in-content {
     margin: auto;
-    width: 40%;
+    width: 30%;
 }

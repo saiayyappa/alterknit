@@ -1,0 +1,76 @@
+<section>
+    <!-- steps -->
+    <div class="row no-gutters">
+        <div class="col-12">
+            <ul class="nav d-flex justify-content-between align-items-center stepper mx-auto">
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">1</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Account</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">2</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Shipment method</p>
+                </li>
+                <li class="nav-item active">
+                    <div class="active-circle m-auto">3</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Select Service</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">4</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Billing/Shipping</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">5</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Review</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- table of items -->
+    <table class="table table-hover table-borderless">
+        <thead>
+            <tr class="text-gray">
+                <th scope="col"></th>
+                <th scope="col">Service Needed</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Color</th>
+                <th scope="col">Age of Garment</th>
+                <th scope="col"># of Holes</th>
+                <th scope="col">Brief Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <th class="text-gold font-weight-light">x | Edit</th>
+                <td>Sweater Repair</td>
+                <td>J Crew</td>
+                <td>grey</td>
+                <td>2 years old</td>
+                <td>8</td>
+                <td>Tear on the left sleeve</td>
+            </tr> -->
+            <tr *ngFor="let garment of garments">
+                <th class="text-gold font-weight-light">
+                    <span (click)="removeItem()">x</span> | <span (click)="editItem()">Edit</span>
+                </th>
+                <td>{{garment.serviceNeeded}}</td>
+                <td>{{garment.brand}}</td>
+                <td>{{garment.color}}</td>
+                <td>{{garment.ageOfGarment}} years old</td>
+                <td>{{garment.noOfHoles}}</td>
+                <td>{{garment.briefDescription}}</td>
+            </tr>
+            <!-- <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <a class="text-gold f-24" (click)="addItem()"><strong>+ add additional Garment?</strong></a>
+    <!-- form to add item -->
+    <app-add-item-modal [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false"></app-add-item-modal>
+</section>

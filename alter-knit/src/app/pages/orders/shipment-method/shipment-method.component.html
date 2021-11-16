@@ -1,0 +1,71 @@
+<section>
+    <!-- steps -->
+    <div class="row no-gutters">
+        <div class="col-12">
+            <ul class="nav d-flex justify-content-between align-items-center stepper mx-auto">
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">1</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Account</p>
+                </li>
+                <li class="nav-item">
+                    <div class="active-circle m-auto">2</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Shipment method</p>
+                </li>
+                <li class="nav-item active">
+                    <div class="inactive-circle m-auto">3</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Select Service</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">4</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Billing/Shipping</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">5</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Review</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- select shipment method -->
+    <div class="row no-gutters mt-5">
+        <div class="col-9 offset-1">
+            <p class="f-36">How would you like to submit your order to us?</p>
+            <p class="font-weight-light f-18">Select a method to sending us your garment</p>
+            <form action="#">
+                <p class="w-100 d-flex">
+                    <input class="mt-2" type="radio" id="ship" name="radio-group" checked>
+                    <label for="ship" class="pl-3">
+                        <p class="f-18"><strong>Ship it</strong></p>
+                        <p class="f-14 font-weight-light">You will get a pre-addressed/pre-paid FedEx shipping label and
+                            a copy of this order emailed
+                            to you. Please include the order document with your item.</p>
+                        <p class="f-14 font-weight-light">In the event that we are unable to fix your garment(s) or you
+                            decline service we will send
+                            your garments(s) back to you. You are responsible for all in-bound and out-bound shipping
+                            costs.</p>
+                    </label>
+                </p>
+                <p class="w-100 d-flex">
+                    <input class="mt-2" type="radio" id="pickup" name="radio-group">
+                    <label for="pickup" class="pl-3">
+                        <p class="f-18"><strong>NYC Complimentary Pick up</strong></p>
+                        <p class="f-14 font-weight-light">Delivery is complimentary from 24 hr residential doorman
+                            buildings in Manhattan when you USE
+                            our service. In the event that we are unable to fix your garment(s) or you decline service
+                            delivery fees will be applied. We pick up within 48 hours from the time you indicated.</p>
+                    </label>
+                </p>
+                <p class="w-100 d-flex">
+                    <input class="mt-2" type="radio" id="test3" name="radio-group" disabled>
+                    <label for="test3" class="pl-3">
+                        <p class="f-18"> <span class="text-gray2"><strong>NYC Local Drop-off</strong></span>&nbsp;
+                            <span class="text-underline text-gray">(temporarily closed)</span>
+                        </p>
+                    </label>
+                </p>
+            </form>
+            <button type="button" class="btn background-gold btn-sm text-white f-24 font-weight-light" style="width: 20%; height: 10%;"
+                [title]="'Next'" routerLink="/orders/select-service">Next</button>
+        </div>
+    </div>
+</section>
