@@ -1,0 +1,62 @@
+/* Image Viewer styles */
+.viewer-container {
+  /* Container must be fixed and occupy full screen */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  /* High z-index value makes sure viewer is on top */
+  z-index: 999999;
+}
+
+.viewer-content {
+  background: rgba(0, 0, 0, 0.85);
+  width: 100%;
+  height: 100%;
+}
+
+.close-button {
+  /* Set close button to always be top right */
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  /* Apply some light styles to button */
+  font-size: 18px;
+  font-family: "Arial", sans-serif;
+  color: white;
+  cursor: pointer;
+  /* Give some padding and background colour so text is always legible */
+  background-color: black;
+  padding: 7px;
+  /* z-index must be higher than container's so it's always on top */
+  z-index: 9999999;
+}
+
+.image-viewer {
+  /* Setup our image so it keeps aspect ratio, and is vertically centered */
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  /* margin: auto; margin: auto ensures image is horizontally centered */
+  /* Below transformation ensures image is centered vertically*/
+  position: relative;
+  top: 50%;
+  transform: translateY(-60%);
+}
+
+.arrow {
+  background-color: black;
+  width: 47px;
+  height: 47px;
+}
+
+.brand-details {
+  background-color: black;
+  height: 100vh;
+}
+
+.hide {
+  visibility: hidden;
+}

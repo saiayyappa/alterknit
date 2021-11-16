@@ -1,1 +1,41 @@
-<p>our-work works!</p>
+<div class="row no-gutters">
+    <div class="col-12">
+        <section class="our-work-header-image">
+            <app-header></app-header>
+            <div class="row no-gutters">
+                <div class="col-12 text-white text-center">
+                    <p class="home-title">Our Work</p>
+                    <p class="font-weight-light">Our work speaks for itself - we are very proud of the work we do and
+                        love to show </p>
+                </div>
+            </div>
+        </section>
+        <!-- sweater collection -->
+        <section class="sweater-collection">
+            <div class="row no-gutters w-100">
+                <div class="col-12 d-flex justify-content-start align-items-center flex-wrap" style="flex-basis: 100%">
+                    <div *ngFor="let sweater of sweaters" class="sweater-panel m-1">
+                        <img width="100%" src="{{sweater.imagePath}}" (click)="showViewer(sweater)">
+                    </div>
+                    <app-image-viewer [items]="sweaters" [item]="selectedSweater" [open]="viewerOpen"
+                        (close)="viewerOpen = false">
+                    </app-image-viewer>
+                </div>
+            </div>
+        </section>
+        <div class="row no-gutters mt-5">
+            <div class="col-12 text-center">
+                <p class="home-title">Haven't I seen AlterKnit in an article somewhere?</p>
+                <p class="home-text font-weight-light">You probably have! Our work has been featured in print and on the web in places
+                    like Real Simple and Harper’s Bazaar</p>
+                <div class="mt-5 mb-5 d-flex justify-content-center align-items-center">
+                    <img class="mx-4" src="../../../assets/images/articles/bazaar.svg">
+                    <img class="mx-4" src="../../../assets/images/articles/laundress.svg">
+                    <img class="mx-4" src="../../../assets/images/articles/nypost.svg">
+                    <img class="mx-4" src="../../../assets/images/articles/realsimple.svg">
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

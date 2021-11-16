@@ -32,7 +32,7 @@
 }
 
 .text-gray {
-  color: #5C5C5C;
+  color: #5c5c5c;
 }
 
 .logo {
@@ -68,10 +68,37 @@
   font-size: 18px;
 }
 
-.f-36  {
-  font-size: 36px
+.f-36 {
+  font-size: 36px;
 }
 
 .background-gold {
   background-color: #b68c13;
+}
+/* remove stying of anchor tag */
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: inherit;
+  color: inherit;
+}
+
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-brand {
+  font-size: 36px;
+  line-height: 42px;
+  font-family: Gramatika-Bold;
 }
