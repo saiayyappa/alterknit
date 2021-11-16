@@ -11,6 +11,8 @@ import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.compo
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { OrdersComponent } from './pages/orders/orders.component';
     WhyAlterknitComponent,
     HeaderComponent,
     FooterComponent,
-    OrdersComponent
+    OrdersComponent,
+    SigninComponent,
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,
