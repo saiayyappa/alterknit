@@ -1,0 +1,38 @@
+<div *ngIf="open" class="viewer-container">
+    <div class="viewer-content">
+        <div class="row no-gutters w-100 fixed-top">
+            <div class="col-11 text-center mt-2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="logo"></div>
+                    <a class="text-white navbar-brand" href="#">
+                        AlterKnit
+                    </a>
+                </div>
+            </div>
+            <div class="col-1 d-flex justify-content-end align-items-center">
+                <a class="close-viewer text-white home-title mr-3" (click)="close.emit()">X</a>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-9">
+                <div class="image-viewer d-flex justify-content-between align-items-center">
+                    <div class="arrow d-flex justify-content-center align-items-center" [ngClass]="{'hide': lhide}"  (click)="before()">
+                        <img width="27px" src="../../../assets/images/image-viewer/larrow.png">
+                    </div>
+                    <div class="arrow d-flex justify-content-center align-items-center" [ngClass]="{'hide': rhide}" (click)="after()">
+                        <img width="27px" src="../../../assets/images/image-viewer/rarrow.png">
+                    </div>
+                </div>
+                <img class="image-viewer mx-auto" src="{{item.enlargedImagePath}}" />
+            </div>
+            <div class="col-3 brand-details text-white d-flex flex-column justify-content-center pl-5">
+                <div class="home-text">
+                    <p>Brand - <span class="font-weight-light">{{item.brand}}</span></p>
+                    <p>Material - <span class="font-weight-light">{{item.material}}</span></p>
+                    <p>Customer - <span class="font-weight-light">{{item.customer}}</span></p>
+                    <p>Work Completed - <span class="font-weight-light">{{item.workCompleted}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

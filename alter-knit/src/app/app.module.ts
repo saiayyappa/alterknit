@@ -11,6 +11,7 @@ import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.compo
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { ImageViewerComponent } from './common/image-viewer/image-viewer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
     WhyAlterknitComponent,
     HeaderComponent,
     FooterComponent,
-    OrdersComponent
+    OrdersComponent,
+    ImageViewerComponent
   ],
   imports: [
     BrowserModule,

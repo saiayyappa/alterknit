@@ -1,0 +1,21 @@
+.our-work-header-image {
+  background: linear-gradient(rgba(39, 39, 39, 0.699), rgba(39, 39, 39, 0.699)),
+    url(../../../assets/images/yarn.jpeg) no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 400px;
+}
+.sweater-collection {
+  background-color: #f5f5f5;
+  padding: 3rem;
+}
+
+.sweater-panel {
+  background-color: white;
+}
+
+.sweater-panel:last-child {
+    margin-right: auto;
+}
