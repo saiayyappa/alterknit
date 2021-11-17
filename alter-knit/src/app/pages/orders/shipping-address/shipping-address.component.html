@@ -29,54 +29,102 @@
     <div class="row no-gutters mt-5 w-75 mx-auto">
         <!-- shipping address form -->
         <div class="col-8 px-4">
-            <form>
+            <form [formGroup]="addressForm">
                 <div class="f-24 font-weight-bold text-gray">Shipping Information</div>
                 <div class="mt-4">
                     <div class="form-row">
                         <div class="form-group col-6">
-                            <input class="mb-2 w-100 form-control" placeholder="First Name" type="text" name="firstname"
-                                id="firstname">
+                            <input class="mb-2 w-100 form-control" placeholder="First Name" type="text" name="firstName"
+                                formControlName="firstName"
+                                [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }" id="firstName">
+                            <div *ngIf="submitted && form.firstName.errors" class="invalid-feedback">
+                                <div class="f-14 p-0 m-0" *ngIf="form.firstName.errors.required">
+                                    Please enter first name
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group col-6">
-                            <input class="mb-2 w-100 form-control" placeholder="Last Name" type="text" name="lastname"
-                                id="lastname">
+                            <input class="mb-2 w-100 form-control" placeholder="Last Name" type="text" name="lastName"
+                                formControlName="lastName"
+                                [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }" id="lastName">
+                            <div *ngIf="submitted && form.lastName.errors" class="invalid-feedback">
+                                <div class="f-14 p-0 m-0" *ngIf="form.lastName.errors.required">
+                                    Please enter last name
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address" class="f-18 font-weight-bold text-gray">Address</label>
                     <input class="mb-2 w-100 form-control" placeholder="Address" type="text" name="address"
+                        formControlName="address" [ngClass]="{ 'is-invalid': submitted && form.address.errors }"
                         id="address">
+                    <div *ngIf="submitted && form.address.errors" class="invalid-feedback">
+                        <div class="f-14 p-0 m-0" *ngIf="form.address.errors.required">
+                            Please enter address
+                        </div>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-4">
-                        <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city">
+                        <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city"
+                            formControlName="city" [ngClass]="{ 'is-invalid': submitted && form.city.errors }">
+                        <div *ngIf="submitted && form.city.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="form.city.errors.required">
+                                Please enter city
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-4">
-                        <input class="mb-2 w-100 form-control" placeholder="State" type="text" name="state" id="state">
+                        <input class="mb-2 w-100 form-control" placeholder="State" type="text" name="state" id="state"
+                            formControlName="state" [ngClass]="{ 'is-invalid': submitted && form.state.errors }">
+                        <div *ngIf="submitted && form.state.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="form.state.errors.required">
+                                Please enter state
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-4">
-                        <input class="mb-2 w-100 form-control" placeholder="Zip" type="text" name="zip" id="zip">
+                        <input class="mb-2 w-100 form-control" placeholder="Zip" type="text" name="zipcode" id="zipcode"
+                            formControlName="zipcode" [ngClass]="{ 'is-invalid': submitted && form.zipcode.errors }">
+                        <div *ngIf="submitted && form.zipcode.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="form.zipcode.errors.required">
+                                Please enter zip code
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-6">
-                        <input class="mb-2 w-100 form-control" placeholder="Phone" type="text" name="phone" id="phone">
+                        <input class="mb-2 w-100 form-control" placeholder="Phone" type="text" name="phone" id="phone"
+                            formControlName="phone" [ngClass]="{ 'is-invalid': submitted && form.phone.errors }">
+                        <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="form.phone.errors.required">
+                                Please enter phone number
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-6">
-                        <input class="mb-2 w-100 form-control" placeholder="Email" type="text" name="email" id="email">
+                        <input class="mb-2 w-100 form-control" placeholder="Email" type="text" name="email" id="email"
+                            formControlName="email" [ngClass]="{ 'is-invalid': submitted && form.email.errors }">
+                        <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="form.email.errors.required">
+                                Please enter email
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="sameAddress">
+                        <input class="form-check-input" type="checkbox" id="sameAddress" formControlName="isBillingAddress">
                         <label class="form-check-label text-gray f-18 font-weight-light" for="sameAddress">
                             Will your billing address be the same as your shipping address?
                         </label>
                     </div>
                 </div>
             </form>
-            <button type="button" routerLink="/orders/review"
+            <button type="button" (click)="submit()"
                 class="btn f-24 font-weight-light background-gold btn-sm text-white mt-5 mb-5">
                 Continue to Order Review
             </button>
@@ -87,48 +135,21 @@
             <div class="order-summary background-gray2 mx-auto p-3">
                 <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
                     Order Summary
-                    <span class="f-14 font-weight-light ml-auto">Edit</span>
+                    <span class="f-14 font-weight-light ml-auto"><a routerLink="/orders/select-service">Edit</a></span>
                 </div>
-                <div class="row no-gutters mt-5">
+                <div class="row no-gutters mt-5" *ngFor="let garment of garments; let idx = index">
                     <div class="col-2">
                         <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
                             alt="AlterKnit Logo Gold">
                     </div>
                     <div class="ml-2 col text-gray">
-                        <div class="f-18 font-weight-bold">Garment #1</div>
-                        <div class="f-14 font-weight-light">Brand</div>
-                        <div class="f-14 font-weight-light">Color</div>
+                        <div class="f-18 font-weight-bold">Garment #{{idx + 1}}</div>
+                        <div class="f-14 font-weight-light">{{garment.brand}}</div>
+                        <div class="f-14 font-weight-light">{{garment.color}}</div>
                         <ul class="f-14 font-weight-light">
-                            <li>
-                                Sweater repair
-                            </li>
-                            <li>
-                                Depilling
-                            </li>
-                            <li>
-                                Cleaning
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row no-gutters mt-5">
-                    <div class="col-2">
-                        <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
-                            alt="AlterKnit Logo Gold">
-                    </div>
-                    <div class="col text-gray">
-                        <div class="f-18 font-weight-bold">Garment #1</div>
-                        <div class="f-14 font-weight-light">Brand</div>
-                        <div class="f-14 font-weight-light">Color</div>
-                        <ul class="f-14 font-weight-light">
-                            <li>
-                                Sweater repair
-                            </li>
-                            <li>
-                                Depilling
-                            </li>
-                            <li>
-                                Cleaning
+                            <li class="f-14 font-weight-light"
+                                *ngFor="let service of getServiceList(garment.serviceNeeded)">
+                                {{service}}
                             </li>
                         </ul>
                     </div>

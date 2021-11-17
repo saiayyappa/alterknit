@@ -31,11 +31,10 @@
         <div class="col-8 px-4">
             <div class="f-24 font-weight-bold text-gray">Shipping Information</div>
             <div class="f-18 font-weight-light home-text mt-4">
-                <p class="m-0">Jane Doe</p>
-                <p class="m-0">101 32 st.</p>
-                <p class="m-0">Apt 560</p>
-                <p class="m-0">New York, NY 10001</p>
-                <a class="f-14 text-decoration-underline" style="color: #C4C4C4;" routerLink="/orders/shipping">Change
+                <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
+                <p class="m-0">{{order?.addressInfo?.address}}</p>
+                <p class="m-0">{{order?.addressInfo?.city}}, {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
+                <a class="f-14 text-decoration-underline" style="color: #C4C4C4;" (click)="navigateToAddressinfo()">Change
                     Shipping Address</a>
             </div>
             <div class="order-speed text-gray mt-4">

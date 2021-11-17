@@ -17,46 +17,13 @@
             </div>
             <!-- form 1-->
             <div class="col-6">
-                <div>
-                    <input class="ml-5" type="checkbox" id="service1" name="service1"
-                        value="Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...">
-                    <label class="ml-3" for="service1">Reknitting of holes on your sweaters, hats, gloves, scarves,
-                        blanket,
-                        exc...</label>
+                <div *ngFor="let service of serviceList;">
+                    <input class="ml-5" [ngClass]="{ 'is-invalid': submitted && showServiceListError }" type="checkbox"
+                        [(ngModel)]="service.checked">
+                    <label class="ml-3" for="service">{{service.name}}</label>
                 </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service2" name="service2"
-                        value="Reweaving for suits, blazers, slacks, overcoat, exc....">
-                    <label class="ml-3" for="service2">Reweaving for suits, blazers, slacks, overcoat,
-                        exc...</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service3" name="service3" value="Reknitting of">
-                    <label class="ml-3" for="service3">Reknitting of</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service4" name="service4" value="Knit Alteration">
-                    <label class="ml-3" for="service4">Knit Alteration</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service5" name="service5" value="Knit Restyling">
-                    <label class="ml-3" for="service5">Knit Restyling</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service6" name="service6" value="Depilling">
-                    <label class="ml-3" for="service6">Depilling</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service7" name="service7" value="Cleaning">
-                    <label class="ml-3" for="service7">Cleaning</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service8" name="service8" value="Custom Knit Work">
-                    <label class="ml-3" for="service8">Custom Knit Work</label>
-                </div>
-                <div>
-                    <input class="ml-5" type="checkbox" id="service9" name="service9" value="Other Fabric Repair">
-                    <label class="ml-3" for="service9">Other Fabric Repair</label>
+                <div *ngIf="submitted && showServiceListError">
+                    <div class="ml-5 f-14 text-danger">Please select services you want</div>
                 </div>
             </div>
         </div>
@@ -66,25 +33,59 @@
                 <div class="w-75 mx-auto">
                     <p class="f-30 text-gray">Tell us about your Garment</p>
                     <p class="f-18 font-weight-light px-5">Let us know more about your clothes. It’ll give us more
-                        insite
-                        into what have to do to get it looking good as new.</p>
+                        insite into what have to do to get it looking good as new.</p>
                 </div>
             </div>
             <!-- form 2-->
-            <div class="col-6">
+            <div class="col-6" [formGroup]="garmentForm">
                 <div class="mx-5">
-                    <div class="form-group"><input class="mb-2 w-100" placeholder="Brand*" type="text" name="brand"
-                            id="brand"></div>
-                    <div class="form-group"><input class="mb-2 w-100" placeholder="Color*" type="text" name="color"
-                            id="color"></div>
-                    <div class="form-group"><input class="mb-2 w-100" placeholder="Age of garment*" type="text"
-                            name="ageOfGarment" id="ageOfGarment"></div>
-                    <div class="form-group"><input class="mb-2 w-100"
+                    <div class="form-group">
+                        <input class="mb-2 w-100" formControlName="brand" placeholder="Brand*" type="text" name="brand"
+                            [ngClass]="{ 'is-invalid': submitted && itemf.brand.errors }" id="brand" required>
+                        <div *ngIf="submitted && itemf.brand.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="itemf.brand.errors.required">Please provide a
+                                brand name</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="mb-2 w-100" formControlName="color" placeholder="Color*" type="text" name="color"
+                            [ngClass]="{ 'is-invalid': submitted && itemf.color.errors }" id="color">
+                        <div *ngIf="submitted && itemf.color.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="itemf.color.errors.required">Please provide
+                                color of garment</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="mb-2 w-100" formControlName="ageOfGarment"
+                            placeholder="Age of garment* (in years)"
+                            [ngClass]="{ 'is-invalid': submitted && itemf.ageOfGarment.errors }" type="text"
+                            name="ageOfGarment" id="ageOfGarment">
+                        <div *ngIf="submitted && itemf.ageOfGarment.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="itemf.ageOfGarment.errors.required">Please
+                                provide age of garment</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="mb-2 w-100" formControlName="noOfHoles"
                             placeholder="Number of Holes* (Don’t worry if you don’t catch all of the holes. We will thoroughly inspect your garment.)"
-                            type="text" name="noOfHoles" id="noOfHoles"></div>
-                    <div class="form-group"><textarea rows=5 class="mb-2 w-100"
+                            [ngClass]="{ 'is-invalid': submitted && itemf.noOfHoles.errors }" type="text"
+                            name="noOfHoles" id="noOfHoles">
+                        <div *ngIf="submitted && itemf.noOfHoles.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="itemf.noOfHoles.errors.required">Please provide
+                                number of holes in garment</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows=5 class="mb-2 w-100" formControlName="briefDescription"
                             placeholder="Brief decription of what you need or anything else you’d like to tell us?*"
-                            type="text" name="briefDescription" id="briefDescription"></textarea></div>
+                            [ngClass]="{ 'is-invalid': submitted && itemf.briefDescription.errors }" type="text"
+                            name="briefDescription" id="briefDescription"></textarea>
+                        <div *ngIf="submitted && itemf.briefDescription.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="itemf.briefDescription.errors.required">Please
+                                provide a brief description of what you need or anything else you’d like to tell us?
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
