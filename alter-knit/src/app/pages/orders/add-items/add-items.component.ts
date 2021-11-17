@@ -1,20 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-interface Garment {
-  serviceNeeded: string;
-  brand: string;
-  color: string;
-  ageOfGarment: number;
-  noOfHoles: number;
-  briefDescription: string;
-}
+import { DataService, Garment } from '../../../data.service';
+
 @Component({
   selector: 'app-add-items',
   templateUrl: './add-items.component.html',
   styleUrls: ['./add-items.component.css']
 })
-export class AddItemsComponent implements OnInit {
 
-  constructor() { }
+export class AddItemsComponent implements OnInit {
 
   garments: Garment[] = [
     {
@@ -29,8 +22,14 @@ export class AddItemsComponent implements OnInit {
   modalOpen: boolean = true;
   selectedGarment!: Garment;
 
-  ngOnInit(): void {
+
+  constructor(private dataService: DataService) {
+    this.dataService.orderSubject.subscribe(order => {
+      this.garments = order.garments;
+    });
   }
+
+  ngOnInit(): void { }
 
   addItem() {
     console.log('addItem');

@@ -19,6 +19,7 @@ import { ShippingAddressComponent } from './pages/orders/shipping-address/shippi
 import { PickupAddressComponent } from './pages/orders/pickup-address/pickup-address.component';
 import { ReviewComponent } from './pages/orders/review/review.component';
 import { AddItemModalComponent } from './common/add-item-modal/add-item-modal.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { AddItemModalComponent } from './common/add-item-modal/add-item-modal.co
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

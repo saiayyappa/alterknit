@@ -1,12 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-interface Garment {
-  serviceNeeded: string;
-  brand: string;
-  color: string;
-  ageOfGarment: number;
-  noOfHoles: number;
-  briefDescription: string;
-}
+import { DataService, Garment } from '../../data.service';
+
 @Component({
   selector: 'app-add-item-modal',
   templateUrl: './add-item-modal.component.html',
@@ -19,7 +13,7 @@ export class AddItemModalComponent implements OnInit {
   @Output() addItemFinal = new EventEmitter();
   @Input() item!: Garment;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
