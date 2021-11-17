@@ -20,6 +20,7 @@ import { PickupAddressComponent } from './pages/orders/pickup-address/pickup-add
 import { ReviewComponent } from './pages/orders/review/review.component';
 import { AddItemModalComponent } from './common/add-item-modal/add-item-modal.component';
 import { DataService } from './data.service';
+import { TermsModalComponent } from './common/terms-modal/terms-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DataService } from './data.service';
     ShippingAddressComponent,
     PickupAddressComponent,
     ReviewComponent,
-    AddItemModalComponent
+    AddItemModalComponent,
+    TermsModalComponent
   ],
   imports: [
     BrowserModule,
