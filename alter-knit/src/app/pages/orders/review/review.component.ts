@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewComponent implements OnInit {
 
+  showTerms: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  check() {
+    console.log(this.showTerms)
   }
 
 }
