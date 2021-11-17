@@ -1,8 +1,9 @@
 <div class="row no-gutters">
     <div class="col-12">
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent m-5">
-            <div class="logo"></div>
-            <a class="navbar-brand text-white" href="#">
+            <div *ngIf="theme === headerThemes.WHITE" class="logo"></div>
+            <div *ngIf="theme === headerThemes.BLACK" class="logo-black"></div>
+            <a class="navbar-brand" [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">
                 AlterKnit
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -12,20 +13,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a [title]="'Our Work'" routerLink="/our-work"
-                            class="nav-link font-weight-light pl-3 pr-3 text-white" href="#">Our Work</a>
+                        <a [title]="'Our Work'" routerLink="/our-work" class="nav-link font-weight-light pl-3 pr-3"
+                            [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Our Work</a>
                     </li>
                     <li class="nav-item">
-                        <a [title]="'Our Story'" routerLink="/why-alterknit" class="nav-link font-weight-light pl-3 pr-3 text-white" href="#">Our Story</a>
+                        <a [title]="'Our Story'" routerLink="/why-alterknit"
+                            class="nav-link font-weight-light pl-3 pr-3"
+                            [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Our
+                            Story</a>
                     </li>
                     <li class="nav-item">
-                        <a [title]="'Our Services'" routerLink="/our-services" class="nav-link font-weight-light pl-3 pr-3 text-white" href="#">Our Services</a>
+                        <a [title]="'Our Services'" routerLink="/our-services"
+                            class="nav-link font-weight-light pl-3 pr-3"
+                            [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Our
+                            Services</a>
                     </li>
                     <li class="nav-item">
-                        <a [title]="'Garment Tips'" routerLink="/why-alterknit" class="nav-link font-weight-light pl-3 pr-3 text-white " href="#">Garment Tips</a>
+                        <a [title]="'Garment Tips'" routerLink="/why-alterknit"
+                            class="nav-link font-weight-light pl-3 pr-3"
+                            [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Garment
+                            Tips</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-weight-light pl-3 pr-3 text-white" href="#">Contact Us</a>
+                        <a class="nav-link font-weight-light pl-3 pr-3"
+                            [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Contact
+                            Us</a>
                     </li>
                 </ul>
             </div>

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 export enum OrderMethod {
   Ship,
@@ -13,12 +13,12 @@ export enum DeliverySpeed {
 }
 
 export interface Garment {
-  serviceNeeded: string;
+  serviceNeeded: string; // convert to array
   brand: string;
   color: string;
   ageOfGarment: number;
   noOfHoles: number;
-  briefDescription: string;
+  briefDescription: string; // two extra var for
 }
 
 export interface ShippingInfo {

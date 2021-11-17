@@ -51,17 +51,18 @@
                 <td>{{garment.noOfHoles}}</td>
                 <td>{{garment.briefDescription}}</td>
             </tr>
-            <!-- <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-            </tr> -->
         </tbody>
     </table>
     <a class="text-gold f-24" (click)="addItem()"><strong>+ add additional Garment?</strong></a>
     <!-- form to add item -->
-    <app-add-item-modal [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false" (addItemFinal)="checkItem($event)"></app-add-item-modal>
+    <app-add-item-modal [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false"
+        (addItemFinal)="checkItem($event)"></app-add-item-modal>
+    <div class="row no-gutters mt-5 mb-5">
+        <div class="col-12 text-center">
+            <button type="button" class="btn f-24 font-weight-light py-2 background-gray btn-sm text-white"
+                routerLink="/orders">Go Back</button>
+            <button type="button" style="width: 15%" routerLink="/orders/shipping"
+                class="btn f-24 font-weight-light py-2 background-gold btn-sm text-white ml-2">All Done</button>
+        </div>
+    </div>
 </section>

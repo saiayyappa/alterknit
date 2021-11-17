@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { HeaderTheme } from 'src/app/common/interfaces/header-theme';
 interface SweaterInfo {
   id: number;
   brand: string;
@@ -17,6 +19,8 @@ interface SweaterInfo {
 export class OurWorkComponent implements OnInit {
 
   constructor() { }
+
+  headerThemes = HeaderTheme;
 
   selectedSweater!: SweaterInfo;
 

@@ -24,19 +24,23 @@
 }
 
 .text-white {
-  color: white;
+  color: white !important;
+}
+
+.text-black {
+  color: black !important;
 }
 
 .text-gold {
-  color: #b68c13;
+  color: #b68c13 !important;
 }
 
 .text-gray {
-  color: #5c5c5c;
+  color: #5c5c5c !important;
 }
 
 .text-gray2 {
-  color: #b1b1b1;
+  color: #b1b1b1 !important;
 }
 
 .logo {
@@ -44,6 +48,19 @@
   background-repeat: no-repeat;
   width: 48px;
   height: 48px;
+}
+.logo-black {
+  background: url("assets/images/AKNY-LOGO_complete_black.svg");
+  background-repeat: no-repeat;
+  width: 48px;
+  height: 48px;
+}
+
+.logo-gold {
+  background: url("assets/images/AKNY-LOGO_complete_gold.svg");
+  background-repeat: no-repeat;
+  width: 49px;
+  height: 49px;
 }
 
 .home-title {
@@ -95,6 +112,11 @@
 .background-gray {
   background-color: #656565;
 }
+
+.background-gray2 {
+  background: rgba(196, 196, 196, 0.2);
+}
+
 /* remove stying of anchor tag */
 a:link {
   text-decoration: none;
@@ -128,6 +150,11 @@ a:active {
   background-color: #b68c13;
 }
 
+.header-white {
+  height: 165px;
+  background-color: white;
+}
+
 /* stepper styles */
 .inactive-circle {
   width: 30px;
@@ -149,4 +176,8 @@ a:active {
 
 .stepper {
   width: 70%;
+}
+
+button {
+  border-radius: 0px !important;
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HeaderTheme } from 'src/app/common/interfaces/header-theme';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -8,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class SigninComponent implements OnInit {
 
   constructor() { }
+
+  headerThemes = HeaderTheme;
 
   ngOnInit(): void {
   }

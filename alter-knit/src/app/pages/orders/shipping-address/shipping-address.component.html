@@ -1,1 +1,139 @@
-<p>shipping-address works!</p>
+<section>
+    <!-- steps -->
+    <div class="row no-gutters">
+        <div class="col-12">
+            <ul class="nav d-flex justify-content-between align-items-center stepper mx-auto">
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">1</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Account</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">2</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Shipment method</p>
+                </li>
+                <li class="nav-item active">
+                    <div class="inactive-circle m-auto">3</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Select Service</p>
+                </li>
+                <li class="nav-item">
+                    <div class="active-circle m-auto">4</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Billing/Shipping</p>
+                </li>
+                <li class="nav-item">
+                    <div class="inactive-circle m-auto">5</div>
+                    <p class="home-text font-weight-light f-18 pt-2">Review</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row no-gutters mt-5 w-75 mx-auto">
+        <!-- shipping address form -->
+        <div class="col-8 px-4">
+            <form>
+                <div class="f-24 font-weight-bold text-gray">Shipping Information</div>
+                <div class="mt-4">
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <input class="mb-2 w-100 form-control" placeholder="First Name" type="text" name="firstname"
+                                id="firstname">
+                        </div>
+                        <div class="form-group col-6">
+                            <input class="mb-2 w-100 form-control" placeholder="Last Name" type="text" name="lastname"
+                                id="lastname">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="f-18 font-weight-bold text-gray">Address</label>
+                    <input class="mb-2 w-100 form-control" placeholder="Address" type="text" name="address"
+                        id="address">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city">
+                    </div>
+                    <div class="form-group col-4">
+                        <input class="mb-2 w-100 form-control" placeholder="State" type="text" name="state" id="state">
+                    </div>
+                    <div class="form-group col-4">
+                        <input class="mb-2 w-100 form-control" placeholder="Zip" type="text" name="zip" id="zip">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <input class="mb-2 w-100 form-control" placeholder="Phone" type="text" name="phone" id="phone">
+                    </div>
+                    <div class="form-group col-6">
+                        <input class="mb-2 w-100 form-control" placeholder="Email" type="text" name="email" id="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sameAddress">
+                        <label class="form-check-label text-gray f-18 font-weight-light" for="sameAddress">
+                            Will your billing address be the same as your shipping address?
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <button type="button" routerLink="/orders/review"
+                class="btn f-24 font-weight-light background-gold btn-sm text-white mt-5 mb-5">
+                Continue to Order Review
+            </button>
+
+        </div>
+        <!-- order summary -->
+        <div class="col-4">
+            <div class="order-summary background-gray2 mx-auto p-3">
+                <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
+                    Order Summary
+                    <span class="f-14 font-weight-light ml-auto">Edit</span>
+                </div>
+                <div class="row no-gutters mt-5">
+                    <div class="col-2">
+                        <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
+                            alt="AlterKnit Logo Gold">
+                    </div>
+                    <div class="ml-2 col text-gray">
+                        <div class="f-18 font-weight-bold">Garment #1</div>
+                        <div class="f-14 font-weight-light">Brand</div>
+                        <div class="f-14 font-weight-light">Color</div>
+                        <ul class="f-14 font-weight-light">
+                            <li>
+                                Sweater repair
+                            </li>
+                            <li>
+                                Depilling
+                            </li>
+                            <li>
+                                Cleaning
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row no-gutters mt-5">
+                    <div class="col-2">
+                        <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
+                            alt="AlterKnit Logo Gold">
+                    </div>
+                    <div class="col text-gray">
+                        <div class="f-18 font-weight-bold">Garment #1</div>
+                        <div class="f-14 font-weight-light">Brand</div>
+                        <div class="f-14 font-weight-light">Color</div>
+                        <ul class="f-14 font-weight-light">
+                            <li>
+                                Sweater repair
+                            </li>
+                            <li>
+                                Depilling
+                            </li>
+                            <li>
+                                Cleaning
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

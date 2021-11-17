@@ -45,12 +45,24 @@
 }
 
 input,
-textarea {
+textarea,
+input:active,
+input:focus,
+textarea:active,
+textarea:focus {
   color: #5c5c5c;
   font-size: 18px;
   line-height: 31px;
   font-style: normal;
   font-weight: normal;
+  border-radius: 0;
+  border: 1px solid #5c5c5c;
+  padding-left: 0.5rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: #383838 solid 1px;
 }
 
 .active-circle {
@@ -68,8 +80,4 @@ textarea {
   top: 1449px;
   border: 1px solid #b68c13;
   transform: rotate(90deg);
-}
-
-button {
-    border-radius: 0px;
 }

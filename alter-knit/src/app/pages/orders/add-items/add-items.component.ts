@@ -19,7 +19,7 @@ export class AddItemsComponent implements OnInit {
       briefDescription: 'Holes on the rght sleeve. A burn on the left side'
     }
   ];
-  modalOpen: boolean = true;
+  modalOpen: boolean = false;
   selectedGarment!: Garment;
 
 

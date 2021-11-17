@@ -1,0 +1,25 @@
+
+input,
+textarea,
+input:active,
+input:focus,
+textarea:active,
+textarea:focus {
+  color: #5c5c5c;
+  font-size: 18px;
+  line-height: 31px;
+  font-style: normal;
+  font-weight: normal;
+  border-radius: 0;
+  border: 1px solid #5c5c5c;
+  padding-left: 0.5rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: #383838 solid 1px;
+}
+
+.order-summary {
+  width: 90%;
+}
