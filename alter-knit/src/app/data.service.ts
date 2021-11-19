@@ -7,6 +7,14 @@ export enum OrderMethod {
   Dropoff
 }
 
+export const FormSteps = [
+  'Account',
+  'Shipment method',
+  'Select Service',
+  'Billing/Shipping',
+  'Review'
+];
+
 export enum DeliverySpeed {
   rush,
   standard

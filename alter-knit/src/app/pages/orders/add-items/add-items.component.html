@@ -1,31 +1,6 @@
 <section>
     <!-- steps -->
-    <div class="row no-gutters">
-        <div class="col-12">
-            <ul class="nav d-flex justify-content-between align-items-center stepper mx-auto">
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">1</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Account</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">2</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Shipment method</p>
-                </li>
-                <li class="nav-item active">
-                    <div class="active-circle m-auto">3</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Select Service</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">4</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Billing/Shipping</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">5</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Review</p>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <app-stepper [activeStep]="step"></app-stepper>
     <!-- table of items -->
     <table class="table table-hover table-borderless align-middle">
         <thead>

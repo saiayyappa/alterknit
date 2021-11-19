@@ -1,31 +1,6 @@
 <section>
     <!-- steps -->
-    <div class="row no-gutters">
-        <div class="col-12">
-            <ul class="nav d-flex justify-content-between align-items-center stepper mx-auto">
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">1</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Account</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">2</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Shipment method</p>
-                </li>
-                <li class="nav-item active">
-                    <div class="inactive-circle m-auto">3</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Select Service</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">4</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Billing/Shipping</p>
-                </li>
-                <li class="nav-item">
-                    <div class="active-circle m-auto">5</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Review</p>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <app-stepper [activeStep]="step"></app-stepper>
     <div class="row no-gutters mt-5 w-75 mx-auto">
         <!-- shipping address form -->
         <div class="col-8 px-4">
@@ -60,56 +35,7 @@
         </div>
         <!-- order summary -->
         <div class="col-4">
-            <div class="order-summary background-gray2 mx-auto p-3">
-                <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
-                    Order Summary
-                    <span class="f-14 font-weight-light ml-auto">Edit</span>
-                </div>
-                <div class="row no-gutters mt-5">
-                    <div class="col-2">
-                        <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
-                            alt="AlterKnit Logo Gold">
-                    </div>
-                    <div class="ml-2 col text-gray">
-                        <div class="f-18 font-weight-bold">Garment #1</div>
-                        <div class="f-14 font-weight-light">Brand</div>
-                        <div class="f-14 font-weight-light">Color</div>
-                        <ul class="f-14 font-weight-light">
-                            <li>
-                                Sweater repair
-                            </li>
-                            <li>
-                                Depilling
-                            </li>
-                            <li>
-                                Cleaning
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row no-gutters mt-5">
-                    <div class="col-2">
-                        <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
-                            alt="AlterKnit Logo Gold">
-                    </div>
-                    <div class="col text-gray">
-                        <div class="f-18 font-weight-bold">Garment #1</div>
-                        <div class="f-14 font-weight-light">Brand</div>
-                        <div class="f-14 font-weight-light">Color</div>
-                        <ul class="f-14 font-weight-light">
-                            <li>
-                                Sweater repair
-                            </li>
-                            <li>
-                                Depilling
-                            </li>
-                            <li>
-                                Cleaning
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <app-order-review [garments]="order.garments"></app-order-review>
             <div class="review-submit mt-2">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">

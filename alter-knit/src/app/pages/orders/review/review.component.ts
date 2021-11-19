@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, Garment, Order, OrderMethod, PickUpInfo, ShippingInfo } from 'src/app/data.service';
+import { DataService, FormSteps, Garment, Order, OrderMethod, PickUpInfo, ShippingInfo } from 'src/app/data.service';
 
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ export class ReviewComponent implements OnInit {
   submitted = false;
   showTerms: boolean = false;
   orderMethods = OrderMethod;
+  step = FormSteps[4];
 
   constructor(
     private dataService: DataService,

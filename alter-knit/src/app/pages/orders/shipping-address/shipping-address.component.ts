@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, Garment, Order, Service, ShippingInfo } from 'src/app/data.service';
+import { DataService, FormSteps, Garment, Order, Service, ShippingInfo } from 'src/app/data.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class ShippingAddressComponent implements OnInit {
   garments: Garment[] = [];
   shippingAddressInfo!: ShippingInfo;
   submitted = false;
+  step = FormSteps[3];
 
   addressForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -42,11 +43,6 @@ export class ShippingAddressComponent implements OnInit {
         this.addressForm.setValue(order.addressInfo);
       }
     });
-  }
-
-  getServiceList(serviceList: Service[]): string[] {
-    let serviceNames = serviceList.filter(service => service.checked).map(service => service.name);
-    return serviceNames;
   }
 
   submit() {

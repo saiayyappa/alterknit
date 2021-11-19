@@ -1,4 +1,4 @@
-import { BuildingTypes, DataService, Garment, PickUpInfo, Service, ShippingInfo } from 'src/app/data.service';
+import { BuildingTypes, DataService, FormSteps, Garment, PickUpInfo, Service, ShippingInfo } from 'src/app/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -15,6 +15,7 @@ export class PickupAddressComponent implements OnInit {
   pickupAddressInfo!: PickUpInfo;
   submitted = false;
   buildingTypes = BuildingTypes;
+  step = FormSteps[3];
 
   addressForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -46,11 +47,6 @@ export class PickupAddressComponent implements OnInit {
         this.addressForm.controls['buildingType'].setValue((order.addressInfo as PickUpInfo).buildingType.toString());
       }
     });
-  }
-
-  getServiceList(serviceList: Service[]): string[] {
-    let serviceNames = serviceList.filter(service => service.checked).map(service => service.name);
-    return serviceNames;
   }
 
   submit() {

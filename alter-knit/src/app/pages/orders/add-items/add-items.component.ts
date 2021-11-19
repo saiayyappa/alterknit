@@ -1,4 +1,4 @@
-import { ActionType, DataService, Garment, OrderMethod, Service } from '../../../data.service';
+import { ActionType, DataService, FormSteps, Garment, OrderMethod, Service } from '../../../data.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ export class AddItemsComponent implements OnInit {
   updateItemIdx!: number;
   actionType: ActionType = ActionType.ADD;
   showNoGarmentError = false;
+  step = FormSteps[2];
 
   constructor(
     private dataService: DataService,

@@ -1,31 +1,6 @@
 <section>
     <!-- steps -->
-    <div class="row no-gutters">
-        <div class="col-12">
-            <ul class="nav d-flex justify-content-between align-items-center stepper mx-auto">
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">1</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Account</p>
-                </li>
-                <li class="nav-item">
-                    <div class="active-circle m-auto">2</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Shipment method</p>
-                </li>
-                <li class="nav-item active">
-                    <div class="inactive-circle m-auto">3</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Select Service</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">4</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Billing/Shipping</p>
-                </li>
-                <li class="nav-item">
-                    <div class="inactive-circle m-auto">5</div>
-                    <p class="home-text font-weight-light f-18 pt-2">Review</p>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <app-stepper [activeStep]="step"></app-stepper>
     <!-- select shipment method -->
     <div class="row no-gutters mt-5">
         <div class="col-9 offset-1">
@@ -54,8 +29,8 @@
                 </p>
                 <p>
                     <label for="pickup" class="w-100 d-flex container">
-                        <input class="mt-2" type="radio" [value]="orderMethods.Pickup" [(ngModel)]="orderMethod" id="pickup"
-                            name="radio-group">
+                        <input class="mt-2" type="radio" [value]="orderMethods.Pickup" [(ngModel)]="orderMethod"
+                            id="pickup" name="radio-group">
                         <span class="checkmark"></span>
                         <div class="pl-3">
                             <p class="f-18"><strong>NYC Complimentary Pick up</strong></p>
@@ -70,8 +45,8 @@
                 </p>
                 <p>
                     <label for="test3" class="w-100 d-flex container">
-                        <input class="mt-2" type="radio" [value]="orderMethods.Dropoff" [(ngModel)]="orderMethod" id="dropoff"
-                            name="radio-group">
+                        <input class="mt-2" type="radio" [value]="orderMethods.Dropoff" [(ngModel)]="orderMethod"
+                            id="dropoff" name="radio-group">
                         <span class="checkmark"></span>
                         <div class="pl-3">
                             <p class="f-18"> <span class="text-gray2"><strong>NYC Local Drop-off</strong></span>&nbsp;

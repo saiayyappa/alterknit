@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, OrderMethod } from 'src/app/data.service';
+import { DataService, FormSteps, OrderMethod } from 'src/app/data.service';
 import { Route, Router } from '@angular/router';
 
 @Component({
@@ -17,7 +17,7 @@ export class ShipmentMethodComponent implements OnInit {
       this.orderMethod = order.orderMethod;
     });
   }
-
+  step = FormSteps[1];
   orderMethods = OrderMethod;
   orderMethod = this.orderMethods.Ship;
 
