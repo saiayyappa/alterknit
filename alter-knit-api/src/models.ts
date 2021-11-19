@@ -1,4 +1,4 @@
-interface ShippingInfo {
+interface AddressInfo {
     firstName: string;
     lastName: string;
     address: string;
@@ -8,21 +8,9 @@ interface ShippingInfo {
     phone: string;
     email: string;
     isBillingAddress: boolean;
-}
-
-interface PickUpInfo {
-    firstName: string;
-    lastName: string;
     buildingType: number;
-    address: string;
-    city: string;
-    state: string;
-    zipcode: string;
-    phone: string;
-    email: string;
     pickUpDate: string;
     pickUpTime: string;
-    isBillingAddress: boolean;
 }
 
 interface Garment {
@@ -40,8 +28,8 @@ export interface Order {
     id?: number;
     orderMethod: string;
     garments: Garment[];
-    addressInfo: ShippingInfo | PickUpInfo;
-    billingAddressInfo: ShippingInfo;
+    addressInfo: AddressInfo;
+    billingAddressInfo: AddressInfo;
     deliverySpeed: string;
     createdAt: string;
 }
