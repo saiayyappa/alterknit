@@ -16,8 +16,8 @@ export const FormSteps = [
 ];
 
 export enum DeliverySpeed {
-  rush,
-  standard
+  Rush,
+  Standard
 }
 
 export enum ActionType {
@@ -46,9 +46,9 @@ export interface AddressInfo {
   phone: string;
   email: string;
   isBillingAddress: boolean;
-  buildingType?: number;
-  pickUpDate?: string;
-  pickUpTime?: string;
+  buildingType: number;
+  pickUpDate: string;
+  pickUpTime: string;
 };
 
 export interface Service {
@@ -107,7 +107,7 @@ export class Order {
   orderMethod = OrderMethod.Ship;
   garments: Garment[] = [];
   addressInfo!: AddressInfo;
-  deliverySpeed = DeliverySpeed.rush;
+  deliverySpeed = DeliverySpeed.Rush;
   constructor() { }
 }
 
@@ -115,121 +115,75 @@ export class Order {
   providedIn: 'root'
 })
 export class DataService {
-  order = new Order();
-  // order: Order = {
-  //   "orderMethod": 1,
-  //   "garments": [
-  //     {
-  //       "serviceNeeded": [
-  //         {
-  //           "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Reknitting of",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Knit Alteration",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Knit Restyling",
-  //           "checked": true
-  //         },
-  //         {
-  //           "name": "Depilling",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Cleaning",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Custom Knit Work",
-  //           "checked": true
-  //         },
-  //         {
-  //           "name": "Other Fabric Repair",
-  //           "checked": false
-  //         }
-  //       ],
-  //       "isDryCleaned": false,
-  //       "isCleaned": false,
-  //       "brand": "J Crew",
-  //       "color": "red",
-  //       "ageOfGarment": 1,
-  //       "noOfHoles": 1,
-  //       "briefDescription": "This is a red color j crew sweater."
-  //     },
-  //     {
-  //       "serviceNeeded": [
-  //         {
-  //           "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Reknitting of",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Knit Alteration",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Knit Restyling",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Depilling",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Cleaning",
-  //           "checked": true
-  //         },
-  //         {
-  //           "name": "Custom Knit Work",
-  //           "checked": false
-  //         },
-  //         {
-  //           "name": "Other Fabric Repair",
-  //           "checked": true
-  //         }
-  //       ],
-  //       "isDryCleaned": false,
-  //       "isCleaned": false,
-  //       "brand": "Gucci",
-  //       "color": "pink",
-  //       "ageOfGarment": 1,
-  //       "noOfHoles": 1,
-  //       "briefDescription": "This is a pink color sweater from gucci."
-  //     }
-  //   ],
-  //   "addressInfo": {
-  //     firstName: 'Sai',
-  //     lastName: 'Ayyappa',
-  //     buildingType: 1,
-  //     address: 'alsdkflasdkf lasdjlfkjasdf asdf',
-  //     city: 'Madurai',
-  //     state: 'TN',
-  //     zipcode: '625012',
-  //     phone: '9999999999',
-  //     email: 'saiayyappaor@gmail.com',
-  //     pickUpDate: '',
-  //     pickUpTime: '',
-  //     isBillingAddress: false
-  //   },
-  //   "deliverySpeed": 0
-  // }
+  // order = new Order();
+  addressInfo = {
+    "firstName": "Saiayyappa",
+    "lastName": "O R",
+    "buildingType": 0,
+    "address": "19/6G, JeyasriRamesh Illam, Kamarajar 3rd street",
+    "city": "Madurai",
+    "state": "Tamil Nadu",
+    "zipcode": "625012",
+    "phone": "+918526108714",
+    "email": "saiayyappa1996@gmail.com",
+    "pickUpDate": "",
+    "pickUpTime": "",
+    "isBillingAddress": false
+  };
+  order = {
+    "orderMethod": 0,
+    "garments": [
+      {
+        "serviceNeeded": [
+          {
+            "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
+            "checked": false
+          },
+          {
+            "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
+            "checked": false
+          },
+          {
+            "name": "Reknitting of",
+            "checked": false
+          },
+          {
+            "name": "Knit Alteration",
+            "checked": true
+          },
+          {
+            "name": "Knit Restyling",
+            "checked": true
+          },
+          {
+            "name": "Depilling",
+            "checked": true
+          },
+          {
+            "name": "Cleaning",
+            "checked": false
+          },
+          {
+            "name": "Custom Knit Work",
+            "checked": false
+          },
+          {
+            "name": "Other Fabric Repair",
+            "checked": false
+          }
+        ],
+        "isDryCleaned": false,
+        "isCleaned": false,
+        "brand": "J Balvin",
+        "color": "Grey",
+        "ageOfGarment": 3,
+        "noOfHoles": 9,
+        "briefDescription": "This is a J Balvin Grey Sweater from my grandmother."
+      }
+    ],
+    "deliverySpeed": 0,
+    "addressInfo": this.addressInfo
+  };
   orderSubject = new BehaviorSubject(this.order);
   constructor() { }
 
@@ -256,6 +210,11 @@ export class DataService {
   addOrUpdateAddressInfo(addressInfo: AddressInfo) {
     this.order.addressInfo = addressInfo;
     console.log('addOrUpdateAddressInfo', this.order);
+    this.orderSubject.next(this.order);
+  }
+
+  updateDeliverySpeed(deliverySpeed: DeliverySpeed) {
+    this.order.deliverySpeed = deliverySpeed;
     this.orderSubject.next(this.order);
   }
 

@@ -8,27 +8,36 @@
             <div class="f-18 font-weight-light home-text mt-4">
                 <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
                 <p class="m-0">{{order?.addressInfo?.address}}</p>
-                <p class="m-0">{{order?.addressInfo?.city}}, {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
-                <a class="f-14 text-decoration-underline" style="color: #C4C4C4;" (click)="navigateToAddressinfo()">Change
+                <p class="m-0">{{order?.addressInfo?.city}},
+                    {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
+                <a class="f-14 text-decoration-underline" style="color: #C4C4C4;"
+                    (click)="navigateToAddressinfo()">Change
                     Shipping Address</a>
             </div>
             <div class="order-speed text-gray mt-4">
                 <div class="f-24 font-weight-bold">Choose your Speed</div>
-                <div class="form-check mt-4">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        <p class="f-18 font-weight-bold">Rush order</p>
-                        <p class="f-18">We’ll set higher priority to finish asap <span class="f-14">(additional fee will
-                                be added)</span></p>
+                <div class="form-check mt-4 p-0">
+                    <label for="exampleRadios1" class="w-100 d-flex container">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                            [(ngModel)]="deliverySpeed" [value]="deliverySpeeds.Rush">
+                        <span class="checkmark"></span>
+                        <label class="form-check-label" for="exampleRadios1">
+                            <p class="f-18 font-weight-bold">Rush order</p>
+                            <p class="f-18">We’ll set higher priority to finish asap <span class="f-14">(additional fee
+                                    will
+                                    be added)</span></p>
+                        </label>
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                        value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                        <p class="f-18 font-weight-bold">Standard order</p>
-                        <p class="f-18">Our normal time frame is 4 to 6 weeks</p>
+                <div class="form-check p-0">
+                    <label for="exampleRadios2" class="w-100 d-flex container">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                            [(ngModel)]="deliverySpeed" [value]="deliverySpeeds.Standard">
+                        <span class="checkmark"></span>
+                        <label class="form-check-label" for="exampleRadios2">
+                            <p class="f-18 font-weight-bold">Standard order</p>
+                            <p class="f-18">Our normal time frame is 4 to 6 weeks</p>
+                        </label>
                     </label>
                 </div>
             </div>
@@ -38,15 +47,20 @@
             <app-order-review [garments]="order.garments"></app-order-review>
             <div class="review-submit mt-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
+                        (change)="checkTermsError=false">
                     <label class="form-check-label f-14 font-weight-light" for="defaultCheck1">
                         By checking the box, you agree to our
                     </label>
                     <a class="f-14 font-weight-bold text-gold" (click)="showTerms = true; check()">&nbsp;terms and
-                        conditions</a>
+                        conditions
+                    </a>
                 </div>
-                <button type="button" routerLink="/orders/review"
-                    class="btn f-18 form-control font-weight-light background-gold btn-sm text-white btn-block mt-2 mb-5">
+                <div *ngIf="checkTermsError">
+                    <div class="f-14 text-danger text-center">Please accept terms and condition</div>
+                </div>
+                <button type="button" (click)="submitOrder()"
+                    class="btn f-18 font-weight-light background-gold btn-sm text-white btn-block mt-2 mb-5">
                     Submit
                 </button>
             </div>
