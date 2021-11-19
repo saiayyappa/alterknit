@@ -14,7 +14,12 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
   }).promise()
 
   return {
-    statusCode: 201,
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "OPTIONS,GET"
+    },
     body: JSON.stringify({
       items: (await result).Items as Order[]
     })

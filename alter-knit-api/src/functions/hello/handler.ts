@@ -6,6 +6,11 @@ export class AlterKnit {
         console.log('hello');
         const response = {
           statusCode: 200,
+          headers: {
+            "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST"
+          },
           body: JSON.stringify({
             message: 'Go Serverless!!! Your function executed successfully!',
             input: event,

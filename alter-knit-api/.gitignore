@@ -1,1 +1,4 @@
 sendgrid.env
+node_modules
+.webpack
+.dynamodb

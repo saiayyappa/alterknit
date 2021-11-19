@@ -71,7 +71,8 @@ export class ReviewComponent implements OnInit, OnChanges {
     });
     // save order
     this.apiService.createOrder(payload).subscribe((res) => {
-      console.log(res);
+      console.log('response', res);
+      this.dataService.resetOrdersOnComplete();
       this.router.navigate(['thank-you']);
     })
   }

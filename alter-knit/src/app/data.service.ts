@@ -218,4 +218,9 @@ export class DataService {
     this.orderSubject.next(this.order);
   }
 
+  resetOrdersOnComplete() {
+    this.order = new Order();
+    this.orderSubject.next(this.order);
+  }
+
 }

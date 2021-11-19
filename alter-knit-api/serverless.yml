@@ -42,6 +42,22 @@ functions:
       - http:
           method: post
           path: hello
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Accept
+              - Origin
+              - DNT
+              - User-Agent
+              - Referer
+              - Content-Type
+              - X-Amz-Date
+              - x-amz-date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
 
   createOrder:
     handler: src/functions/createOrder/handler.handler
@@ -49,6 +65,22 @@ functions:
       - http:
           method: post
           path: order
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Accept
+              - Origin
+              - DNT
+              - User-Agent
+              - Referer
+              - Content-Type
+              - X-Amz-Date
+              - x-amz-date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
     iamRoleStatements:
     - Effect: Allow
       Action:
@@ -61,10 +93,26 @@ functions:
       - http:
           method: get
           path: order
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Accept
+              - Origin
+              - DNT
+              - User-Agent
+              - Referer
+              - Content-Type
+              - X-Amz-Date
+              - x-amz-date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
     iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:GetItem
+        - dynamodb:Scan
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ALTERKNIT_TABLE}
 
 resources:

@@ -25,10 +25,13 @@ export class AddItemsComponent implements OnInit {
   ) {
     this.dataService.orderSubject.subscribe(order => {
       this.garments = order.garments;
+      this.showNoGarmentError = !(this.garments.length > 0);
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.showNoGarmentError = false;
+  }
   getServiceNames(serviceList: Service[]): string {
     let serviceNames = serviceList.filter(service => service.checked).map(service => service.name);
     return serviceNames.join(", ");

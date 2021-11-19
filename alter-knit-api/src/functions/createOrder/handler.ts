@@ -18,7 +18,7 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
     createdAt: moment.utc().format(), // YYYY-MM-DDThh:mm:ssZ
     ...partialOrder
   };
-  console.log('order', order);
+  console.log('order:', order);
   const docClient = createDynamoDBClient();
   await docClient.put({
     TableName: process.env.ALTERKNIT_TABLE,
@@ -26,6 +26,11 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
   }).promise();
   await sendEmail();
   return {
+    headers: {
+      "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "OPTIONS,POST"
+    },
     statusCode: 201,
     body: JSON.stringify({
       item: order
