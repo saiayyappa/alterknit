@@ -36,7 +36,7 @@ export interface Garment {
   isCleaned: boolean;
 }
 
-export interface ShippingInfo {
+export interface AddressInfo {
   firstName: string;
   lastName: string;
   address: string;
@@ -46,21 +46,10 @@ export interface ShippingInfo {
   phone: string;
   email: string;
   isBillingAddress: boolean;
-}
-export interface PickUpInfo {
-  firstName: string;
-  lastName: string;
-  buildingType: number;
-  address: string;
-  city: string;
-  state: string;
-  zipcode: string;
-  phone: string;
-  email: string;
-  pickUpDate: string;
-  pickUpTime: string;
-  isBillingAddress: boolean;
-}
+  buildingType?: number;
+  pickUpDate?: string;
+  pickUpTime?: string;
+};
 
 export interface Service {
   name: string,
@@ -117,7 +106,7 @@ export const BuildingTypes = [
 export class Order {
   orderMethod = OrderMethod.Ship;
   garments: Garment[] = [];
-  addressInfo!: ShippingInfo | PickUpInfo;
+  addressInfo!: AddressInfo;
   deliverySpeed = DeliverySpeed.rush;
   constructor() { }
 }
@@ -264,7 +253,7 @@ export class DataService {
     this.orderSubject.next(this.order);
   }
 
-  addOrUpdateAddressInfo(addressInfo: ShippingInfo) {
+  addOrUpdateAddressInfo(addressInfo: AddressInfo) {
     this.order.addressInfo = addressInfo;
     console.log('addOrUpdateAddressInfo', this.order);
     this.orderSubject.next(this.order);

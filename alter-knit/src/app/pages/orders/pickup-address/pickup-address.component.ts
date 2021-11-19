@@ -1,4 +1,4 @@
-import { BuildingTypes, DataService, FormSteps, Garment, PickUpInfo, Service, ShippingInfo } from 'src/app/data.service';
+import { AddressInfo, BuildingTypes, DataService, FormSteps, Garment } from 'src/app/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class PickupAddressComponent implements OnInit {
 
   garments: Garment[] = [];
-  pickupAddressInfo!: PickUpInfo;
+  pickupAddressInfo!: AddressInfo;
   submitted = false;
   buildingTypes = BuildingTypes;
   step = FormSteps[3];
@@ -44,7 +44,7 @@ export class PickupAddressComponent implements OnInit {
       this.garments = order.garments;
       if (order.addressInfo) {
         this.addressForm.setValue(order.addressInfo);
-        this.addressForm.controls['buildingType'].setValue((order.addressInfo as PickUpInfo).buildingType.toString());
+        this.addressForm.controls['buildingType'].setValue(order?.addressInfo?.buildingType?.toString());
       }
     });
   }
@@ -56,7 +56,7 @@ export class PickupAddressComponent implements OnInit {
       return;
     }
     this.pickupAddressInfo = { ...this.addressForm.value };
-    this.pickupAddressInfo.buildingType = +this.pickupAddressInfo.buildingType;
+    this.pickupAddressInfo.buildingType = (this.pickupAddressInfo.buildingType) ? Number(this.pickupAddressInfo.buildingType) : 0;
     this.dataService.addOrUpdateAddressInfo(this.pickupAddressInfo);
     this.router.navigate(['orders/review']);
   }

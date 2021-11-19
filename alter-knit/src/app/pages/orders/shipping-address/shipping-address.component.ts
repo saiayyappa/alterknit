@@ -1,5 +1,5 @@
+import { AddressInfo, DataService, FormSteps, Garment } from 'src/app/data.service';
 import { Component, OnInit } from '@angular/core';
-import { DataService, FormSteps, Garment, Order, Service, ShippingInfo } from 'src/app/data.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -12,19 +12,22 @@ import { Router } from '@angular/router';
 export class ShippingAddressComponent implements OnInit {
 
   garments: Garment[] = [];
-  shippingAddressInfo!: ShippingInfo;
+  shippingAddressInfo!: AddressInfo;
   submitted = false;
   step = FormSteps[3];
 
   addressForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
+    buildingType: ['0'],
     address: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
     zipcode: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.required],
+    pickUpDate: [''],
+    pickUpTime: [''],
     isBillingAddress: [false]
   });
   get form() { return this.addressForm.controls; }
@@ -52,6 +55,9 @@ export class ShippingAddressComponent implements OnInit {
       return;
     }
     this.shippingAddressInfo = { ...this.addressForm.value };
+    this.shippingAddressInfo.buildingType = 0;
+    this.shippingAddressInfo.pickUpDate = '';
+    this.shippingAddressInfo.pickUpTime = '';
     this.dataService.addOrUpdateAddressInfo(this.shippingAddressInfo);
     this.router.navigate(['orders/review']);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, FormSteps, Garment, Order, OrderMethod, PickUpInfo, ShippingInfo } from 'src/app/data.service';
+import { DataService, FormSteps, Garment, Order, OrderMethod } from 'src/app/data.service';
 
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
