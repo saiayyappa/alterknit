@@ -5,19 +5,19 @@
     <table class="table table-hover table-borderless align-middle">
         <thead>
             <tr class="text-gray">
-                <th class="col-1 f-24"></th>
-                <th class="col-3 f-24">Service Needed</th>
-                <th class="col-1 f-24">Brand</th>
-                <th class="col-1 f-24">Color</th>
-                <th class="col-2 f-24">Age of Garment</th>
-                <th class="col-1 f-24"># of Holes</th>
-                <th class="col-3 f-24">Brief Description</th>
+                <th class="col-1 f-18"></th>
+                <th class="col-2 f-18">Service Needed</th>
+                <th class="col-1 f-18">Brand</th>
+                <th class="col-1 f-18">Color</th>
+                <th class="col-2 f-18">Age of Garment</th>
+                <th class="col-1 f-18"># of Holes</th>
+                <th class="col-3 f-18">Brief Description</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let garment of garments; let idx = index">
                 <th class="text-gold font-weight-light text-center align-middle">
-                    <span (click)="removeItem(idx)">x</span><span class="pr-1 pl-1 text-black"> | </span><span (click)="editItem(idx)">Edit</span>
+                    <span class="cursor-pointer" (click)="removeItem(idx)">x</span><span class="pr-1 pl-1 text-black"> | </span><span class="cursor-pointer" (click)="editItem(idx)">Edit</span>
                 </th>
                 <td class="align-middle f-18 text-gray font-weight-light">{{getServiceNames(garment.serviceNeeded)}}</td>
                 <td class="align-middle f-18 text-gray font-weight-light">{{garment.brand}}</td>
@@ -37,10 +37,10 @@
         (addItemFinal)="updateGarment($event)"></app-add-item-modal>
     <div class="row no-gutters mt-5 mb-5">
         <div class="col-12 text-center">
-            <button type="button" class="btn f-24 font-weight-light py-2 background-gray btn-sm text-white"
+            <button type="button" style="width: 10%" class="btn f-18 font-weight-light py-2 background-gray btn-sm text-white"
                 routerLink="/orders">Go Back</button>
             <button type="button" style="width: 15%" (click)="proceedToShipping()"
-                class="btn f-24 font-weight-light py-2 background-gold btn-sm text-white ml-2">All Done</button>
+                class="btn f-18 font-weight-light py-2 background-gold btn-sm text-white ml-2">All Done</button>
         </div>
     </div>
 </section>

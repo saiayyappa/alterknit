@@ -5,8 +5,9 @@ footer {
 .footer-line {
   border-bottom: 3px solid white;
   padding-bottom: 1.5rem;
-  width: 40%;
+  width: 54%;
 }
+
 .footer-line > p {
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
@@ -21,7 +22,7 @@ input[type="email"] {
   background-color: #b68c13;
   border: 0;
   color: white;
-  font-size: 1rem;
+  font-size: 18px;
   line-height: 1.75rem;
 }
 .home-box-link-light {

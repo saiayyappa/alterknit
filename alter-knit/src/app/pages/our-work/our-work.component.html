@@ -13,11 +13,11 @@
         <!-- sweater collection -->
         <section class="sweater-collection">
             <div class="row no-gutters w-100">
-                <div class="col-12 d-flex justify-content-start align-items-center flex-wrap" style="flex-basis: 100%">
+                <div class="col-12 sweater-images">
                     <div *ngFor="let sweater of sweaters" class="sweater-panel m-1">
                         <img width="100%" src="{{sweater.imagePath}}" (click)="showViewer(sweater)">
                     </div>
-                    <app-image-viewer [items]="sweaters" [item]="selectedSweater" [open]="viewerOpen"
+                    <app-image-viewer *ngIf="viewerOpen" [items]="sweaters" [item]="selectedSweater" [open]="viewerOpen"
                         (close)="viewerOpen = false">
                     </app-image-viewer>
                 </div>

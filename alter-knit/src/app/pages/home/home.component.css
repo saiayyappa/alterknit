@@ -4,7 +4,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 1000px;
+  height: 100vh;
 }
 
 .home-card {
@@ -19,7 +19,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 1000px;
+  height: 100vh;
   position: relative;
 }
 
@@ -31,4 +31,8 @@
 
 .margin-spacer {
   margin-bottom: 6.5rem;
+}
+
+.margin-adjust {
+  margin-top: -10px;
 }

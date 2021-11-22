@@ -25,6 +25,11 @@ export class StepperComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.dataService.orderSubject.subscribe(order => {
+      // if (order) {
+      //   this.navigateToStep(1);
+      // }
+    });
   }
 
 

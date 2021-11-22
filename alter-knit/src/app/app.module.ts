@@ -26,6 +26,7 @@ import { StepperComponent } from './common/stepper/stepper.component';
 import { TermsModalComponent } from './common/terms-modal/terms-modal.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.component';
+import { LoaderComponent } from './common/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.compo
     AddItemModalComponent,
     TermsModalComponent,
     StepperComponent,
-    OrderReviewComponent
+    OrderReviewComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

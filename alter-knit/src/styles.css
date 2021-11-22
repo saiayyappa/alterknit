@@ -14,8 +14,8 @@
   font-size: 18px;
   margin: 0;
   padding: 0;
-  /* font-family: Gramatika-Regular, "Segoe UI", "Helvetica Neue", Arial,
-    "Noto Sans", "Liberation Sans"; */
+  font-family: Gramatika-Regular, "Segoe UI", "Helvetica Neue", Arial,
+    "Noto Sans", "Liberation Sans";
 }
 
 .bg-transparent {
@@ -64,25 +64,29 @@
 }
 
 .home-title {
-  font-size: 2rem;
+  font-size: 36px;
   line-height: 3.5rem;
 }
 
 .home-text {
-  font-size: 1rem;
+  font-size: 18px;
   line-height: 1.75rem;
 }
 
 .home-box-link-light {
   border: 1px solid #ffffff;
   box-sizing: border-box;
-  width: 50%;
+  flex-basis: auto;
 }
 
 .home-box-link-dark {
   border: 1px solid #000000;
   box-sizing: border-box;
   width: 40%;
+}
+
+.f-12 {
+  font-size: 12px;
 }
 
 .f-14 {
@@ -163,6 +167,7 @@ a:active {
   background-color: #c4c4c4;
   color: white;
   text-align: center;
+  line-height: 32px;
 }
 
 .active-circle {
@@ -172,6 +177,7 @@ a:active {
   background-color: #b68c13;
   color: white;
   text-align: center;
+  line-height: 32px;
 }
 
 .stepper {
@@ -181,3 +187,28 @@ a:active {
 button {
   border-radius: 0px !important;
 }
+
+
+.text-bold {
+  font-family: Gramatika-Bold;
+}
+
+.text-regular {
+  font-family: Gramatika-Regular;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: #000;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid #000;
+  border-radius: 0.15em;
+} */

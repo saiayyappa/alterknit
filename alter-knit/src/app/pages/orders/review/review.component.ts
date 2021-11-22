@@ -3,6 +3,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 
 import { HttpApiService } from 'src/app/http-api.service';
 import { Router } from '@angular/router';
+import { LoaderComponent} from '../../../common/loader/loader.component';
 
 @Component({
   selector: 'app-review',
@@ -20,6 +21,7 @@ export class ReviewComponent implements OnInit, OnChanges {
   deliverySpeed = DeliverySpeed.Rush;
   checkTerms = false;
   checkTermsError = false;
+  loading = false;
 
   constructor(
     private dataService: DataService,
@@ -70,11 +72,13 @@ export class ReviewComponent implements OnInit, OnChanges {
       return garment;
     });
     // save order
+    this.loading = true;
     this.apiService.createOrder(payload).subscribe((res) => {
       console.log('response', res);
+      this.loading = false;
       this.dataService.resetOrdersOnComplete();
       this.router.navigate(['thank-you']);
-    })
+    },err => this.loading = false);
   }
 
 }
