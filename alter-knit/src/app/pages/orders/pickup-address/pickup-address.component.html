@@ -52,6 +52,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="f-18 text-gray" *ngIf="!showCompanyField"
+                        (click)="showCompanyField=true; updateValidatorsAndReset()">+ Add Company
+                    </div>
+                    <div class="f-18 text-gray" *ngIf="showCompanyField"
+                        (click)="showCompanyField=false; updateValidatorsAndReset()">- Remove Company
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="showCompanyField">
+                    <input class="mb-2 w-100 form-control" placeholder="Company Name" type="text" name="companyName"
+                        formControlName="companyName" [ngClass]="{ 'is-invalid': submitted && form.companyName.errors }"
+                        id="companyName">
+                    <div *ngIf="submitted && form.companyName.errors" class="invalid-feedback">
+                        <div class="f-14 p-0 m-0" *ngIf="form.companyName.errors.required">
+                            Please enter company name
+                        </div>
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="form-group col-4">
                         <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city"
@@ -127,10 +145,98 @@
                 <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="sameAddress"
-                            formControlName="isBillingAddress">
+                            formControlName="isBillingAddressSame" (click)="resetBillingForm()">
                         <label class="form-check-label text-gray f-18 font-weight-light" for="sameAddress">
                             Will your billing address be the same as your shipping address?
                         </label>
+                    </div>
+                </div>
+            </form>
+            <form [formGroup]="billingAddressForm" *ngIf="showBillingAddressControl()">
+                <div class="f-24 font-weight-bold text-gray">Billing Information</div>
+                <div class="mt-4">
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <input class="mb-2 w-100 form-control" placeholder="First Name" type="text" name="firstName"
+                                formControlName="firstName"
+                                [ngClass]="{ 'is-invalid': submitted && billingForm.firstName.errors }" id="firstName">
+                            <div *ngIf="submitted && billingForm.firstName.errors" class="invalid-feedback">
+                                <div class="f-14 p-0 m-0" *ngIf="billingForm.firstName.errors.required">
+                                    Please enter first name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <input class="mb-2 w-100 form-control" placeholder="Last Name" type="text" name="lastName"
+                                formControlName="lastName"
+                                [ngClass]="{ 'is-invalid': submitted && billingForm.lastName.errors }" id="lastName">
+                            <div *ngIf="submitted && billingForm.lastName.errors" class="invalid-feedback">
+                                <div class="f-14 p-0 m-0" *ngIf="billingForm.lastName.errors.required">
+                                    Please enter last name
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="f-18 font-weight-bold text-gray">Address</label>
+                    <input class="mb-2 w-100 form-control" placeholder="Address" type="text" name="address"
+                        formControlName="address" [ngClass]="{ 'is-invalid': submitted && billingForm.address.errors }"
+                        id="address">
+                    <div *ngIf="submitted && billingForm.address.errors" class="invalid-feedback">
+                        <div class="f-14 p-0 m-0" *ngIf="billingForm.address.errors.required">
+                            Please enter address
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city"
+                            formControlName="city" [ngClass]="{ 'is-invalid': submitted && billingForm.city.errors }">
+                        <div *ngIf="submitted && billingForm.city.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.city.errors.required">
+                                Please enter city
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-4">
+                        <input class="mb-2 w-100 form-control" placeholder="State" type="text" name="state" id="state"
+                            formControlName="state" [ngClass]="{ 'is-invalid': submitted && billingForm.state.errors }">
+                        <div *ngIf="submitted && billingForm.state.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.state.errors.required">
+                                Please enter state
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-4">
+                        <input class="mb-2 w-100 form-control" placeholder="Zip" type="text" name="zipcode" id="zipcode"
+                            formControlName="zipcode"
+                            [ngClass]="{ 'is-invalid': submitted && billingForm.zipcode.errors }">
+                        <div *ngIf="submitted && billingForm.zipcode.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.zipcode.errors.required">
+                                Please enter zip code
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <input class="mb-2 w-100 form-control" placeholder="Phone" type="text" name="phone" id="phone"
+                            formControlName="phone" [ngClass]="{ 'is-invalid': submitted && billingForm.phone.errors }">
+                        <div *ngIf="submitted && billingForm.phone.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.phone.errors.required">
+                                Please enter phone number
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <input class="mb-2 w-100 form-control" placeholder="Email" type="text" name="email" id="email"
+                            formControlName="email" [ngClass]="{ 'is-invalid': submitted && billingForm.email.errors }">
+                        <div *ngIf="submitted && billingForm.email.errors" class="invalid-feedback">
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.email.errors.required">
+                                Please enter email
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -138,7 +244,6 @@
                 class="btn f-18 font-weight-light background-gold btn-sm text-white mt-5 mb-5">
                 Continue to Order Review
             </button>
-
         </div>
         <!-- order summary -->
         <div class="col-4">

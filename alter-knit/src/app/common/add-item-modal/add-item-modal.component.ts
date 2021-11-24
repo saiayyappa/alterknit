@@ -73,8 +73,8 @@ export class AddItemModalComponent implements OnInit, OnChanges {
     console.log(this.garmentForm);
     let garment: Garment = {
       serviceNeeded: this.serviceList,
-      isDryCleaned: false,
-      isCleaned: false,
+      isDryCleaned: this.isDryCleaned,
+      isCleaned: this.isCleaned,
       ...this.garmentForm.value
     };
     if (this.action === ActionType.ADD) {

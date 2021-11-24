@@ -73,6 +73,14 @@ textarea:focus {
   color: white;
 }
 
+.inactive-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  background-color: white;
+  color: white;
+}
+
 .button-separator {
   width: 54px;
   height: 0px;

@@ -33,6 +33,7 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
     #3
     ALTERKNIT_TABLE: AlterKnit-${self:provider.stage}
+    SENDGRID_API_KEY: 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
 
 functions:
 

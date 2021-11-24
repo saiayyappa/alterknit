@@ -103,10 +103,14 @@
                     the best restoration techniques that make holes and rips nearly invisible. Fixing a previous attempt
                     may cause a delay or additional work in trying to restore your garment.</p>
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="mx-3 text-gray f-24 font-weight-light">yes</div>
+                    <div class="mx-3 f-24 font-weight-light d-flex justify-content-center align-items-center"
+                        [ngClass]="isDryCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
+                        (click)="isDryCleaned=true;">
+                        yes</div>
                     <div class="button-separator"></div>
-                    <div
-                        class="mx-3 text-gray f-24 font-weight-light active-circle d-flex justify-content-center align-items-center">
+                    <div class="mx-3 f-24 font-weight-light d-flex justify-content-center align-items-center"
+                        [ngClass]="isDryCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
+                        (click)="isDryCleaned=false;">
                         no</div>
                 </div>
             </div>
@@ -118,10 +122,13 @@
                 <p class="f-18 font-weight-light text-gold">Cleaning will only make holes bigger and incur higher repair
                     cost. Please let us examine your garment first. If you’ve already cleaned it, don’t worry.</p>
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="mx-3 text-gray f-24 font-weight-light">yes</div>
+                    <div class="mx-3 f-24 font-weight-light d-flex justify-content-center align-items-center"
+                        [ngClass]="isCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'" (click)="isCleaned=true;">
+                        yes</div>
                     <div class="button-separator"></div>
-                    <div
-                        class="mx-3 text-gray f-24 font-weight-light active-circle d-flex justify-content-center align-items-center">
+                    <div class="mx-3 f-24 font-weight-light d-flex justify-content-center align-items-center"
+                        [ngClass]="isCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
+                        (click)="isCleaned=false;">
                         no</div>
                 </div>
             </div>

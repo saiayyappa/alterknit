@@ -2,15 +2,16 @@ interface AddressInfo {
     firstName: string;
     lastName: string;
     address: string;
+    companyName: string;
     city: string;
     state: string;
     zipcode: string;
     phone: string;
     email: string;
-    isBillingAddress: boolean;
-    buildingType: number;
-    pickUpDate: string;
-    pickUpTime: string;
+    isBillingAddressSame?: boolean;
+    buildingType?: number;
+    pickUpDate?: string;
+    pickUpTime?: string;
 }
 
 interface Garment {
@@ -29,7 +30,7 @@ export interface Order {
     orderMethod: string;
     garments: Garment[];
     addressInfo: AddressInfo;
-    billingAddressInfo: AddressInfo;
+    billingAddressInfo?: AddressInfo;
     deliverySpeed: string;
     createdAt: string;
 }

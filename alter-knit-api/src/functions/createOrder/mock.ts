@@ -26,7 +26,7 @@ const mockOrder = {
     "email": "saiayyappaor@gmail.com",
     "pickUpDate": "",
     "pickUpTime": "",
-    "isBillingAddress": false
+    "isBillingAddressSame": false
   },
   "billingAddressInfo": {
     "firstName": "Sai",
@@ -37,7 +37,7 @@ const mockOrder = {
     "zipcode": "625012",
     "phone": "9999999999",
     "email": "saiayyappaor@gmail.com",
-    "isBillingAddress": false
+    "isBillingAddressSame": false
   },
   "deliverySpeed": "Rush Order"
 }

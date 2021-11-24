@@ -13,24 +13,37 @@ export class ShippingAddressComponent implements OnInit {
 
   garments: Garment[] = [];
   shippingAddressInfo!: AddressInfo;
+  billingAddressInfo!: AddressInfo;
   submitted = false;
   step = FormSteps[3];
+  showCompanyField = false;
 
   addressForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    buildingType: ['0'],
+    address: ['', Validators.required],
+    companyName: [''],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    zipcode: ['', Validators.required],
+    phone: ['', Validators.required],
+    email: ['', Validators.required],
+    isBillingAddressSame: [false]
+  });
+
+  billingAddressForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     address: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
     zipcode: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.required],
-    pickUpDate: [''],
-    pickUpTime: [''],
-    isBillingAddress: [false]
   });
+
   get form() { return this.addressForm.controls; }
+  get billingForm() { return this.billingAddressForm.controls; }
 
 
   constructor(
@@ -44,8 +57,31 @@ export class ShippingAddressComponent implements OnInit {
       this.garments = order.garments;
       if (order.addressInfo) {
         this.addressForm.setValue(order.addressInfo);
+        this.showCompanyField = (order.addressInfo.companyName && order.addressInfo.companyName.length > 0) ? true : false;
+        if (!order.addressInfo.isBillingAddressSame && order.billingAddressInfo) {
+          this.billingAddressForm.setValue(order.billingAddressInfo);
+        } else {
+          this.billingAddressForm.reset();
+        }
       }
     });
+  }
+
+  updateValidatorsAndReset() {
+    if (this.showCompanyField) {
+      this.addressForm.controls['companyName'].setValidators(Validators.required);
+    } else {
+      this.addressForm.controls['companyName'].clearValidators();
+      this.addressForm.controls['companyName'].reset();
+    }
+  }
+
+  showBillingAddressControl() {
+    return !this.addressForm.value.isBillingAddressSame;
+  }
+
+  resetBillingForm() {
+    this.billingAddressForm.reset();
   }
 
   submit() {
@@ -54,11 +90,14 @@ export class ShippingAddressComponent implements OnInit {
     if (this.addressForm.invalid) {
       return;
     }
+    if (!this.addressForm.value.isBillingAddressSame) {
+      if (this.billingAddressForm.invalid) {
+        return;
+      }
+    }
     this.shippingAddressInfo = { ...this.addressForm.value };
-    this.shippingAddressInfo.buildingType = 0;
-    this.shippingAddressInfo.pickUpDate = '';
-    this.shippingAddressInfo.pickUpTime = '';
-    this.dataService.addOrUpdateAddressInfo(this.shippingAddressInfo);
+    this.billingAddressInfo = { ...this.billingAddressForm.value };
+    this.dataService.addOrUpdateAddressInfo(this.shippingAddressInfo, this.billingAddressInfo);
     this.router.navigate(['orders/review']);
   }
 }

@@ -2,8 +2,8 @@ import { BuildingTypes, DataService, DeliverySpeed, FormSteps, Garment, Order, O
 import { Component, OnChanges, OnInit } from '@angular/core';
 
 import { HttpApiService } from 'src/app/http-api.service';
+import { LoaderComponent } from '../../../common/loader/loader.component';
 import { Router } from '@angular/router';
-import { LoaderComponent} from '../../../common/loader/loader.component';
 
 @Component({
   selector: 'app-review',
@@ -66,7 +66,7 @@ export class ReviewComponent implements OnInit, OnChanges {
     // replace enums with strings
     payload.orderMethod = OrderMethod[this.order.orderMethod];
     payload.deliverySpeed = DeliverySpeed[this.order.deliverySpeed];
-    payload.addressInfo.buildingType = (this.order.orderMethod === OrderMethod.Pickup) ? BuildingTypes[this.order.addressInfo.buildingType] : '';
+    payload.addressInfo.buildingType = (this.order.orderMethod === OrderMethod.Pickup) ? BuildingTypes[this.order.addressInfo.buildingType ? this.order.addressInfo.buildingType : 0] : '';
     payload.garments = payload.garments.map((garment: any) => {
       garment.serviceNeeded = this.getServiceNames(garment.serviceNeeded);
       return garment;
@@ -76,9 +76,9 @@ export class ReviewComponent implements OnInit, OnChanges {
     this.apiService.createOrder(payload).subscribe((res) => {
       console.log('response', res);
       this.loading = false;
-      this.dataService.resetOrdersOnComplete();
       this.router.navigate(['thank-you']);
-    },err => this.loading = false);
+      this.dataService.resetOrdersOnComplete();
+    }, err => this.loading = false);
   }
 
 }
