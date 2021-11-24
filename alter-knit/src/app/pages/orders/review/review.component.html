@@ -4,15 +4,31 @@
     <div class="row no-gutters mt-5 w-75 mx-auto">
         <!-- shipping address form -->
         <div class="col-8 px-4">
-            <div class="f-24 font-weight-bold text-gray">Shipping Information</div>
+            <div class="f-24 font-weight-bold text-gray">Shipping<span class="f-24 font-weight-bold text-gray"
+                    *ngIf="order?.addressInfo?.isBillingAddressSame"> & Billing</span> Information</div>
             <div class="f-18 font-weight-light home-text mt-4">
                 <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
                 <p class="m-0">{{order?.addressInfo?.address}}</p>
+                <p class="m-0">{{order?.addressInfo?.companyName}}</p>
                 <p class="m-0">{{order?.addressInfo?.city}},
                     {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
                 <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
                     (click)="navigateToAddressinfo()">Change
-                    Shipping Address</a>
+                    Shipping<span class="f-14 text-decoration-underline cursor-pointer"
+                    *ngIf="order?.addressInfo?.isBillingAddressSame">/Billing</span> Address</a>
+            </div>
+            <div *ngIf="!order?.addressInfo?.isBillingAddressSame" class="mt-2">
+                <div class="f-24 font-weight-bold text-gray">Billing Information</div>
+                <div class="f-18 font-weight-light home-text mt-4">
+                    <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
+                    <p class="m-0">{{order?.addressInfo?.address}}</p>
+                    <p class="m-0">{{order?.addressInfo?.companyName}}</p>
+                    <p class="m-0">{{order?.addressInfo?.city}},
+                        {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
+                    <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
+                        (click)="navigateToAddressinfo()">Change
+                        Billing Address</a>
+                </div>
             </div>
             <div class="order-speed text-gray mt-4">
                 <div class="f-24 font-weight-bold">Choose your Speed</div>
