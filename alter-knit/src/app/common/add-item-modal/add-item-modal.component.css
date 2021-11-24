@@ -66,26 +66,24 @@ textarea:focus {
 }
 
 .active-circle {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   background-color: #b68c13;
   color: white;
 }
 
 .inactive-circle {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   background-color: white;
   color: white;
 }
 
 .button-separator {
-  width: 54px;
+  width: 45px;
   height: 0px;
-  left: 725px;
-  top: 1449px;
   border: 1px solid #b68c13;
   transform: rotate(90deg);
 }
