@@ -188,7 +188,6 @@ button {
   border-radius: 0px !important;
 }
 
-
 .text-bold {
   font-family: Gramatika-Bold;
 }
@@ -199,6 +198,13 @@ button {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.btn:focus,
+.btn:active,
+a:focus {
+  outline: none !important;
+  box-shadow: none;
 }
 
 /* input[type="checkbox"] {
