@@ -116,6 +116,29 @@ functions:
         - dynamodb:Scan
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ALTERKNIT_TABLE}
 
+  contactUs:
+    handler: src/functions/contactUs/handler.handler
+    events:
+      - http:
+          method: post
+          path: contact-us
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Accept
+              - Origin
+              - DNT
+              - User-Agent
+              - Referer
+              - Content-Type
+              - X-Amz-Date
+              - x-amz-date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
 resources:
   Resources:
     TodosDynamoDBTable:

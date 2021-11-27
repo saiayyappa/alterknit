@@ -34,3 +34,16 @@ export interface Order {
     deliverySpeed: string;
     createdAt: string;
 }
+
+export interface FedexTokenResponse {
+    access_token: string;
+    token_type: string;
+    expires_in: number;
+    scope: string;
+}
+export interface Details {
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+}
