@@ -26,7 +26,7 @@ sls deploy -v --aws-profile YOUR_AWS_PROFILE
 
 ## set sendgrid
 ```
-echo "export SENDGRID_API_KEY='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'" > sendgrid.env
+echo "export SENDGRID_API_KEY='laksdlfasdlfls'" > sendgrid.env
 ```
 ```
 echo "sendgrid.env" >> .gitignore

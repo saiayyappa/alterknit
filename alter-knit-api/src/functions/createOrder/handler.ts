@@ -12,6 +12,60 @@ const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
 const qs = require('qs');
 
+
+
+let region = "us-east-1"
+let secret;
+let decodedBinarySecret;
+let secretName = "staging/alterknit"
+var client = new AWS.SecretsManager({
+  region: region
+});
+
+
+async function getSecretsFromAWS() {
+  return new Promise(async (resolve) => {
+    client.getSecretValue({ SecretId: secretName }, async function (err, data) {
+      if (err) {
+        if (err.code === 'DecryptionFailureException')
+          // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+        else if (err.code === 'InternalServiceErrorException')
+          // An error occurred on the server side.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+        else if (err.code === 'InvalidParameterException')
+          // You provided an invalid value for a parameter.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+        else if (err.code === 'InvalidRequestException')
+          // You provided a parameter value that is not valid for the current state of the resource.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+        else if (err.code === 'ResourceNotFoundException')
+          // We can't find the resource that you asked for.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+      }
+      else {
+        // Decrypts secret using the associated KMS CMK.
+        // Depending on whether the secret is a string or binary, one of these fields will be populated.
+        console.log('alsdjflkjfsd')
+        if ('SecretString' in data) {
+          secret = data.SecretString;
+        } else {
+          // let buff = new Buffer.from(data.SecretBinary, 'base64');
+          decodedBinarySecret = Buffer.from((data.SecretBinary as string), 'base64').toString('ascii')
+        }
+        // console.log('secret: ', secret);
+        // console.log('decodedBinarySecret: ', decodedBinarySecret)
+      }
+      resolve(true);
+    });
+  });
+}
+
 export const handler = async (event): Promise<APIGatewayProxyResult> => {
   console.log('Event', event);
   const partialOrder: Order = JSON.parse(event.body) as Order;
@@ -55,7 +109,10 @@ function createDynamoDBClient() {
 
 // sending email using SendGrid service
 async function sendEmail(order: Order) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  await getSecretsFromAWS();
+  console.log(secret);
+  secret = JSON.parse(secret);
+  sgMail.setApiKey(secret.SendGridApiKey);
   let garments = '';
   order.garments.forEach(garment => {
     garments = `
@@ -77,7 +134,7 @@ async function sendEmail(order: Order) {
     briefDescription ${garment.briefDescription}` + garments;
   });
   const msg = {
-    to: 'saiayyappa1996@gmail.com', // Change to your recipient
+    to: secret.EmailToAddress, // Change to your recipient
     from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
     subject: 'AlterKnit Order',
     text: 'AlterKnit Order',
