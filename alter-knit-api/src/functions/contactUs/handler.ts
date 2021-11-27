@@ -3,27 +3,29 @@ import 'source-map-support/register'
 import { APIGatewayProxyResult } from 'aws-lambda'
 import { Details } from 'src/models';
 
+const parser = require('lambda-multipart-parser');
+
 const sgMail = require('@sendgrid/mail');
 
 export const handler = async (event): Promise<APIGatewayProxyResult> => {
   console.log('Event', event);
-  let requestBody = JSON.parse(event.body);
-  let images: any[] = requestBody.images;
-  let userDetails: Details = {
-    firstName: requestBody.firstName,
-    lastName: requestBody.lastName,
-    phone: requestBody.phone,
-    email: requestBody.email
-  }
-  let attachments = images.map((image) => {
+  const result = await parser.parse(event);
+  console.log(result);
+  let attachments = result.files.map((image) => {
     return {
-      content: image.url,
-      filename: image.name,
-      type: "application/image",
+      content: base64_encode(image.content),
+      filename: image.filename,
+      type: image.contentType,
       disposition: "attachment"
     }
   });
-  console.log('attachments: ', attachments);
+  let userDetails: Details = {
+    firstName: result.firstName,
+    lastName: result.lastName,
+    phone: result.phone,
+    email: result.email
+  }
+  // console.log('attachments: ', attachments);
   await sendEmail(userDetails, attachments);
   return {
     headers: {
@@ -36,22 +38,26 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
   };
 }
 
+function base64_encode(bitmap) {
+  return Buffer.from(bitmap).toString('base64');
+}
+
 
 // sending email using SendGrid service
 async function sendEmail(userDetails: Details, attachments: any[]) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   const msg = {
     to: userDetails.email, // Change to your recipient
-    from: 'saiayyappaor@gmail.com', // Change to your verified sender
+    from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
     subject: 'AlterKnit',
     text: 'AlterKnit',
     html: `<strong>This is the user info and their images as attachement</strong>
     First Name: ${userDetails.firstName}
     Last Name: ${userDetails.lastName}
     phone: ${userDetails.phone}
-    email: ${userDetails.email}
-    `,
-    // attachments: attachments
+    email: ${userDetails.email}`
+    ,
+    attachments: attachments
   };
   console.log(msg);
   await sgMail
@@ -62,5 +68,5 @@ async function sendEmail(userDetails: Details, attachments: any[]) {
     .catch((error) => {
       console.error(error)
       console.log(JSON.stringify(error.response.body.errors))
-    })
+    });
 }

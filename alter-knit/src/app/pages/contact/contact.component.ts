@@ -58,7 +58,8 @@ export class ContactComponent implements OnInit {
       base64Images.push({ name: this.files[i].name, url: (await this.getBase64(this.files[i])) as string });
     }
     console.log(base64Images);
-    this.apiService.contactUs(payload, base64Images).subscribe((res) => {
+    // this.apiService.contactUs(payload, base64Images).subscribe((res) => {
+    this.apiService.contactUs(payload, this.files).subscribe((res) => {
       console.log('Response: ', res);
     });
   }

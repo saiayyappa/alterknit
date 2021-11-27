@@ -27,19 +27,16 @@ export class HttpApiService {
     // return <Observable<any>>this.httpClient.get(this.APIURL + '/dev/order');
   }
 
-  contactUs(info: Details, images: { name: string, url: string }[]): Observable<any> {
-    // const formData = new FormData();
-    // for (let i = 0; i < images.length; i++) {
-    //   formData.append('fileArray', images[i], images[i].name);
-    // }
-    // formData.append('firstName', info.firstName);
-    // formData.append('lastName', info.lastName);
-    // formData.append('email', info.email);
-    // formData.append('phone', info.phone);
-    let payload = {
-      ...info,
-      images: images
+  contactUs(info: Details, images: File[]): Observable<any> {
+    // images: { name: string, url: string }[]
+    const formData = new FormData();
+    for (let i = 0; i < images.length; i++) {
+      formData.append('fileArray', images[i], images[i].name);
     }
-    return this.httpClient.post(this.APIURL + '/dev/contact-us', payload);
+    formData.append('firstName', info.firstName);
+    formData.append('lastName', info.lastName);
+    formData.append('email', info.email);
+    formData.append('phone', info.phone);
+    return this.httpClient.post(this.APIURL + '/dev/contact-us', formData);
   }
 }

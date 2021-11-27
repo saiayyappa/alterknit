@@ -10,7 +10,7 @@ export class DragNDropImageComponent {
   constructor() { }
 
   files: any[] = [];
-  allowedTotalFileSize = 2.5;
+  allowedTotalFileSize = 4;
   errorDescription: string = 'Image Size exceeds limit';
   showError = false;
   @Output() filesToBeUploadedEvent = new EventEmitter();
@@ -68,7 +68,7 @@ export class DragNDropImageComponent {
       file.progress = 0;
       this.files.push(file);
     }
-    if (totalSize > 2.5 * 1024 * 1024) {
+    if (totalSize > this.allowedTotalFileSize * 1024 * 1024) {
       this.showError = true;
       return;
     } else {

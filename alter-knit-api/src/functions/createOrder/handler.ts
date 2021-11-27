@@ -55,13 +55,93 @@ function createDynamoDBClient() {
 
 // sending email using SendGrid service
 async function sendEmail(order: Order) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  let garments = '';
+  order.garments.forEach(garment => {
+    garments = `
+<br>
+    serviceNeeded ${garment.serviceNeeded.toString()}
+<br>
+    isDryCleaned ${garment.isDryCleaned}
+<br>
+    isCleaned ${garment.isCleaned}
+<br>
+    brand ${garment.brand}
+<br>
+    color ${garment.color}
+<br>
+    ageOfGarment ${garment.ageOfGarment}
+<br>
+    noOfHoles ${garment.noOfHoles}
+<br>
+    briefDescription ${garment.briefDescription}` + garments;
+  });
   const msg = {
     to: 'saiayyappa1996@gmail.com', // Change to your recipient
-    from: 'saiayyappaor@gmail.com', // Change to your verified sender
+    from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
     subject: 'AlterKnit Order',
     text: 'AlterKnit Order',
-    html: `<div>${JSON.stringify(order)}</div>`,
+    html: `
+    id: ${order.id}
+    <br>
+    createdAt: ${order.createdAt}
+    <br>
+    orderMethod: ${order.orderMethod}
+    <br>
+    garments:
+    ${garments}
+    <br>
+    deliverySpeed: ${order.deliverySpeed}
+    <br>
+    addressInfo
+    <br>
+        firstName: ${order.addressInfo.firstName}
+    <br>
+        lastName: ${order.addressInfo.lastName}
+    <br>
+        address: ${order.addressInfo.address}
+    <br>
+        companyName: ${order.addressInfo.companyName}
+    <br>
+        city: ${order.addressInfo.city}
+    <br>
+        state: ${order.addressInfo.state}
+    <br>
+        zipcode: ${order.addressInfo.zipcode}
+    <br>
+        phone: ${order.addressInfo.phone}
+    <br>
+        email: ${order.addressInfo.email}
+    <br>
+        isBillingAddressSame: ${order.addressInfo.isBillingAddressSame}
+    <br>
+        buildingType: ${order.addressInfo.buildingType}
+    <br>
+        pickUpDate: ${order.addressInfo.pickUpDate}
+    <br>
+        pickUpTime: ${order.addressInfo.pickUpTime}
+    <br>
+    billingAddressInfo
+    <br>
+        firstName: ${order.billingAddressInfo.firstName}
+    <br>
+        lastName: ${order.billingAddressInfo.lastName}
+    <br>
+        address: ${order.billingAddressInfo.address}
+    <br>
+        companyName: ${order.billingAddressInfo.companyName}
+    <br>
+        city: ${order.billingAddressInfo.city}
+    <br>
+        state: ${order.billingAddressInfo.state}
+    <br>
+        zipcode: ${order.billingAddressInfo.zipcode}
+    <br>
+        phone: ${order.billingAddressInfo.phone}
+    <br>
+        email: ${order.billingAddressInfo.email}
+
+    `,
   };
   console.log(msg);
   await sgMail
@@ -71,7 +151,7 @@ async function sendEmail(order: Order) {
     })
     .catch((error) => {
       console.error(error)
-    })
+    });
 }
 
 // place order using fedex api
