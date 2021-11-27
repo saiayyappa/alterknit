@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { AddItemsComponent } from './pages/orders/add-items/add-items.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'why-alterknit', component: WhyAlterknitComponent },
   { path: 'sign-in', component: SigninComponent },
   { path: 'thank-you', component: ThankYouComponent },
+  { path: 'contact-us', component: ContactComponent },
   {
     path: 'orders', component: OrdersComponent, children: [
       { path: '', component: ShipmentMethodComponent }, // choose shipment method

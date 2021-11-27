@@ -1,6 +1,13 @@
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
+export interface Details {
+  firstName: string,
+  lastName: string,
+  email: string,
+  phone: string,
+}
+
 export enum OrderMethod {
   Ship,
   Pickup,

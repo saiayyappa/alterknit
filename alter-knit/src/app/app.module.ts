@@ -27,6 +27,9 @@ import { TermsModalComponent } from './common/terms-modal/terms-modal.component'
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.component';
 import { LoaderComponent } from './common/loader/loader.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { DragNDropImageComponent } from './common/drag-n-drop-image/drag-n-drop-image.component';
+import { ProgressComponent } from './common/drag-n-drop-image/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { LoaderComponent } from './common/loader/loader.component';
     TermsModalComponent,
     StepperComponent,
     OrderReviewComponent,
-    LoaderComponent
+    LoaderComponent,
+    ContactComponent,
+    DragNDropImageComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,

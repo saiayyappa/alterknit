@@ -1,0 +1,92 @@
+<div class="row no-gutters">
+    <div class="col-12">
+        <section class="section-intro">
+            <app-header [theme]="headerThemes.WHITE"></app-header>
+            <div class="row no-gutters">
+                <div class="text-white section-intro-content text-center">
+                    <p class="title f-36">Ask us Question</p>
+                    <p class="font-weight-light f-18">Wondering if we can fix your garment ? Just provide your
+                        information and attach some pictures. <br /> <strong
+                            class="font-weight-bold">Disclaimer</strong>: Please upload at least 2 photos that are
+                        IN-FOCUS including close-up of the damaged area(s) and
+                        a FULL shot of the entire item. We need these in order to make a determination.</p>
+                </div>
+            </div>
+        </section>
+        <section class="row no-gutters mt-4 w-75 mx-auto">
+            <div class="col-8 mx-auto text-center">
+                <!-- <div class="font-weight-light f-36 mb-2">Please fill this form</div> -->
+                <form [formGroup]="contactForm">
+                    <div class="mt-4">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <input class="mb-2 w-100 form-control" placeholder="First Name*" type="text"
+                                    name="firstName" formControlName="firstName"
+                                    [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }" id="firstName">
+                                <div *ngIf="submitted && form.firstName.errors" class="invalid-feedback">
+                                    <div class="f-14 p-0 m-0" *ngIf="form.firstName.errors.required">
+                                        Please enter first name
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <input class="mb-2 w-100 form-control" placeholder="Last Name*" type="text"
+                                    name="lastName" formControlName="lastName"
+                                    [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }" id="lastName">
+                                <div *ngIf="submitted && form.lastName.errors" class="invalid-feedback">
+                                    <div class="f-14 p-0 m-0" *ngIf="form.lastName.errors.required">
+                                        Please enter last name
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <input class="mb-2 w-100 form-control" placeholder="Phone*" type="text" name="phone"
+                                    id="phone" formControlName="phone"
+                                    [ngClass]="{ 'is-invalid': submitted && form.phone.errors }">
+                                <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
+                                    <div class="f-14 p-0 m-0" *ngIf="form.phone.errors.required">
+                                        Please enter phone number
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <input class="mb-2 w-100 form-control" placeholder="Email*" type="text" name="email"
+                                    id="email" formControlName="email"
+                                    [ngClass]="{ 'is-invalid': submitted && form.email.errors }">
+                                <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+                                    <div class="f-14 p-0 m-0" *ngIf="form.email.errors.required">
+                                        Please enter email
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="font-weight-light f-18 mb-3">Total size of images can be <span
+                            class="font-weight-bold">2.5MB</span> and can be of type <i>jpeg, png</i></div>
+                    <app-drag-n-drop-image (filesToBeUploadedEvent)="getFiles($event)"></app-drag-n-drop-image>
+                </form>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
+                        (change)="checkTermsError=false">
+                    <label class="form-check-label f-14 font-weight-light" for="defaultCheck1">
+                        By checking the box, you agree to our
+                    </label>
+                    <a class="f-14 font-weight-bold text-gold cursor-pointer" (click)="showTerms=true;">
+                        &nbsp;terms and conditions
+                    </a>
+                </div>
+                <div *ngIf="checkTermsError" class="mb-2">
+                    <div class="f-14 text-danger text-center">Please accept terms and condition</div>
+                </div>
+                <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
+                <button type="button" (click)="submit()"
+                    class="btn f-18 font-weight-light background-gold btn-sm text-white mb-5">
+                    Submit
+                </button>
+            </div>
+        </section>
+        <app-footer></app-footer>
+    </div>
+</div>

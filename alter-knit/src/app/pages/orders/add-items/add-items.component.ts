@@ -31,6 +31,9 @@ export class AddItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.showNoGarmentError = false;
+    if(this.garments.length === 0) {
+      this.modalOpen = true;
+    }
   }
   getServiceNames(serviceList: Service[]): string {
     let serviceNames = serviceList.filter(service => service.checked).map(service => service.name);

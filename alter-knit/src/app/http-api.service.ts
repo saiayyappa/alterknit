@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Details } from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class HttpApiService {
     // staging
     this.APIURL = "https://cqe5phfo05.execute-api.us-east-1.amazonaws.com";
     // development
-    // this.APIURL = "https://za6jh1g643.execute-api.us-east-1.amazonaws.com";
+    // this.APIURL = "https://ahb3ekuqf4.execute-api.us-east-1.amazonaws.com";
+    // this.APIURL = "http://localhost:3003";
   }
 
   createOrder(payload: any): Observable<any> {
@@ -23,5 +25,21 @@ export class HttpApiService {
     //   "name": "Sai"
     // });
     // return <Observable<any>>this.httpClient.get(this.APIURL + '/dev/order');
+  }
+
+  contactUs(info: Details, images: { name: string, url: string }[]): Observable<any> {
+    // const formData = new FormData();
+    // for (let i = 0; i < images.length; i++) {
+    //   formData.append('fileArray', images[i], images[i].name);
+    // }
+    // formData.append('firstName', info.firstName);
+    // formData.append('lastName', info.lastName);
+    // formData.append('email', info.email);
+    // formData.append('phone', info.phone);
+    let payload = {
+      ...info,
+      images: images
+    }
+    return this.httpClient.post(this.APIURL + '/dev/contact-us', payload);
   }
 }
