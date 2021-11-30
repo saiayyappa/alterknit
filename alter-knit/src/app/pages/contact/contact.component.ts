@@ -67,9 +67,7 @@ export class ContactComponent implements OnInit {
     this.apiService.contactUs(payload, this.files).subscribe((res) => {
       console.log('Response: ', res);
       this.loading = false;
-      this.contactForm.reset();
-      this.files = [];
-      this.router.navigate(['contact-us']);
+      this.redirectTo('contact-us');
     }, err => this.loading = false);
   }
   getBase64(image: File) {
@@ -80,4 +78,8 @@ export class ContactComponent implements OnInit {
       reader.onerror = error => reject(error);
     });
   }
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
 }
