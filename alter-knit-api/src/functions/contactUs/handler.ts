@@ -42,6 +42,7 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
     phone: result.phone,
     email: result.email
   }
+  console.log('userDetails: ', userDetails);
   await sendEmail(userDetails, attachments);
   return {
     headers: {
@@ -65,15 +66,17 @@ function base64_encode(bitmap) {
 async function sendEmail(userDetails: Details, attachments: any[]) {
   await getSecretsFromAWS();
   secret = JSON.parse(secret);
+  console.log('secret: ', secret);
   sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
-    to: secret.EmailToAddress, // Change to your recipient
-    from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
+    to: secret.EmailFromAddress, // from and to address same since customer is sending us a mail
+    from: secret.EmailFromAddress,
     subject: 'AlterKnit',
     text: 'AlterKnit',
     html: renderHTML(userDetails),
     attachments: attachments
   };
+  console.log('msg: ', msg);
   await sgMail
     .send(msg)
     .then((response) => {
@@ -81,7 +84,7 @@ async function sendEmail(userDetails: Details, attachments: any[]) {
     })
     .catch((error) => {
       console.error(error)
-      console.log(JSON.stringify(error.response.body.errors))
+      console.log(JSON.stringify(error.response.body.errors));
     });
 }
 
