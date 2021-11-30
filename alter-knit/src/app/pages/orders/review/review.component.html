@@ -20,11 +20,10 @@
             <div *ngIf="!order?.addressInfo?.isBillingAddressSame" class="mt-2">
                 <div class="f-24 font-weight-bold text-gray">Billing Information</div>
                 <div class="f-18 font-weight-light home-text mt-4">
-                    <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
-                    <p class="m-0">{{order?.addressInfo?.address}}</p>
-                    <p class="m-0">{{order?.addressInfo?.companyName}}</p>
-                    <p class="m-0">{{order?.addressInfo?.city}},
-                        {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
+                    <p class="m-0">{{order?.billingAddressInfo?.firstName}}&nbsp;{{order?.billingAddressInfo?.lastName}}</p>
+                    <p class="m-0">{{order?.billingAddressInfo?.address}}</p>
+                    <p class="m-0">{{order?.billingAddressInfo?.city}},
+                        {{order?.billingAddressInfo?.firstName}}&nbsp;{{order?.billingAddressInfo?.zipcode}}</p>
                     <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
                         (click)="navigateToAddressinfo()">Change
                         Billing Address</a>
