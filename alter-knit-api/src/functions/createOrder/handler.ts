@@ -1,13 +1,13 @@
 import 'source-map-support/register'
 
 import * as AWS from 'aws-sdk'
-import * as moment from 'moment-timezone';
 import * as uuid from 'uuid'
 
 import { FedexTokenResponse, Order } from 'src/models'
 
 import { APIGatewayProxyResult } from 'aws-lambda'
 
+const moment = require('moment-timezone');
 const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
 const qs = require('qs');
@@ -45,8 +45,9 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
     TableName: process.env.ALTERKNIT_TABLE,
     Item: order
   }).promise();
+  order.createdAt = moment.tz(order.createdAt).format('ll');
   await sendEmail(order);
-  // await placeOrder(order);
+  await placeOrder(order);
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -96,7 +97,7 @@ async function sendEmail(order: Order) {
   const msg = {
     to: secret.EmailToAddress, // Change to your recipient
     from: secret.EmailFromAddress, // Change to your verified sender
-    subject: 'AlterKnit Order Summary',
+    subject: `AlterKnit Order Summary - Order Id: ${order.id}`,
     text: 'AlterKnit Order Summary',
     html: renderHTML(order),
   };
@@ -122,41 +123,42 @@ async function placeOrder(order: Order) {
     "requestedShipment": {
       "shipper": {
         "contact": {
-          "personName": "SHIPPER NAME",
-          "phoneNumber": 1234567890,
-          "companyName": "Shipper Company Name"
+          "personName": order.addressInfo.firstName + ' ' + order.addressInfo.lastName,
+          "emailAddress": order.addressInfo.email,
+          "phoneNumber": order.addressInfo.phone,
+          "companyName": (order.addressInfo.companyName) ? order.addressInfo.companyName : (order.addressInfo.firstName + ' ' + order.addressInfo.lastName)
         },
         "address": {
           "streetLines": [
-            "SHIPPER STREET LINE 1"
+            order.addressInfo.address
           ],
-          "city": "HARRISON",
-          "stateOrProvinceCode": "AR",
-          "postalCode": 72601,
+          "city": order.addressInfo.city,
+          "stateOrProvinceCode": "NY",
+          "postalCode": 10001,
           "countryCode": "US"
         }
       },
       "recipients": [
         {
           "contact": {
-            "personName": "RECIPIENT NAME",
-            "phoneNumber": 1234567890,
-            "companyName": "Recipient Company Name"
+            "personName": "Sai Ayyappa",
+            "emailAddress": "saiayyappa1996@gmail.com",
+            "phoneNumber": 8526108714,
+            "companyName": "AlterKnit"
           },
           "address": {
             "streetLines": [
-              "RECIPIENT STREET LINE 1",
-              "RECIPIENT STREET LINE 2"
+              "34 Street, Camp Bell Rd"
             ],
-            "city": "Collierville",
-            "stateOrProvinceCode": "TN",
-            "postalCode": 38017,
+            "city": "New York",
+            "stateOrProvinceCode": "NY",
+            "postalCode": 10001,
             "countryCode": "US"
           }
         }
       ],
-      "shipDatestamp": "2020-07-03",
-      "serviceType": "STANDARD_OVERNIGHT",
+      "shipDatestamp": moment.utc(new Date()).tz('America/New_York').format('YYYY-MM-DD'),
+      "serviceType": (order.deliverySpeed === "Rush") ? "STANDARD_OVERNIGHT" : "STANDARD_OVERNIGHT",
       "packagingType": "FEDEX_PAK",
       "pickupType": "USE_SCHEDULED_PICKUP",
       "blockInsightVisibility": false,
@@ -165,29 +167,22 @@ async function placeOrder(order: Order) {
       },
       "labelSpecification": {
         "imageType": "PDF",
-        "labelStockType": "PAPER_85X11_TOP_HALF_LABEL"
+        "labelStockType": "PAPER_4X6"
       },
       "requestedPackageLineItems": [
         {
-          "groupPackageCount": 1,
           "weight": {
             "value": 10,
-            "units": "LB"
-          }
-        },
-        {
-          "groupPackageCount": 2,
-          "weight": {
-            "value": 5,
             "units": "LB"
           }
         }
       ]
     },
     "accountNumber": {
-      "value": "000561073"
+      "value": "510087860"
     }
   }
+
   let shipmentConfig = {
     method: 'post',
     url: `${fedex.url}/ship/v1/shipments`,
@@ -195,42 +190,18 @@ async function placeOrder(order: Order) {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + tokenResponse.access_token
     },
-    data: {
-      requestedShipment: {
-        shipper: {
-          streetLines: [
-            order.addressInfo.address
-          ],
-          city: order.addressInfo.city,
-          stateOrProvinceCode: order.addressInfo.city, // TODO get the statecode based of state
-          // postalCode: 72601,
-          // countryCode: US
-        },
-        recipients: {
-
-        },
-        pickupType: "USE_SCHEDULED_PICKUP", // "CONTACT_FEDEX_TO_SCHEDULE" "DROPOFF_AT_FEDEX_LOCATION" "USE_SCHEDULED_PICKUP"
-        serviceType: "",
-        packagingType: "",
-        shippingChargesPayment: {
-
-        },
-        labelSpecification: {
-
-        },
-        requestedPackageLineItems: {
-
-        }
-      },
-      labelResponseOptions: "URL_ONLY", // "URL_ONLY" "LABEL"
-      accountNumber: {
-        value: "789926450" // account number of the fedex user
-      },
-      shipAction: "CONFIRM" // "CONFIRM" "TRANSFER"
-    }
+    data: createShipmentPayload
   }
-
-
+  try {
+    let response = await axios(shipmentConfig);
+    if (response.status === 200) {
+      console.log('Final Response: ', JSON.stringify(response.data));
+      return response.data;
+    }
+  } catch (err) {
+    console.error('Error from placeOrder fn: ', err.response.data);
+    // throw err;
+  }
 }
 
 async function getFedexTokens() {
@@ -256,7 +227,6 @@ async function getFedexTokens() {
     console.error('Error from getFedexToken fn: ', err);
     throw err;
   }
-
 }
 
 function renderHTML(order): string {
