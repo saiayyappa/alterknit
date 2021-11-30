@@ -17,10 +17,10 @@
             </div>
             <!-- form 1-->
             <div class="col-6">
-                <div *ngFor="let service of serviceList;">
+                <div class="d-flex align-items-center mb-2" *ngFor="let service of serviceList;">
                     <input class="ml-5" [ngClass]="{ 'is-invalid': submitted && showServiceListError }" type="checkbox"
                         [(ngModel)]="service.checked">
-                    <label class="ml-3" for="service">{{service.name}}</label>
+                    <span class="ml-3 mb-0" for="service">{{service.name}}</span>
                 </div>
                 <div *ngIf="submitted && showServiceListError">
                     <div class="ml-5 f-14 text-danger">Please select services you want</div>

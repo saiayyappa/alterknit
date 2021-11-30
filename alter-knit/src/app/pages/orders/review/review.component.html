@@ -62,15 +62,16 @@
         <div class="col-4">
             <app-order-review [garments]="order.garments"></app-order-review>
             <div class="review-submit mt-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
+                <div class="d-inline-flex align-items-center">
+                    <input type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
                         (change)="checkTermsError=false">
-                    <label class="form-check-label f-14 font-weight-light" for="defaultCheck1">
+                    <span class="ml-2 f-14 font-weight-light" for="defaultCheck1">
                         By checking the box, you agree to our
-                    </label>
-                    <a class="f-14 font-weight-bold text-gold cursor-pointer" (click)="showTerms = true; check()">&nbsp;terms and
-                        conditions
-                    </a>
+                        <a class="f-14 font-weight-bold text-gold cursor-pointer" (click)="showTerms = true; check()">&nbsp;terms and
+                            conditions
+                        </a>
+                    </span>
+
                 </div>
                 <div *ngIf="checkTermsError">
                     <div class="f-14 text-danger text-center">Please accept terms and condition</div>
