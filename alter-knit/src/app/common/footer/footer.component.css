@@ -70,3 +70,9 @@ input:-webkit-autofill:active {
         color: inherit;
     }
 }
+
+#frame {
+  width: 100%;
+  height: 305px;
+  margin-top: -55px;
+}
