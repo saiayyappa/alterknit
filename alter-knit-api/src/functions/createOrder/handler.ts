@@ -28,7 +28,7 @@ let secretName = "staging/alterknit"
 let client = new AWS.SecretsManager({
   region: region
 });
-let fedexURL: string;
+let fedex: { url: string, apiKey: string, secret: string };
 
 export const handler = async (event: { body: string; }): Promise<APIGatewayProxyResult> => {
   console.log('Event', event);
@@ -46,8 +46,7 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
     Item: order
   }).promise();
   await sendEmail(order);
-  // TODO
-  // await placeOrder();
+  // await placeOrder(order);
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -72,11 +71,19 @@ function createDynamoDBClient() {
   return new AWS.DynamoDB.DocumentClient();
 }
 
-function getFedexURL() {
+function instantiateFedex() {
   if (process.env.IS_OFFLINE) {
-    return 'https://apis-sandbox.fedex.com';
+    return {
+      url: 'https://apis-sandbox.fedex.com',
+      apiKey: 'l7ad07a4c615344cbaa6c9a907aae5f2b6',
+      secret: '3902d93046c14ddaaefe7ddaaf1d0304'
+    };
   } else {
-    return '';
+    return {
+      url: '',
+      apiKey: '',
+      secret: ''
+    };
   }
 }
 
@@ -84,14 +91,16 @@ function getFedexURL() {
 async function sendEmail(order: Order) {
   await getSecretsFromAWS();
   secret = JSON.parse(secret);
+  console.log('test', secret);
   sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
     to: secret.EmailToAddress, // Change to your recipient
-    from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
+    from: secret.EmailFromAddress, // Change to your verified sender
     subject: 'AlterKnit Order Summary',
     text: 'AlterKnit Order Summary',
     html: renderHTML(order),
   };
+  console.log('msg', msg);
   await sgMail
     .send(msg)
     .then((response: any) => {
@@ -99,14 +108,15 @@ async function sendEmail(order: Order) {
     })
     .catch((error: any) => {
       console.error(error)
+      console.log(JSON.stringify(error.response.body.errors));
     });
 }
 
 // place order using fedex api
-async function placeOrder() {
-  fedexURL = getFedexURL();
+async function placeOrder(order: Order) {
+  fedex = instantiateFedex();
   const tokenResponse: FedexTokenResponse = await getFedexTokens();
-  console.log(tokenResponse);
+  console.log('tokenResponse: ', tokenResponse);
   let createShipmentPayload = {
     "labelResponseOptions": "URL_ONLY",
     "requestedShipment": {
@@ -178,27 +188,75 @@ async function placeOrder() {
       "value": "000561073"
     }
   }
+  let shipmentConfig = {
+    method: 'post',
+    url: `${fedex.url}/ship/v1/shipments`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + tokenResponse.access_token
+    },
+    data: {
+      requestedShipment: {
+        shipper: {
+          streetLines: [
+            order.addressInfo.address
+          ],
+          city: order.addressInfo.city,
+          stateOrProvinceCode: order.addressInfo.city, // TODO get the statecode based of state
+          // postalCode: 72601,
+          // countryCode: US
+        },
+        recipients: {
+
+        },
+        pickupType: "USE_SCHEDULED_PICKUP", // "CONTACT_FEDEX_TO_SCHEDULE" "DROPOFF_AT_FEDEX_LOCATION" "USE_SCHEDULED_PICKUP"
+        serviceType: "",
+        packagingType: "",
+        shippingChargesPayment: {
+
+        },
+        labelSpecification: {
+
+        },
+        requestedPackageLineItems: {
+
+        }
+      },
+      labelResponseOptions: "URL_ONLY", // "URL_ONLY" "LABEL"
+      accountNumber: {
+        value: "789926450" // account number of the fedex user
+      },
+      shipAction: "CONFIRM" // "CONFIRM" "TRANSFER"
+    }
+  }
+
 
 }
 
 async function getFedexTokens() {
   var data = qs.stringify({
     'grant_type': 'client_credentials',
-    'client_id': 'l7f1c1d233004c47179570df7cac8a0905',
-    'client_secret': 'ed3302b15f7b4cfd832f048bad2dd380'
+    'client_id': fedex.apiKey,
+    'client_secret': fedex.secret
   });
   var config = {
     method: 'post',
-    url: `${fedexURL}/oauth/token`,
+    url: `${fedex.url}/oauth/token`,
     headers: {
-      'accept': 'application/json',
-      'content-type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
     data: data
   };
+  try {
+    let response = await axios(config);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (err) {
+    console.error('Error from getFedexToken fn: ', err);
+    throw err;
+  }
 
-  let response = await axios.post(config, data);
-  return response;
 }
 
 function renderHTML(order): string {
