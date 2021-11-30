@@ -46,7 +46,8 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
     Item: order
   }).promise();
   await sendEmail(order);
-  await placeOrder();
+  // TODO
+  // await placeOrder();
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",

@@ -37,6 +37,6 @@ export class HttpApiService {
     formData.append('lastName', info.lastName);
     formData.append('email', info.email);
     formData.append('phone', info.phone);
-    return this.httpClient.post(this.APIURL + '/dev/contact-us', formData);
+    return <Observable<any>>this.httpClient.post(this.APIURL + '/dev/contact-us', formData);
   }
 }

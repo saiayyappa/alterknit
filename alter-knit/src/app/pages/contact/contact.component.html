@@ -66,6 +66,9 @@
                     <div class="font-weight-light f-18 mb-3">Total size of images can be <span
                             class="font-weight-bold">2.5MB</span> and can be of type <i>jpeg, png</i></div>
                     <app-drag-n-drop-image (filesToBeUploadedEvent)="getFiles($event)"></app-drag-n-drop-image>
+                    <div *ngIf="showImageError" class="f-14 text-danger text-center">
+                        Please attach some images...
+                    </div>
                 </form>
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
@@ -81,9 +84,10 @@
                     <div class="f-14 text-danger text-center">Please accept terms and condition</div>
                 </div>
                 <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
-                <button type="button" (click)="submit()"
-                    class="btn f-18 font-weight-light background-gold btn-sm text-white mb-5">
-                    Submit
+                <button type="button" (click)="submit()" style="width: 20%;"
+                    class="btn f-18 font-weight-light background-gold btn-sm text-white mb-5 text-center">
+                    <span *ngIf="!loading">Submit</span>
+                    <app-loader *ngIf="loading"></app-loader>
                 </button>
             </div>
         </section>

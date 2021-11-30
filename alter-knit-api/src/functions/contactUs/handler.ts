@@ -50,7 +50,9 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
       "Access-Control-Allow-Methods": "OPTIONS,POST"
     },
     statusCode: 200,
-    body: 'Email sent successfully'
+    body: JSON.stringify({
+      response: 'Email sent successfully'
+    })
   };
 }
 
@@ -89,6 +91,7 @@ function renderHTML(userDetails: Details): string {
     { noEscape: true }
   );
   const html = template(userDetails);
+  console.log(html);
   return html;
 }
 
