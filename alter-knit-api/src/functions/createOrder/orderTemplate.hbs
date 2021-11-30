@@ -80,6 +80,8 @@
       </td>
       <td>
         {{#if addressInfo.isBillingAddressSame}}
+        Billing address is same as Shipping address
+        {{else}}
         First Name: {{billingAddressInfo.firstName}}
         <br>
         Last Name: {{billingAddressInfo.lastName}}
@@ -95,8 +97,6 @@
         Phone: {{billingAddressInfo.phone}}
         <br>
         Email: {{billingAddressInfo.email}}
-        {{else}}
-        Billing address is same as Shipping address
         {{/if}}
       </td>
     </tr>

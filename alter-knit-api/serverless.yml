@@ -115,6 +115,10 @@ functions:
       Action:
         - dynamodb:Scan
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ALTERKNIT_TABLE}
+    - Effect: Allow
+      Action:
+        - secretsmanager:GetSecretValue
+      Resource: arn:aws:secretsmanager:us-east-1:722399669416:secret:staging/alterknit-TkXahJ
 
   contactUs:
     handler: src/functions/contactUs/handler.handler
@@ -138,6 +142,11 @@ functions:
               - X-Api-Key
               - X-Amz-Security-Token
             allowCredentials: false
+    iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - secretsmanager:GetSecretValue
+      Resource: arn:aws:secretsmanager:us-east-1:722399669416:secret:staging/alterknit-TkXahJ
 
 resources:
   Resources:
