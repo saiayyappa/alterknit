@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    #orders {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #orders td,
+    #orders th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #orders tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #orders tr:hover {
+      background-color: #ddd;
+    }
+
+    #orders th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>AlterKnit Order Summary</h2>
+  <h4>Order Method: {{orderMethod}}</h4>
+  <h4>Delivery Speed: {{deliverySpeed}}</h4>
+  <table id="orders">
+    <tr>
+      <th>Order Id</th>
+      <th>
+        {{#ifCond orderMethod 'Ship'}}Shipping{{else}}Pick Up{{/ifCond}} Information
+      </th>
+      <th>Billing Information</th>
+    </tr>
+    <tr>
+      <td>
+        {{id}}
+        <br>
+        [Time of creation]: <strong>{{createdAt}}</strong>
+      </td>
+      <td>
+        First Name: {{addressInfo.firstName}}
+        <br>
+        Last Name: {{addressInfo.lastName}}
+        <br>
+        Address: {{addressInfo.address}}
+        <br>
+        Company Name: {{addressInfo.companyName}}
+        <br>
+        City: {{addressInfo.city}}
+        <br>
+        State: {{addressInfo.state}}
+        <br>
+        Zipcode: {{addressInfo.zipcode}}
+        <br>
+        Phone: {{addressInfo.phone}}
+        <br>
+        Email: {{addressInfo.email}}
+        {{#ifCond orderMethod 'Pickup'}}
+        Building Type: {{addressInfo.buildingType}}
+        <br>
+        Pickup Date: {{addressInfo.pickUpDate}}
+        <br>
+        Pickup Time: {{addressInfo.pickUpTime}}
+        {{/ifCond}}
+      </td>
+      <td>
+        {{#if addressInfo.isBillingAddressSame}}
+        First Name: {{billingAddressInfo.firstName}}
+        <br>
+        Last Name: {{billingAddressInfo.lastName}}
+        <br>
+        Address: {{billingAddressInfo.address}}
+        <br>
+        City: {{billingAddressInfo.city}}
+        <br>
+        State: {{billingAddressInfo.state}}
+        <br>
+        Zipcode: {{billingAddressInfo.zipcode}}
+        <br>
+        Phone: {{billingAddressInfo.phone}}
+        <br>
+        Email: {{billingAddressInfo.email}}
+        {{else}}
+        Billing address is same as Shipping address
+        {{/if}}
+      </td>
+    </tr>
+  </table>
+  <h3>Garments Details:</h3>
+  <table id="orders">
+    <tr>
+      <th>Services needed</th>
+      <th>Brand</th>
+      <th>Color</th>
+      <th>Age of Garment</th>
+      <th>No of Holes</th>
+      <th>Brief Description</th>
+      <th>Prior cleaning done?</th>
+      <th>Prior dry cleaning done?</th>
+    </tr>
+    {{#each garments}}
+    {{#with this}}
+    <tr>
+      <td>
+        <ul>
+          {{#each serviceNeeded}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </td>
+      <td>{{brand}}</td>
+      <td>{{color}}</td>
+      <td>{{ageOfGarment}}</td>
+      <td>{{noOfHoles}}</td>
+      <td>{{briefDescription}}</td>
+      <td>{{isCleaned}}</td>
+      <td>{{isDryCleaned}}</td>
+    </tr>
+    {{/with}}
+    {{/each}}
+  </table>
+</body>
+
+</html>

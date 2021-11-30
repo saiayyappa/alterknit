@@ -1,5 +1,7 @@
 import 'source-map-support/register'
 
+import * as AWS from 'aws-sdk'
+
 import { APIGatewayProxyResult } from 'aws-lambda'
 import { Details } from 'src/models';
 
@@ -7,10 +9,25 @@ const parser = require('lambda-multipart-parser');
 
 const sgMail = require('@sendgrid/mail');
 
+const fs = require('fs');
+let region = "us-east-1"
+let secret;
+let decodedBinarySecret;
+let secretName = "staging/alterknit"
+let client = new AWS.SecretsManager({
+  region: region
+});
+const Handlebars = require("handlebars");
+Handlebars.registerHelper('ifCond', function (v1, v2, options) {
+  if (v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 export const handler = async (event): Promise<APIGatewayProxyResult> => {
-  console.log('Event', event);
   const result = await parser.parse(event);
-  console.log(result);
+  console.log('event: ', result);
   let attachments = result.files.map((image) => {
     return {
       content: base64_encode(image.content),
@@ -25,7 +42,6 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
     phone: result.phone,
     email: result.email
   }
-  // console.log('attachments: ', attachments);
   await sendEmail(userDetails, attachments);
   return {
     headers: {
@@ -45,21 +61,17 @@ function base64_encode(bitmap) {
 
 // sending email using SendGrid service
 async function sendEmail(userDetails: Details, attachments: any[]) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  await getSecretsFromAWS();
+  secret = JSON.parse(secret);
+  sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
-    to: userDetails.email, // Change to your recipient
+    to: secret.EmailToAddress, // Change to your recipient
     from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
     subject: 'AlterKnit',
     text: 'AlterKnit',
-    html: `<strong>This is the user info and their images as attachement</strong>
-    First Name: ${userDetails.firstName}
-    Last Name: ${userDetails.lastName}
-    phone: ${userDetails.phone}
-    email: ${userDetails.email}`
-    ,
+    html: renderHTML(userDetails),
     attachments: attachments
   };
-  console.log(msg);
   await sgMail
     .send(msg)
     .then((response) => {
@@ -69,4 +81,35 @@ async function sendEmail(userDetails: Details, attachments: any[]) {
       console.error(error)
       console.log(JSON.stringify(error.response.body.errors))
     });
+}
+
+function renderHTML(userDetails: Details): string {
+  const template = Handlebars.compile(
+    fs.readFileSync(__dirname + "/contactUs.hbs", { flag: 'r' }).toString('utf8'),
+    { noEscape: true }
+  );
+  const html = template(userDetails);
+  return html;
+}
+
+async function getSecretsFromAWS() {
+  return new Promise(async (resolve) => {
+    client.getSecretValue({ SecretId: secretName }, async function (err, data) {
+      if (err) {
+        console.error(err);
+        throw err;
+      }
+      else {
+        // Decrypts secret using the associated KMS CMK.
+        // Depending on whether the secret is a string or binary, one of these fields will be populated.
+        if ('SecretString' in data) {
+          secret = data.SecretString;
+        } else {
+          // let buff = new Buffer.from(data.SecretBinary, 'base64');
+          decodedBinarySecret = Buffer.from((data.SecretBinary as string), 'base64').toString('ascii')
+        }
+      }
+      resolve(true);
+    });
+  });
 }

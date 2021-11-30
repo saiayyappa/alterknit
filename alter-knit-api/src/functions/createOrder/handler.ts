@@ -11,62 +11,26 @@ import { APIGatewayProxyResult } from 'aws-lambda'
 const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
 const qs = require('qs');
+const fs = require('fs');
 
-
-
-let region = "us-east-1"
-let secret;
-let decodedBinarySecret;
-let secretName = "staging/alterknit"
-var client = new AWS.SecretsManager({
-  region: region
+const Handlebars = require("handlebars");
+Handlebars.registerHelper('ifCond', function (v1, v2, options) {
+  if (v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
 });
 
+let region = "us-east-1"
+let secret: any;
+let decodedBinarySecret: any;
+let secretName = "staging/alterknit"
+let client = new AWS.SecretsManager({
+  region: region
+});
+let fedexURL: string;
 
-async function getSecretsFromAWS() {
-  return new Promise(async (resolve) => {
-    client.getSecretValue({ SecretId: secretName }, async function (err, data) {
-      if (err) {
-        if (err.code === 'DecryptionFailureException')
-          // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-          // Deal with the exception here, and/or rethrow at your discretion.
-          throw err;
-        else if (err.code === 'InternalServiceErrorException')
-          // An error occurred on the server side.
-          // Deal with the exception here, and/or rethrow at your discretion.
-          throw err;
-        else if (err.code === 'InvalidParameterException')
-          // You provided an invalid value for a parameter.
-          // Deal with the exception here, and/or rethrow at your discretion.
-          throw err;
-        else if (err.code === 'InvalidRequestException')
-          // You provided a parameter value that is not valid for the current state of the resource.
-          // Deal with the exception here, and/or rethrow at your discretion.
-          throw err;
-        else if (err.code === 'ResourceNotFoundException')
-          // We can't find the resource that you asked for.
-          // Deal with the exception here, and/or rethrow at your discretion.
-          throw err;
-      }
-      else {
-        // Decrypts secret using the associated KMS CMK.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        console.log('alsdjflkjfsd')
-        if ('SecretString' in data) {
-          secret = data.SecretString;
-        } else {
-          // let buff = new Buffer.from(data.SecretBinary, 'base64');
-          decodedBinarySecret = Buffer.from((data.SecretBinary as string), 'base64').toString('ascii')
-        }
-        // console.log('secret: ', secret);
-        // console.log('decodedBinarySecret: ', decodedBinarySecret)
-      }
-      resolve(true);
-    });
-  });
-}
-
-export const handler = async (event): Promise<APIGatewayProxyResult> => {
+export const handler = async (event: { body: string; }): Promise<APIGatewayProxyResult> => {
   console.log('Event', event);
   const partialOrder: Order = JSON.parse(event.body) as Order;
   const id = uuid.v4();
@@ -82,7 +46,7 @@ export const handler = async (event): Promise<APIGatewayProxyResult> => {
     Item: order
   }).promise();
   await sendEmail(order);
-  // await placeOrder();
+  await placeOrder();
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -107,113 +71,39 @@ function createDynamoDBClient() {
   return new AWS.DynamoDB.DocumentClient();
 }
 
+function getFedexURL() {
+  if (process.env.IS_OFFLINE) {
+    return 'https://apis-sandbox.fedex.com';
+  } else {
+    return '';
+  }
+}
+
 // sending email using SendGrid service
 async function sendEmail(order: Order) {
   await getSecretsFromAWS();
-  console.log(secret);
   secret = JSON.parse(secret);
   sgMail.setApiKey(secret.SendGridApiKey);
-  let garments = '';
-  order.garments.forEach(garment => {
-    garments = `
-<br>
-    serviceNeeded ${garment.serviceNeeded.toString()}
-<br>
-    isDryCleaned ${garment.isDryCleaned}
-<br>
-    isCleaned ${garment.isCleaned}
-<br>
-    brand ${garment.brand}
-<br>
-    color ${garment.color}
-<br>
-    ageOfGarment ${garment.ageOfGarment}
-<br>
-    noOfHoles ${garment.noOfHoles}
-<br>
-    briefDescription ${garment.briefDescription}` + garments;
-  });
   const msg = {
     to: secret.EmailToAddress, // Change to your recipient
     from: 'praveenbalakrishnan@icloud.com', // Change to your verified sender
-    subject: 'AlterKnit Order',
-    text: 'AlterKnit Order',
-    html: `
-    id: ${order.id}
-    <br>
-    createdAt: ${order.createdAt}
-    <br>
-    orderMethod: ${order.orderMethod}
-    <br>
-    garments:
-    ${garments}
-    <br>
-    deliverySpeed: ${order.deliverySpeed}
-    <br>
-    addressInfo
-    <br>
-        firstName: ${order.addressInfo.firstName}
-    <br>
-        lastName: ${order.addressInfo.lastName}
-    <br>
-        address: ${order.addressInfo.address}
-    <br>
-        companyName: ${order.addressInfo.companyName}
-    <br>
-        city: ${order.addressInfo.city}
-    <br>
-        state: ${order.addressInfo.state}
-    <br>
-        zipcode: ${order.addressInfo.zipcode}
-    <br>
-        phone: ${order.addressInfo.phone}
-    <br>
-        email: ${order.addressInfo.email}
-    <br>
-        isBillingAddressSame: ${order.addressInfo.isBillingAddressSame}
-    <br>
-        buildingType: ${order.addressInfo.buildingType}
-    <br>
-        pickUpDate: ${order.addressInfo.pickUpDate}
-    <br>
-        pickUpTime: ${order.addressInfo.pickUpTime}
-    <br>
-    billingAddressInfo
-    <br>
-        firstName: ${order.billingAddressInfo.firstName}
-    <br>
-        lastName: ${order.billingAddressInfo.lastName}
-    <br>
-        address: ${order.billingAddressInfo.address}
-    <br>
-        companyName: ${order.billingAddressInfo.companyName}
-    <br>
-        city: ${order.billingAddressInfo.city}
-    <br>
-        state: ${order.billingAddressInfo.state}
-    <br>
-        zipcode: ${order.billingAddressInfo.zipcode}
-    <br>
-        phone: ${order.billingAddressInfo.phone}
-    <br>
-        email: ${order.billingAddressInfo.email}
-
-    `,
+    subject: 'AlterKnit Order Summary',
+    text: 'AlterKnit Order Summary',
+    html: renderHTML(order),
   };
-  console.log(msg);
   await sgMail
     .send(msg)
-    .then((response) => {
+    .then((response: any) => {
       console.log('Email sent', response)
     })
-    .catch((error) => {
+    .catch((error: any) => {
       console.error(error)
     });
 }
 
 // place order using fedex api
-const fedexURL = "https://apis-sandbox.fedex.com";
 async function placeOrder() {
+  fedexURL = getFedexURL();
   const tokenResponse: FedexTokenResponse = await getFedexTokens();
   console.log(tokenResponse);
   let createShipmentPayload = {
@@ -308,4 +198,35 @@ async function getFedexTokens() {
 
   let response = await axios.post(config, data);
   return response;
+}
+
+function renderHTML(order): string {
+  const template = Handlebars.compile(
+    fs.readFileSync(__dirname + "/orderTemplate.hbs", { flag: 'r' }).toString('utf8'),
+    { noEscape: true }
+  );
+  const html = template(order);
+  return html;
+}
+
+async function getSecretsFromAWS() {
+  return new Promise(async (resolve) => {
+    client.getSecretValue({ SecretId: secretName }, async function (err, data) {
+      if (err) {
+        console.error(err);
+        throw err;
+      }
+      else {
+        // Decrypts secret using the associated KMS CMK.
+        // Depending on whether the secret is a string or binary, one of these fields will be populated.
+        if ('SecretString' in data) {
+          secret = data.SecretString;
+        } else {
+          // let buff = new Buffer.from(data.SecretBinary, 'base64');
+          decodedBinarySecret = Buffer.from((data.SecretBinary as string), 'base64').toString('ascii')
+        }
+      }
+      resolve(true);
+    });
+  });
 }
