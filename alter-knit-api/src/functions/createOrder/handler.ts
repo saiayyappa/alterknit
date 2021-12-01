@@ -85,11 +85,11 @@ function instantiateFedex() {
       secret: '3902d93046c14ddaaefe7ddaaf1d0304'
     };
   } else {
-    // TODO :: get from secrets
+    // TODO :: get from secrets -> for now use sandbox for staging and prod
     return {
-      url: '',
-      apiKey: '',
-      secret: ''
+      url: 'https://apis-sandbox.fedex.com',
+      apiKey: 'l7ad07a4c615344cbaa6c9a907aae5f2b6',
+      secret: '3902d93046c14ddaaefe7ddaaf1d0304'
     };
   }
 }
