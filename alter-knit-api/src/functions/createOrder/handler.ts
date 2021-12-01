@@ -1,13 +1,13 @@
 import 'source-map-support/register'
 
 import * as AWS from 'aws-sdk'
+import * as moment from 'moment-timezone';
 import * as uuid from 'uuid'
 
 import { FedexTokenResponse, Order } from 'src/models'
 
 import { APIGatewayProxyResult } from 'aws-lambda'
 
-const moment = require('moment-timezone');
 const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
 const qs = require('qs');
@@ -21,6 +21,7 @@ Handlebars.registerHelper('ifCond', function (v1, v2, options) {
   }
   return options.inverse(this);
 });
+moment.tz.add("America/New_York|EST EDT EWT EPT|50 40 40 40|01010101010101010101010101010101010101010101010102301010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-261t0 1nX0 11B0 1nX0 11B0 1qL0 1a10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 RB0 8x40 iv0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1a10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1cN0 1cL0 1cN0 1cL0 s10 1Vz0 LB0 1BX0 1cN0 1fz0 1a10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1a10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 14p0 1lb0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 14p0 1lb0 14p0 1lb0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 14p0 1lb0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0|21e6")
 
 let region = "us-east-1"
 let secret: any;
@@ -49,7 +50,7 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
     TableName: process.env.ALTERKNIT_TABLE,
     Item: order
   }).promise();
-  order.createdAt = moment.tz(order.createdAt).format('ll'); // re-formatted to human readable date
+  order.createdAt = moment.tz(order.createdAt, 'America/New_York').format('ll'); // re-formatted to human readable date
   const fedexResponse = await placeOrder(order);
   const attachments = await createAttachment(fedexResponse.output?.transactionShipments[0]?.pieceResponses[0]?.packageDocuments[0]?.url)
   await sendEmail(order, attachments);
