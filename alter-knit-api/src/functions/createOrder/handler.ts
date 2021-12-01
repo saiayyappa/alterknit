@@ -1,17 +1,18 @@
 import 'source-map-support/register'
 
 import * as AWS from 'aws-sdk'
-import * as moment from 'moment-timezone';
 import * as uuid from 'uuid'
 
 import { FedexTokenResponse, Order } from 'src/models'
 
 import { APIGatewayProxyResult } from 'aws-lambda'
 
+const moment = require('moment-timezone');
 const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
 const qs = require('qs');
 const fs = require('fs');
+const https = require('https');
 
 const Handlebars = require("handlebars");
 Handlebars.registerHelper('ifCond', function (v1, v2, options) {
@@ -41,12 +42,17 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
   };
   console.log('order:', order);
   const docClient = createDynamoDBClient();
+  await getSecretsFromAWS();
+  secret = JSON.parse(secret);
+  console.log('secret', secret); // TODO :: remove this log in final deploy
   await docClient.put({
     TableName: process.env.ALTERKNIT_TABLE,
     Item: order
   }).promise();
-  await sendEmail(order);
-  // await placeOrder(order);
+  order.createdAt = moment.tz(order.createdAt).format('ll'); // re-formatted to human readable date
+  const fedexResponse = await placeOrder(order);
+  const attachments = await createAttachment(fedexResponse.output?.transactionShipments[0]?.pieceResponses[0]?.packageDocuments[0]?.url)
+  await sendEmail(order, attachments);
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -79,6 +85,7 @@ function instantiateFedex() {
       secret: '3902d93046c14ddaaefe7ddaaf1d0304'
     };
   } else {
+    // TODO :: get from secrets
     return {
       url: '',
       apiKey: '',
@@ -88,17 +95,15 @@ function instantiateFedex() {
 }
 
 // sending email using SendGrid service
-async function sendEmail(order: Order) {
-  await getSecretsFromAWS();
-  secret = JSON.parse(secret);
-  console.log('test', secret);
+async function sendEmail(order: Order, attachemnts: Array<any>) {
   sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
-    to: secret.EmailToAddress, // Change to your recipient
-    from: secret.EmailFromAddress, // Change to your verified sender
-    subject: 'AlterKnit Order Summary',
+    to: secret.EmailToAddress, // TODO :: input correct input in final change
+    from: secret.EmailFromAddress, // TODO :: set the verfied email sender (will be AlterKnit's prod sendgrid verifed sender email)
+    subject: `AlterKnit Order Summary - Order Id: ${order.id}`,
     text: 'AlterKnit Order Summary',
     html: renderHTML(order),
+    attachments: attachemnts
   };
   console.log('msg', msg);
   await sgMail
@@ -122,72 +127,92 @@ async function placeOrder(order: Order) {
     "requestedShipment": {
       "shipper": {
         "contact": {
-          "personName": "SHIPPER NAME",
-          "phoneNumber": 1234567890,
-          "companyName": "Shipper Company Name"
+          "personName": order.addressInfo.firstName + ' ' + order.addressInfo.lastName,
+          "emailAddress": order.addressInfo.email,
+          "phoneNumber": order.addressInfo.phone,
+          "companyName": (order.addressInfo.companyName) ? order.addressInfo.companyName : (order.addressInfo.firstName + ' ' + order.addressInfo.lastName)
         },
         "address": {
           "streetLines": [
-            "SHIPPER STREET LINE 1"
+            order.addressInfo.address
           ],
-          "city": "HARRISON",
-          "stateOrProvinceCode": "AR",
-          "postalCode": 72601,
+          "city": order.addressInfo.city,
+          "stateOrProvinceCode": "NY", // TODO :: retrieve from state enum
+          "postalCode": order.addressInfo.zipcode,
           "countryCode": "US"
         }
       },
       "recipients": [
         {
           "contact": {
-            "personName": "RECIPIENT NAME",
-            "phoneNumber": 1234567890,
-            "companyName": "Recipient Company Name"
+            "personName": "AlterKnit",
+            "emailAddress": "saiayyappa1996@gmail.com", // TODO :: set AlterKnit's email address here
+            "phoneNumber": "2124736363",
+            "companyName": "AlterKnit New York"
           },
           "address": {
             "streetLines": [
-              "RECIPIENT STREET LINE 1",
-              "RECIPIENT STREET LINE 2"
+              "CO Manhattan Wardrobe Supply", "245 W 29th St Suite 800"
             ],
-            "city": "Collierville",
-            "stateOrProvinceCode": "TN",
-            "postalCode": 38017,
-            "countryCode": "US"
+            "city": "New York",
+            "stateOrProvinceCode": "NY",
+            "postalCode": "10001",
+            "countryCode": "US",
+            "residential": false
           }
         }
       ],
-      "shipDatestamp": "2020-07-03",
-      "serviceType": "STANDARD_OVERNIGHT",
-      "packagingType": "FEDEX_PAK",
+      "shipDatestamp": moment.utc(new Date()).tz('America/New_York').format('YYYY-MM-DD'),
+      "serviceType": (order.deliverySpeed === "Rush") ? "STANDARD_OVERNIGHT" : "FEDEX_GROUND",
+      "packagingType": "YOUR_PACKAGING",
       "pickupType": "USE_SCHEDULED_PICKUP",
-      "blockInsightVisibility": false,
       "shippingChargesPayment": {
-        "paymentType": "SENDER"
+        "paymentType": "RECIPIENT",
+        "payor": {
+          "responsibleParty": {
+            "contact": {
+              "personName": "AlterKnit",
+              "emailAddress": "saiayyappa1996@gmail.com", // TODO :: set AlterKnit's email address here
+              "phoneNumber": "2124736363",
+              "companyName": "AlterKnit New York"
+            },
+            "address": {
+              "streetLines": [
+                "CO Manhattan Wardrobe Supply", "245 W 29th St Suite 800"
+              ],
+              "city": "New York",
+              "stateOrProvinceCode": "NY",
+              "postalCode": "10001",
+              "countryCode": "US",
+              "residential": false
+            },
+            "accountNumber": {
+              "value": "510087860",
+            }
+          }
+        }
       },
       "labelSpecification": {
+        "labelFormatType": "COMMON2D",
         "imageType": "PDF",
-        "labelStockType": "PAPER_85X11_TOP_HALF_LABEL"
+        "labelStockType": "PAPER_7X475"
       },
       "requestedPackageLineItems": [
         {
+          "sequenceNumber": "1",
           "groupPackageCount": 1,
           "weight": {
-            "value": 10,
-            "units": "LB"
-          }
-        },
-        {
-          "groupPackageCount": 2,
-          "weight": {
-            "value": 5,
+            "value": 1,
             "units": "LB"
           }
         }
       ]
     },
     "accountNumber": {
-      "value": "000561073"
+      "value": "510087860"
     }
   }
+  console.log("Shipement Payload: ", JSON.stringify(createShipmentPayload))
   let shipmentConfig = {
     method: 'post',
     url: `${fedex.url}/ship/v1/shipments`,
@@ -195,42 +220,18 @@ async function placeOrder(order: Order) {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + tokenResponse.access_token
     },
-    data: {
-      requestedShipment: {
-        shipper: {
-          streetLines: [
-            order.addressInfo.address
-          ],
-          city: order.addressInfo.city,
-          stateOrProvinceCode: order.addressInfo.city, // TODO get the statecode based of state
-          // postalCode: 72601,
-          // countryCode: US
-        },
-        recipients: {
-
-        },
-        pickupType: "USE_SCHEDULED_PICKUP", // "CONTACT_FEDEX_TO_SCHEDULE" "DROPOFF_AT_FEDEX_LOCATION" "USE_SCHEDULED_PICKUP"
-        serviceType: "",
-        packagingType: "",
-        shippingChargesPayment: {
-
-        },
-        labelSpecification: {
-
-        },
-        requestedPackageLineItems: {
-
-        }
-      },
-      labelResponseOptions: "URL_ONLY", // "URL_ONLY" "LABEL"
-      accountNumber: {
-        value: "789926450" // account number of the fedex user
-      },
-      shipAction: "CONFIRM" // "CONFIRM" "TRANSFER"
-    }
+    data: createShipmentPayload
   }
-
-
+  try {
+    let response = await axios(shipmentConfig);
+    if (response.status === 200) {
+      console.log('Final Response: ', JSON.stringify(response.data));
+      return response.data;
+    }
+  } catch (err) {
+    console.error('Error from placeOrder fn: ', err.response.data);
+    throw err;
+  }
 }
 
 async function getFedexTokens() {
@@ -256,7 +257,6 @@ async function getFedexTokens() {
     console.error('Error from getFedexToken fn: ', err);
     throw err;
   }
-
 }
 
 function renderHTML(order): string {
@@ -276,16 +276,35 @@ async function getSecretsFromAWS() {
         throw err;
       }
       else {
-        // Decrypts secret using the associated KMS CMK.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
         if ('SecretString' in data) {
           secret = data.SecretString;
         } else {
-          // let buff = new Buffer.from(data.SecretBinary, 'base64');
           decodedBinarySecret = Buffer.from((data.SecretBinary as string), 'base64').toString('ascii')
         }
       }
       resolve(true);
+    });
+  });
+}
+
+function createAttachment(url: string): Promise<Array<any>> {
+  return new Promise(async (resolve) => {
+    let attachemnts = [];
+    const file = fs.createWriteStream(__dirname + "/ShipmentOrder.pdf");
+    await https.get(url, function (response) {
+      response.pipe(file);
+      response.on('end', function () {
+        console.log(__dirname)
+        let bitmap = fs.readFileSync(__dirname + '/ShipmentOrder.pdf');
+        let base64String = Buffer.from(bitmap).toString('base64');
+        attachemnts = [{
+          filename: `ShipmentOrder.pdf`,
+          content: base64String,
+          type: 'application/pdf',
+          disposition: 'attachment'
+        }];
+        resolve(attachemnts);
+      });
     });
   });
 }
