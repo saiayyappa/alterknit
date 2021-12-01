@@ -70,8 +70,12 @@
                         </div>
                     </div>
                     <div class="form-group col-4">
-                        <input class="mb-2 w-100 form-control" placeholder="State" type="text" name="state" id="state"
-                            formControlName="state" [ngClass]="{ 'is-invalid': submitted && form.state.errors }">
+                        <select class="mb-2 w-100 form-select" title="State" aria-label="State" name="state"
+                            id="state" formControlName="state"
+                            [ngClass]="{ 'is-invalid': submitted && form.state.errors }">
+                            <option value="" selected disabled>State</option>
+                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key }}</option>
+                        </select>
                         <div *ngIf="submitted && form.state.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="form.state.errors.required">
                                 Please enter state
@@ -166,8 +170,12 @@
                         </div>
                     </div>
                     <div class="form-group col-4">
-                        <input class="mb-2 w-100 form-control" placeholder="State" type="text" name="state" id="state"
-                            formControlName="state" [ngClass]="{ 'is-invalid': submitted && billingForm.state.errors }">
+                        <select class="mb-2 w-100 form-select" title="State" aria-label="State" name="state"
+                            id="state" formControlName="state"
+                            [ngClass]="{ 'is-invalid': submitted && billingForm.state.errors }">
+                            <option value="" selected disabled>State</option>
+                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key }}</option>
+                        </select>
                         <div *ngIf="submitted && billingForm.state.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="billingForm.state.errors.required">
                                 Please enter state

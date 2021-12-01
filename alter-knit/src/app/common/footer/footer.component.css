@@ -76,3 +76,13 @@ input:-webkit-autofill:active {
   height: 305px;
   margin-top: -55px;
 }
+
+
+@media only screen and (max-width: 500px) {
+  .footer-row {
+    flex-direction: column;
+  }
+  .links {
+    min-width: 100%;
+  }
+}

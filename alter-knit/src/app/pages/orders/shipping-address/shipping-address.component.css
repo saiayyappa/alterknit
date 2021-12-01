@@ -15,6 +15,13 @@ textarea:focus {
   padding-left: 0.5rem;
 }
 
+select {
+  border-radius: 0;
+  color: #5c5c5c;
+  font-size: 18px;
+  border: 1px solid #5c5c5c;
+}
+
 input:focus,
 textarea:focus {
   outline: #383838 solid 1px;

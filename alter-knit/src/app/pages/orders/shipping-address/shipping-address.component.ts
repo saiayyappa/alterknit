@@ -1,6 +1,6 @@
-import { AddressInfo, DataService, FormSteps, Garment } from 'src/app/data.service';
+import { AddressInfo, DataService, FormSteps, Garment, StateCodes } from 'src/app/data.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class ShippingAddressComponent implements OnInit {
   submitted = false;
   step = FormSteps[3];
   showCompanyField = false;
+  stateCodes = StateCodes;
 
   addressForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -24,7 +25,7 @@ export class ShippingAddressComponent implements OnInit {
     address: ['', Validators.required],
     companyName: [''],
     city: ['', Validators.required],
-    state: ['', Validators.required],
+    state: ['', [Validators.required, Validators.min(1)]],
     zipcode: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.required],
@@ -36,7 +37,7 @@ export class ShippingAddressComponent implements OnInit {
     lastName: ['', Validators.required],
     address: ['', Validators.required],
     city: ['', Validators.required],
-    state: ['', Validators.required],
+    state: ['', [Validators.required, Validators.min(1)]],
     zipcode: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.required],
@@ -99,5 +100,10 @@ export class ShippingAddressComponent implements OnInit {
     this.billingAddressInfo = { ...this.billingAddressForm.value };
     this.dataService.addOrUpdateAddressInfo(this.shippingAddressInfo, this.billingAddressInfo);
     this.router.navigate(['orders/review']);
+  }
+
+  getEnumKeyByEnumValue(enumValue: FormControl) {
+      let values = Object.values(StateCodes).filter(x => x == enumValue.value);
+      return values.length > 0 ? values[0] : null;
   }
 }
