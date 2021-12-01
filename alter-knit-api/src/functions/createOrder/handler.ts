@@ -12,6 +12,7 @@ const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
 const qs = require('qs');
 const fs = require('fs');
+const https = require('https');
 
 const Handlebars = require("handlebars");
 Handlebars.registerHelper('ifCond', function (v1, v2, options) {
@@ -49,8 +50,9 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
     Item: order
   }).promise();
   order.createdAt = moment.tz(order.createdAt).format('ll'); // re-formatted to human readable date
-  await sendEmail(order);
-  await placeOrder(order);
+  const fedexResponse = await placeOrder(order);
+  const attachments = await createAttachment(fedexResponse.output?.transactionShipments[0]?.pieceResponses[0]?.packageDocuments[0]?.url)
+  await sendEmail(order, attachments);
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -93,7 +95,7 @@ function instantiateFedex() {
 }
 
 // sending email using SendGrid service
-async function sendEmail(order: Order) {
+async function sendEmail(order: Order, attachemnts: Array<any>) {
   sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
     to: secret.EmailToAddress, // TODO :: input correct input in final change
@@ -101,6 +103,7 @@ async function sendEmail(order: Order) {
     subject: `AlterKnit Order Summary - Order Id: ${order.id}`,
     text: 'AlterKnit Order Summary',
     html: renderHTML(order),
+    attachments: attachemnts
   };
   console.log('msg', msg);
   await sgMail
@@ -280,6 +283,28 @@ async function getSecretsFromAWS() {
         }
       }
       resolve(true);
+    });
+  });
+}
+
+function createAttachment(url: string): Promise<Array<any>> {
+  return new Promise(async (resolve) => {
+    let attachemnts = [];
+    const file = fs.createWriteStream(__dirname + "/ShipmentOrder.pdf");
+    await https.get(url, function (response) {
+      response.pipe(file);
+      response.on('end', function () {
+        console.log(__dirname)
+        let bitmap = fs.readFileSync(__dirname + '/ShipmentOrder.pdf');
+        let base64String = Buffer.from(bitmap).toString('base64');
+        attachemnts = [{
+          filename: `ShipmentOrder.pdf`,
+          content: base64String,
+          type: 'application/pdf',
+          disposition: 'attachment'
+        }];
+        resolve(attachemnts);
+      });
     });
   });
 }
