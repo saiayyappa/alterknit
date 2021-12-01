@@ -41,11 +41,14 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
   };
   console.log('order:', order);
   const docClient = createDynamoDBClient();
+  await getSecretsFromAWS();
+  secret = JSON.parse(secret);
+  console.log('secret', secret); // TODO :: remove this log in final deploy
   await docClient.put({
     TableName: process.env.ALTERKNIT_TABLE,
     Item: order
   }).promise();
-  order.createdAt = moment.tz(order.createdAt).format('ll');
+  order.createdAt = moment.tz(order.createdAt).format('ll'); // re-formatted to human readable date
   await sendEmail(order);
   await placeOrder(order);
   return {
@@ -80,6 +83,7 @@ function instantiateFedex() {
       secret: '3902d93046c14ddaaefe7ddaaf1d0304'
     };
   } else {
+    // TODO :: get from secrets
     return {
       url: '',
       apiKey: '',
@@ -90,13 +94,10 @@ function instantiateFedex() {
 
 // sending email using SendGrid service
 async function sendEmail(order: Order) {
-  await getSecretsFromAWS();
-  secret = JSON.parse(secret);
-  console.log('test', secret);
   sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
-    to: secret.EmailToAddress, // Change to your recipient
-    from: secret.EmailFromAddress, // Change to your verified sender
+    to: secret.EmailToAddress, // TODO :: input correct input in final change
+    from: secret.EmailFromAddress, // TODO :: set the verfied email sender (will be AlterKnit's prod sendgrid verifed sender email)
     subject: `AlterKnit Order Summary - Order Id: ${order.id}`,
     text: 'AlterKnit Order Summary',
     html: renderHTML(order),
@@ -133,46 +134,72 @@ async function placeOrder(order: Order) {
             order.addressInfo.address
           ],
           "city": order.addressInfo.city,
-          "stateOrProvinceCode": "NY",
-          "postalCode": 10001,
+          "stateOrProvinceCode": "NY", // TODO :: retrieve from state enum
+          "postalCode": order.addressInfo.zipcode,
           "countryCode": "US"
         }
       },
       "recipients": [
         {
           "contact": {
-            "personName": "Sai Ayyappa",
-            "emailAddress": "saiayyappa1996@gmail.com",
-            "phoneNumber": 8526108714,
-            "companyName": "AlterKnit"
+            "personName": "AlterKnit",
+            "emailAddress": "saiayyappa1996@gmail.com", // TODO :: set AlterKnit's email address here
+            "phoneNumber": "2124736363",
+            "companyName": "AlterKnit New York"
           },
           "address": {
             "streetLines": [
-              "34 Street, Camp Bell Rd"
+              "CO Manhattan Wardrobe Supply", "245 W 29th St Suite 800"
             ],
             "city": "New York",
             "stateOrProvinceCode": "NY",
-            "postalCode": 10001,
-            "countryCode": "US"
+            "postalCode": "10001",
+            "countryCode": "US",
+            "residential": false
           }
         }
       ],
       "shipDatestamp": moment.utc(new Date()).tz('America/New_York').format('YYYY-MM-DD'),
-      "serviceType": (order.deliverySpeed === "Rush") ? "STANDARD_OVERNIGHT" : "STANDARD_OVERNIGHT",
-      "packagingType": "FEDEX_PAK",
+      "serviceType": (order.deliverySpeed === "Rush") ? "STANDARD_OVERNIGHT" : "FEDEX_GROUND",
+      "packagingType": "YOUR_PACKAGING",
       "pickupType": "USE_SCHEDULED_PICKUP",
-      "blockInsightVisibility": false,
       "shippingChargesPayment": {
-        "paymentType": "SENDER"
+        "paymentType": "RECIPIENT",
+        "payor": {
+          "responsibleParty": {
+            "contact": {
+              "personName": "AlterKnit",
+              "emailAddress": "saiayyappa1996@gmail.com", // TODO :: set AlterKnit's email address here
+              "phoneNumber": "2124736363",
+              "companyName": "AlterKnit New York"
+            },
+            "address": {
+              "streetLines": [
+                "CO Manhattan Wardrobe Supply", "245 W 29th St Suite 800"
+              ],
+              "city": "New York",
+              "stateOrProvinceCode": "NY",
+              "postalCode": "10001",
+              "countryCode": "US",
+              "residential": false
+            },
+            "accountNumber": {
+              "value": "510087860",
+            }
+          }
+        }
       },
       "labelSpecification": {
+        "labelFormatType": "COMMON2D",
         "imageType": "PDF",
-        "labelStockType": "PAPER_4X6"
+        "labelStockType": "PAPER_7X475"
       },
       "requestedPackageLineItems": [
         {
+          "sequenceNumber": "1",
+          "groupPackageCount": 1,
           "weight": {
-            "value": 10,
+            "value": 1,
             "units": "LB"
           }
         }
@@ -182,7 +209,7 @@ async function placeOrder(order: Order) {
       "value": "510087860"
     }
   }
-
+  console.log("Shipement Payload: ", JSON.stringify(createShipmentPayload))
   let shipmentConfig = {
     method: 'post',
     url: `${fedex.url}/ship/v1/shipments`,
@@ -200,7 +227,7 @@ async function placeOrder(order: Order) {
     }
   } catch (err) {
     console.error('Error from placeOrder fn: ', err.response.data);
-    // throw err;
+    throw err;
   }
 }
 
@@ -246,12 +273,9 @@ async function getSecretsFromAWS() {
         throw err;
       }
       else {
-        // Decrypts secret using the associated KMS CMK.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
         if ('SecretString' in data) {
           secret = data.SecretString;
         } else {
-          // let buff = new Buffer.from(data.SecretBinary, 'base64');
           decodedBinarySecret = Buffer.from((data.SecretBinary as string), 'base64').toString('ascii')
         }
       }
