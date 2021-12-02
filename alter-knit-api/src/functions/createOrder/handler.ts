@@ -39,6 +39,7 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
   const order: Order = {
     id: id,
     createdAt: moment.utc().format(), // YYYY-MM-DDThh:mm:ssZ
+    orderNumber: Date.now().toString(),
     ...partialOrder
   };
   console.log('order:', order);

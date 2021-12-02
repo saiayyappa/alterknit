@@ -28,6 +28,7 @@ interface Garment {
 export interface Order {
     id?: number;
     orderMethod: string;
+    orderNumber: string;
     garments: Garment[];
     addressInfo: AddressInfo;
     billingAddressInfo?: AddressInfo;
