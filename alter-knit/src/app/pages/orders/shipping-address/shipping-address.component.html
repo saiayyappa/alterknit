@@ -89,6 +89,9 @@
                             <div class="f-14 p-0 m-0" *ngIf="form.zipcode.errors.required">
                                 Please enter zip code
                             </div>
+                            <div class="f-14 p-0 m-0" *ngIf="form.zipcode.errors.incorrect">
+                                Incorrect zip code
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -189,6 +192,9 @@
                         <div *ngIf="submitted && billingForm.zipcode.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="billingForm.zipcode.errors.required">
                                 Please enter zip code
+                            </div>
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.zipcode.errors.incorrect">
+                                incorrect
                             </div>
                         </div>
                     </div>

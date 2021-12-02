@@ -1,4 +1,4 @@
-import { AddressInfo, DataService, FormSteps, Garment, StateCodes } from 'src/app/data.service';
+import { AddressInfo, DataService, FormSteps, Garment, StateCodes, PostalCodes } from 'src/app/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -88,10 +88,24 @@ export class ShippingAddressComponent implements OnInit {
   submit() {
     this.submitted = true;
     this.addressForm.markAllAsTouched();
+    if (!this.validateZipcode(this.addressForm.getRawValue().state, this.addressForm.getRawValue().zipcode)) {
+      this.addressForm.controls['zipcode'].setErrors({'incorrect': true});
+    }
+    if (!this.validateZipcode(this.billingAddressForm.getRawValue().state, this.billingAddressForm.getRawValue().zipcode)) {
+      this.billingAddressForm.controls['zipcode'].setErrors({'incorrect': true});
+    }
+    console.log(this.validateZipcode(this.billingAddressForm.getRawValue().state, this.billingAddressForm.getRawValue().zipcode));
+    console.log(this.billingAddressForm.controls['zipcode'].valid, "billingAddressForm");
+    if (!this.addressForm.controls['zipcode'].valid) {
+      return;
+    }
     if (this.addressForm.invalid) {
       return;
     }
     if (!this.addressForm.value.isBillingAddressSame) {
+      if (!this.billingAddressForm.controls['zipcode'].valid) {
+        return;
+      }
       if (this.billingAddressForm.invalid) {
         return;
       }
@@ -105,5 +119,17 @@ export class ShippingAddressComponent implements OnInit {
   getEnumKeyByEnumValue(enumValue: FormControl) {
       let values = Object.values(StateCodes).filter(x => x == enumValue.value);
       return values.length > 0 ? values[0] : null;
+  }
+  validateZipcode(state: string, zipcode: string) {
+    if (zipcode.length == 0) {
+      return false;
+    }
+    for(let i in PostalCodes) {
+      if (Object.keys(PostalCodes[i]).find(p => p === state)) {
+        var possibleCodes = Object.values(PostalCodes[i])[0]?.split(',');
+        return possibleCodes?.indexOf(zipcode) !== -1;
+      }
+    }
+    return false;
   }
 }
