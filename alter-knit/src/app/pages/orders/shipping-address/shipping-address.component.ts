@@ -121,7 +121,7 @@ export class ShippingAddressComponent implements OnInit {
       return values.length > 0 ? values[0] : null;
   }
   validateZipcode(state: string, zipcode: string) {
-    if (zipcode.length == 0) {
+    if (zipcode?.length == 0) {
       return false;
     }
     for(let i in PostalCodes) {
