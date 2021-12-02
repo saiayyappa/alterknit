@@ -99,7 +99,7 @@ function instantiateFedex() {
 async function sendEmail(order: Order, attachemnts: Array<any>) {
   sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
-    to: secret.EmailToAddress, // TODO :: input correct input in final change
+    to: secret.EmailToAddress, // TODO :: input correct input email in final change
     from: secret.EmailFromAddress, // TODO :: set the verfied email sender (will be AlterKnit's prod sendgrid verifed sender email)
     subject: `AlterKnit Order Summary - Order Id: ${order.id}`,
     text: 'AlterKnit Order Summary',
@@ -138,7 +138,7 @@ async function placeOrder(order: Order) {
             order.addressInfo.address
           ],
           "city": order.addressInfo.city,
-          "stateOrProvinceCode": "NY", // TODO :: retrieve from state enum
+          "stateOrProvinceCode": order.addressInfo.state, // this will contain stateCode (enum from UI)
           "postalCode": order.addressInfo.zipcode,
           "countryCode": "US"
         }
@@ -188,7 +188,7 @@ async function placeOrder(order: Order) {
               "residential": false
             },
             "accountNumber": {
-              "value": "510087860",
+              "value": "510087860", // TODO :: change to correct acc no
             }
           }
         }
@@ -210,7 +210,7 @@ async function placeOrder(order: Order) {
       ]
     },
     "accountNumber": {
-      "value": "510087860"
+      "value": "510087860" // TODO :: change to correct acc no
     }
   }
   console.log("Shipement Payload: ", JSON.stringify(createShipmentPayload))
@@ -291,12 +291,12 @@ async function getSecretsFromAWS() {
 function createAttachment(url: string): Promise<Array<any>> {
   return new Promise(async (resolve) => {
     let attachemnts = [];
-    const file = fs.createWriteStream(__dirname + "/ShipmentOrder.pdf");
+    const file = fs.createWriteStream("/tmp/ShipmentOrder.pdf");
     await https.get(url, function (response) {
       response.pipe(file);
       response.on('end', function () {
         console.log(__dirname)
-        let bitmap = fs.readFileSync(__dirname + '/ShipmentOrder.pdf');
+        let bitmap = fs.readFileSync('/tmp/ShipmentOrder.pdf');
         let base64String = Buffer.from(bitmap).toString('base64');
         attachemnts = [{
           filename: `ShipmentOrder.pdf`,
