@@ -74,7 +74,7 @@
                             id="state" formControlName="state"
                             [ngClass]="{ 'is-invalid': submitted && form.state.errors }">
                             <option value="" selected disabled>State</option>
-                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key }}</option>
+                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key.split('_').join(" ") }}</option>
                         </select>
                         <div *ngIf="submitted && form.state.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="form.state.errors.required">
@@ -88,6 +88,9 @@
                         <div *ngIf="submitted && form.zipcode.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="form.zipcode.errors.required">
                                 Please enter zip code
+                            </div>
+                            <div class="f-14 p-0 m-0" *ngIf="form.zipcode.errors.incorrect">
+                                Incorrect zip code
                             </div>
                         </div>
                     </div>
@@ -174,7 +177,7 @@
                             id="state" formControlName="state"
                             [ngClass]="{ 'is-invalid': submitted && billingForm.state.errors }">
                             <option value="" selected disabled>State</option>
-                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key }}</option>
+                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key.split('_').join(" ") }}</option>
                         </select>
                         <div *ngIf="submitted && billingForm.state.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="billingForm.state.errors.required">
@@ -189,6 +192,9 @@
                         <div *ngIf="submitted && billingForm.zipcode.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="billingForm.zipcode.errors.required">
                                 Please enter zip code
+                            </div>
+                            <div class="f-14 p-0 m-0" *ngIf="billingForm.zipcode.errors.incorrect">
+                                incorrect
                             </div>
                         </div>
                     </div>
