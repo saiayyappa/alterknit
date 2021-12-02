@@ -102,7 +102,7 @@ async function sendEmail(order: Order, attachemnts: Array<any>) {
   const msg = {
     to: secret.EmailToAddress, // TODO :: input correct input email in final change
     from: secret.EmailFromAddress, // TODO :: set the verfied email sender (will be AlterKnit's prod sendgrid verifed sender email)
-    subject: `AlterKnit Order Summary - Order Id: ${order.id}`,
+    subject: `AlterKnit Order Summary - Order #${order.orderNumber}`,
     text: 'AlterKnit Order Summary',
     html: renderHTML(order),
     attachments: attachemnts
