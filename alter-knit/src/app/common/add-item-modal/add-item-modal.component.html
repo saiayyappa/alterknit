@@ -1,14 +1,14 @@
 <div *ngIf="open" class="viewer-container pb-5 pt-5">
     <!-- form container -->
     <section class="form-container mx-auto">
-        <div class="row no-gutters mt-md-5 mt-2">
+        <div class="row no-gutters mt-lg-5 mt-2">
             <!-- what kind of service do you need -->
-            <div class="col-md-6 col-12 text-center vertial-gold-separator d-md-block d-none">
+            <div class="col-lg-6 col-12 text-center vertial-gold-separator d-lg-block d-none">
                 <p class="text-gold f-36">Garment #1</p>
                 <p class="f-30 text-gray">What kind of service do you need?</p>
                 <p class="f-18 font-weight-light">Select all that apply, must select at least one<span
                         class="text-danger">*</span></p>
-                <div class="d-flex justify-content-center align-items-center flex-column flex-md-row">
+                <div class="d-flex justify-content-center align-items-center flex-column flex-lg-row">
                     <img class="mx-4" width="79px" height="79px" src="../../../assets/images/garment-icons/shirt.svg">
                     <img class="mx-4" width="79px" height="79px" src="../../../assets/images/garment-icons/wool.svg">
                     <img class="mx-4" width="79px" height="79px"
@@ -21,22 +21,22 @@
                         class="text-danger">*</span></p>
             </div>
             <!-- form 1-->
-            <div class="col-md-6 col-12">
+            <div class="col-lg-6 col-12">
                 <div class="d-flex align-items-center mb-2" *ngFor="let service of serviceList;">
                     <div>
-                        <input class="ml-md-5 ml-3" [ngClass]="{ 'is-invalid': submitted && showServiceListError }"
+                        <input class="ml-lg-5 ml-3" [ngClass]="{ 'is-invalid': submitted && showServiceListError }"
                             type="checkbox" [(ngModel)]="service.checked">
                     </div>
-                    <span class="ml-md-3 ml-2 mb-0">{{service.name}}</span>
+                    <span class="ml-lg-3 ml-2 mb-0">{{service.name}}</span>
                 </div>
                 <div *ngIf="submitted && showServiceListError">
-                    <div class="ml-md-5 ml-3 f-14 text-danger">Please select services you want</div>
+                    <div class="ml-lg-5 ml-3 f-14 text-danger">Please select services you want</div>
                 </div>
             </div>
         </div>
-        <div class="row no-gutters mt-md-5 mt-3">
+        <div class="row no-gutters mt-lg-5 mt-3">
             <!-- what kind of service do you need -->
-            <div class="col-md-6 col-12 text-center vertial-gold-separator d-md-block d-none">
+            <div class="col-lg-6 col-12 text-center vertial-gold-separator d-lg-block d-none">
                 <div class="w-75 mx-auto">
                     <p class="f-30 text-gray">Tell us about your Garment</p>
                     <p class="f-18 font-weight-light px-5">Let us know more about your clothes. It’ll give us more
@@ -49,8 +49,8 @@
                     insite into what have to do to get it looking good as new.</p>
             </div>
             <!-- form 2-->
-            <div class="col-md-6 col-12" [formGroup]="garmentForm">
-                <div class="mx-md-5 mx-3">
+            <div class="col-lg-6 col-12" [formGroup]="garmentForm">
+                <div class="mx-lg-5 mx-3">
                     <div class="form-group">
                         <input class="mb-2 w-100" formControlName="brand" placeholder="Brand*" type="text" name="brand"
                             [ngClass]="{ 'is-invalid': submitted && itemf.brand.errors }" id="brand" required>
@@ -101,13 +101,13 @@
                 </div>
             </div>
         </div>
-        <div class="row no-gutters mt-md-5 mx-3">
+        <div class="row no-gutters mt-lg-5 mx-3">
             <div class="col-12 text-center">
                 <img width="50px" height="50px" src="../../../assets/images/AKNY-LOGO_complete_gold.svg"
                     alt="logo-gold">
             </div>
         </div>
-        <div class="row no-gutters mt-md-5 mt-3 mx-md-5 mx-3">
+        <div class="row no-gutters mt-lg-5 mt-3 mx-lg-5 mx-3">
             <div class="col-12 text-center">
                 <p class="f-30 text-gray">Has this garment been previously repaired by a dry cleaner or anyone
                     else?<span class="text-danger f-30">*</span></p>
