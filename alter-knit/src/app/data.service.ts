@@ -337,7 +337,7 @@ export class Order {
   providedIn: 'root'
 })
 export class DataService {
-  // order = new Order();
+  order = new Order();
   addressInfo: AddressInfo = {
     "firstName": "Saiayyappa",
     "lastName": "O R",
@@ -350,71 +350,71 @@ export class DataService {
     "email": "saiayyappa1996@gmail.com",
     "isBillingAddressSame": true
   };
-  order: Order = {
-    "orderMethod": 0,
-    "garments": [
-      {
-        "serviceNeeded": [
-          {
-            "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
-            "checked": false
-          },
-          {
-            "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
-            "checked": false
-          },
-          {
-            "name": "Reknitting of",
-            "checked": false
-          },
-          {
-            "name": "Knit Alteration",
-            "checked": true
-          },
-          {
-            "name": "Knit Restyling",
-            "checked": true
-          },
-          {
-            "name": "Depilling",
-            "checked": true
-          },
-          {
-            "name": "Cleaning",
-            "checked": false
-          },
-          {
-            "name": "Custom Knit Work",
-            "checked": false
-          },
-          {
-            "name": "Other Fabric Repair",
-            "checked": false
-          }
-        ],
-        "isDryCleaned": false,
-        "isCleaned": false,
-        "brand": "J Balvin",
-        "color": "Grey",
-        "ageOfGarment": 3,
-        "noOfHoles": 9,
-        "briefDescription": "This is a J Balvin Grey Sweater from my grandmother."
-      }
-    ],
-    "deliverySpeed": 0,
-    "addressInfo": this.addressInfo,
-    "billingAddressInfo": {
-      "firstName": "",
-      "lastName": "",
-      "address": "",
-      "companyName": "",
-      "city": "",
-      "state": "",
-      "zipcode": "",
-      "phone": "",
-      "email": "",
-    }
-  };
+  // order: Order = {
+  //   "orderMethod": 0,
+  //   "garments": [
+  //     {
+  //       "serviceNeeded": [
+  //         {
+  //           "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
+  //           "checked": false
+  //         },
+  //         {
+  //           "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
+  //           "checked": false
+  //         },
+  //         {
+  //           "name": "Reknitting of",
+  //           "checked": false
+  //         },
+  //         {
+  //           "name": "Knit Alteration",
+  //           "checked": true
+  //         },
+  //         {
+  //           "name": "Knit Restyling",
+  //           "checked": true
+  //         },
+  //         {
+  //           "name": "Depilling",
+  //           "checked": true
+  //         },
+  //         {
+  //           "name": "Cleaning",
+  //           "checked": false
+  //         },
+  //         {
+  //           "name": "Custom Knit Work",
+  //           "checked": false
+  //         },
+  //         {
+  //           "name": "Other Fabric Repair",
+  //           "checked": false
+  //         }
+  //       ],
+  //       "isDryCleaned": false,
+  //       "isCleaned": false,
+  //       "brand": "J Balvin",
+  //       "color": "Grey",
+  //       "ageOfGarment": 3,
+  //       "noOfHoles": 9,
+  //       "briefDescription": "This is a J Balvin Grey Sweater from my grandmother."
+  //     }
+  //   ],
+  //   "deliverySpeed": 0,
+  //   "addressInfo": this.addressInfo,
+  //   "billingAddressInfo": {
+  //     "firstName": "",
+  //     "lastName": "",
+  //     "address": "",
+  //     "companyName": "",
+  //     "city": "",
+  //     "state": "",
+  //     "zipcode": "",
+  //     "phone": "",
+  //     "email": "",
+  //   }
+  // };
   orderSubject = new BehaviorSubject(this.order);
   constructor() { }
 
