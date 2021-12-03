@@ -1,9 +1,9 @@
 <section>
     <!-- steps -->
-    <app-stepper [activeStep]="step"></app-stepper>
+    <app-stepper class="d-none d-lg-block" [activeStep]="step"></app-stepper>
     <!-- select shipment method -->
     <div class="row no-gutters mt-5">
-        <div class="col-9 offset-1">
+        <div class="col-sm-9 offset-sm-1 col-12">
             <p class="f-36">How would you like to submit your order to us?</p>
             <p class="font-weight-light f-18">Select a method to sending us your garment</p>
             <form>
@@ -56,8 +56,12 @@
                     </label>
                 </p>
             </form>
-            <button type="button" (click)=submit() class="btn background-gold btn-sm f-18 text-white font-weight-light"
-                style="width: 15%; height: 10%;">Next</button>
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" (click)=submit()
+                        class="btn background-gold btn-sm f-18 text-white font-weight-light w-100">Next</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>

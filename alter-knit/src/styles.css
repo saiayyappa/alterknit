@@ -82,7 +82,7 @@
 .home-box-link-dark {
   border: 1px solid #000000;
   box-sizing: border-box;
-  width: 40%;
+  /* width: 40%; */
 }
 
 .f-12 {
@@ -150,12 +150,12 @@ a:active {
 }
 
 .header {
-  height: 165px;
+  min-height: 165px;
   background-color: #b68c13;
 }
 
 .header-white {
-  height: 165px;
+  min-height: 165px;
   background-color: white;
 }
 
@@ -218,10 +218,10 @@ input[type="checkbox"] {
   margin: 0;
 
   font: inherit;
-  width: 1.15em;
-  height: 1.15em;
+  width: 1.15em !important;
+  height: 1.15em !important;
   border: 0.15em solid #000000;
-  border-radius: 0.15em;
+  border-radius: 0.15em !important;
   transform: translateY(-0.075em);
 
   display: grid;

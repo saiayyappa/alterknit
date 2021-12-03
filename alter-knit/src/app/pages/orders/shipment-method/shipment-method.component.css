@@ -48,10 +48,10 @@
 }
 
 .container .checkmark:after {
- 	top: 1px;
-	left: 1px;
-	width: 21px;
-	height: 21px;
-	border-radius: 100%;
-	background: black;
+  top: 1px;
+  left: 1px;
+  width: 21px;
+  height: 21px;
+  border-radius: 100%;
+  background: black;
 }

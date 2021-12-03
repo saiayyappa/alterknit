@@ -3,12 +3,12 @@
         Order Summary
         <span class="f-14 font-weight-light ml-auto"><a routerLink="/orders/select-service">Edit</a></span>
     </div>
-    <div class="row no-gutters mt-5" *ngFor="let garment of garments; let idx = index">
-        <div class="col-2">
+    <div class="row no-gutters mt-ld-5 mt-3" *ngFor="let garment of garments; let idx = index">
+        <div class="col-xl-2 col-lg-3 col-md-2 col-3 p-0">
             <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
                 alt="AlterKnit Logo Gold">
         </div>
-        <div class="ml-2 col text-gray">
+        <div class="m-0 col-xl-10 col-lg-9 col-md-10 col text-gray p-0">
             <div class="f-18 font-weight-bold">Garment #{{idx + 1}}</div>
             <div class="f-14 font-weight-light">{{garment.brand}}</div>
             <div class="f-14 font-weight-light">{{garment.color}}</div>

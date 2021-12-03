@@ -3,7 +3,7 @@
         <section class="section-intro">
             <app-header [theme]="headerThemes.WHITE"></app-header>
             <div class="row no-gutters">
-                <div class="text-white section-intro-content text-center">
+                <div class="text-white m-auto w-75 text-center pb-5">
                     <p class="title f-36">Ask us Question</p>
                     <p class="font-weight-light f-18">Wondering if we can fix your garment ? Just provide your
                         information and attach some pictures. <br /> <strong
@@ -14,12 +14,11 @@
             </div>
         </section>
         <section class="row no-gutters mt-4 w-75 mx-auto">
-            <div class="col-8 mx-auto text-center">
-                <!-- <div class="font-weight-light f-36 mb-2">Please fill this form</div> -->
+            <div class="col-xl-8 col mx-auto text-center">
                 <form [formGroup]="contactForm">
                     <div class="mt-4">
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-xl-6 col-12">
                                 <input class="mb-2 w-100 form-control" placeholder="First Name*" type="text"
                                     name="firstName" formControlName="firstName"
                                     [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }" id="firstName">
@@ -29,7 +28,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-xl-6 col-12">
                                 <input class="mb-2 w-100 form-control" placeholder="Last Name*" type="text"
                                     name="lastName" formControlName="lastName"
                                     [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }" id="lastName">
@@ -41,7 +40,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-xl-6 col-12">
                                 <input class="mb-2 w-100 form-control" placeholder="Phone*" type="text" name="phone"
                                     id="phone" formControlName="phone"
                                     [ngClass]="{ 'is-invalid': submitted && form.phone.errors }">
@@ -51,7 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-xl-6 col-12">
                                 <input class="mb-2 w-100 form-control" placeholder="Email*" type="text" name="email"
                                     id="email" formControlName="email"
                                     [ngClass]="{ 'is-invalid': submitted && form.email.errors }">
@@ -70,22 +69,24 @@
                         Please attach some images...
                     </div>
                 </form>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
+                <div class="mb-2 d-flex align-items-center justify-content-center">
+                    <input class="" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
                         (change)="checkTermsError=false">
-                    <label class="form-check-label f-14 font-weight-light" for="defaultCheck1">
-                        By checking the box, you agree to our
-                    </label>
-                    <a class="f-14 font-weight-bold text-gold cursor-pointer" (click)="showTerms=true;">
-                        &nbsp;terms and conditions
-                    </a>
+                    <div class="pl-md-2 p-0">
+                        <label class="f-14 font-weight-light m-0" for="defaultCheck1">
+                            By checking the box, you agree to our
+                        </label>
+                        <a class="f-14 font-weight-bold text-gold cursor-pointer m-0" (click)="showTerms=true;">
+                            terms and conditions
+                        </a>
+                    </div>
                 </div>
                 <div *ngIf="checkTermsError" class="mb-2">
                     <div class="f-14 text-danger text-center">Please accept terms and condition</div>
                 </div>
                 <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
-                <button type="button" (click)="submit()" style="width: 20%;"
-                    class="btn f-18 font-weight-light background-gold btn-sm text-white mb-5 text-center">
+                <button type="button" (click)="submit()"
+                    class="btn f-18 font-weight-light background-gold btn-sm text-white mb-5 text-center w-25">
                     <span *ngIf="!loading">Submit</span>
                     <app-loader *ngIf="loading"></app-loader>
                 </button>

@@ -1,14 +1,14 @@
 <section>
     <!-- steps -->
-    <app-stepper [activeStep]="step"></app-stepper>
-    <div class="row no-gutters mt-5 w-75 mx-auto">
+    <app-stepper class="d-none d-lg-block" [activeStep]="step"></app-stepper>
+    <div class="row no-gutters mt-lg-5 mt-3 w-75 mx-auto">
         <!-- shipping address form -->
-        <div class="col-8 px-4">
+        <div class="col-lg-8 col-12 px-lg-4 px-0">
             <form [formGroup]="addressForm">
                 <div class="f-24 font-weight-bold text-gray">Shipping Information</div>
                 <div class="mt-4">
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-12">
                             <input class="mb-2 w-100 form-control" placeholder="First Name" type="text" name="firstName"
                                 formControlName="firstName"
                                 [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }" id="firstName">
@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-12">
                             <input class="mb-2 w-100 form-control" placeholder="Last Name" type="text" name="lastName"
                                 formControlName="lastName"
                                 [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }" id="lastName">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-4">
+                    <div class="form-group col-lg-4 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city"
                             formControlName="city" [ngClass]="{ 'is-invalid': submitted && form.city.errors }">
                         <div *ngIf="submitted && form.city.errors" class="invalid-feedback">
@@ -69,12 +69,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-4">
-                        <select class="mb-2 w-100 form-select" title="State" aria-label="State" name="state"
-                            id="state" formControlName="state"
-                            [ngClass]="{ 'is-invalid': submitted && form.state.errors }">
+                    <div class="form-group col-lg-4 col-12">
+                        <select class="mb-2 w-100 form-select" title="State" aria-label="State" name="state" id="state"
+                            formControlName="state" [ngClass]="{ 'is-invalid': submitted && form.state.errors }"
+                            placeholder="State">
                             <option value="" selected disabled>State</option>
-                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key.split('_').join(" ") }}</option>
+                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{
+                                state.key.split('_').join(" ") }}</option>
                         </select>
                         <div *ngIf="submitted && form.state.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="form.state.errors.required">
@@ -82,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-lg-4 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="Zip" type="text" name="zipcode" id="zipcode"
                             formControlName="zipcode" [ngClass]="{ 'is-invalid': submitted && form.zipcode.errors }">
                         <div *ngIf="submitted && form.zipcode.errors" class="invalid-feedback">
@@ -96,7 +97,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-lg-6 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="Phone" type="text" name="phone" id="phone"
                             formControlName="phone" [ngClass]="{ 'is-invalid': submitted && form.phone.errors }">
                         <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
@@ -105,7 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-lg-6 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="Email" type="text" name="email" id="email"
                             formControlName="email" [ngClass]="{ 'is-invalid': submitted && form.email.errors }">
                         <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
@@ -117,8 +118,8 @@
                 </div>
                 <div class="form-group">
                     <div class="d-inline-flex align-items-center">
-                        <input class="cursor-pointer mr-2" type="checkbox" id="sameAddress"
-                            formControlName="isBillingAddressSame" (click)="resetBillingForm()">
+                        <div><input class="cursor-pointer mr-2" type="checkbox" id="sameAddress"
+                                formControlName="isBillingAddressSame" (click)="resetBillingForm()"></div>
                         <span class="text-gray f-18 font-weight-light cursor-pointer" for="sameAddress">
                             Will your billing address be the same as your shipping address?
                         </span>
@@ -129,7 +130,7 @@
                 <div class="f-24 font-weight-bold text-gray">Billing Information</div>
                 <div class="mt-4">
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-12">
                             <input class="mb-2 w-100 form-control" placeholder="First Name" type="text" name="firstName"
                                 formControlName="firstName"
                                 [ngClass]="{ 'is-invalid': submitted && billingForm.firstName.errors }" id="firstName">
@@ -139,7 +140,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-12">
                             <input class="mb-2 w-100 form-control" placeholder="Last Name" type="text" name="lastName"
                                 formControlName="lastName"
                                 [ngClass]="{ 'is-invalid': submitted && billingForm.lastName.errors }" id="lastName">
@@ -163,7 +164,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-4">
+                    <div class="form-group col-lg-4 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="City" type="text" name="city" id="city"
                             formControlName="city" [ngClass]="{ 'is-invalid': submitted && billingForm.city.errors }">
                         <div *ngIf="submitted && billingForm.city.errors" class="invalid-feedback">
@@ -172,12 +173,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-4">
-                        <select class="mb-2 w-100 form-select" title="State" aria-label="State" name="state"
-                            id="state" formControlName="state"
-                            [ngClass]="{ 'is-invalid': submitted && billingForm.state.errors }">
+                    <div class="form-group col-lg-4 col-12">
+                        <select class="mb-2 w-100 form-select" title="State" aria-label="State" name="state" id="state"
+                            formControlName="state" [ngClass]="{ 'is-invalid': submitted && billingForm.state.errors }">
                             <option value="" selected disabled>State</option>
-                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{ state.key.split('_').join(" ") }}</option>
+                            <option *ngFor="let state of stateCodes | keyvalue" [value]="state.value"> {{
+                                state.key.split('_').join(" ") }}</option>
                         </select>
                         <div *ngIf="submitted && billingForm.state.errors" class="invalid-feedback">
                             <div class="f-14 p-0 m-0" *ngIf="billingForm.state.errors.required">
@@ -185,7 +186,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-lg-4 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="Zip" type="text" name="zipcode" id="zipcode"
                             formControlName="zipcode"
                             [ngClass]="{ 'is-invalid': submitted && billingForm.zipcode.errors }">
@@ -200,7 +201,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-lg-6 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="Phone" type="text" name="phone" id="phone"
                             formControlName="phone" [ngClass]="{ 'is-invalid': submitted && billingForm.phone.errors }">
                         <div *ngIf="submitted && billingForm.phone.errors" class="invalid-feedback">
@@ -209,7 +210,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-lg-6 col-12">
                         <input class="mb-2 w-100 form-control" placeholder="Email" type="text" name="email" id="email"
                             formControlName="email" [ngClass]="{ 'is-invalid': submitted && billingForm.email.errors }">
                         <div *ngIf="submitted && billingForm.email.errors" class="invalid-feedback">
@@ -220,14 +221,16 @@
                     </div>
                 </div>
             </form>
-            <button type="button" (click)="submit()" style="width: 40%"
-                class="btn f-18 font-weight-light background-gold btn-sm text-white mt-5 mb-5">
-                Continue to Order Review
-            </button>
+            <div class="w-100 text-lg-left text-center">
+                <button type="button" (click)="submit()"
+                    class="btn f-18 font-weight-light background-gold btn-sm text-white my-lg-5 my-3 w-50">
+                    Continue to Order Review
+                </button>
+            </div>
 
         </div>
         <!-- order summary -->
-        <div class="col-4">
+        <div class="col-lg-4 col-12 mt-lg-0 mt-2">
             <app-order-review [garments]="garments"></app-order-review>
         </div>
     </div>

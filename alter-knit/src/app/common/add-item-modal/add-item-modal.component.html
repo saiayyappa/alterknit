@@ -1,44 +1,56 @@
 <div *ngIf="open" class="viewer-container pb-5 pt-5">
     <!-- form container -->
     <section class="form-container mx-auto">
-        <div class="row no-gutters mt-5">
+        <div class="row no-gutters mt-md-5 mt-2">
             <!-- what kind of service do you need -->
-            <div class="col-6 text-center vertial-gold-separator">
+            <div class="col-md-6 col-12 text-center vertial-gold-separator d-md-block d-none">
                 <p class="text-gold f-36">Garment #1</p>
                 <p class="f-30 text-gray">What kind of service do you need?</p>
                 <p class="f-18 font-weight-light">Select all that apply, must select at least one<span
                         class="text-danger">*</span></p>
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-center align-items-center flex-column flex-md-row">
                     <img class="mx-4" width="79px" height="79px" src="../../../assets/images/garment-icons/shirt.svg">
                     <img class="mx-4" width="79px" height="79px" src="../../../assets/images/garment-icons/wool.svg">
                     <img class="mx-4" width="79px" height="79px"
                         src="../../../assets/images/garment-icons/washing-machince.svg">
                 </div>
             </div>
+            <div class="col-12 d-lg-none d-block text-center text-gold mt-3">
+                <p class="f-18 font-weight-light">What kind of service do you need?</p>
+                <p class="f-18 text-gray font-weight-light">Select all that apply, must select at least one<span
+                        class="text-danger">*</span></p>
+            </div>
             <!-- form 1-->
-            <div class="col-6">
+            <div class="col-md-6 col-12">
                 <div class="d-flex align-items-center mb-2" *ngFor="let service of serviceList;">
-                    <input class="ml-5" [ngClass]="{ 'is-invalid': submitted && showServiceListError }" type="checkbox"
-                        [(ngModel)]="service.checked">
-                    <span class="ml-3 mb-0" for="service">{{service.name}}</span>
+                    <div>
+                        <input class="ml-md-5 ml-3" [ngClass]="{ 'is-invalid': submitted && showServiceListError }"
+                            type="checkbox" [(ngModel)]="service.checked">
+                    </div>
+                    <span class="ml-md-3 ml-2 mb-0">{{service.name}}</span>
                 </div>
                 <div *ngIf="submitted && showServiceListError">
-                    <div class="ml-5 f-14 text-danger">Please select services you want</div>
+                    <div class="ml-md-5 ml-3 f-14 text-danger">Please select services you want</div>
                 </div>
             </div>
         </div>
-        <div class="row no-gutters mt-5">
+        <div class="row no-gutters mt-md-5 mt-3">
             <!-- what kind of service do you need -->
-            <div class="col-6 text-center vertial-gold-separator">
+            <div class="col-md-6 col-12 text-center vertial-gold-separator d-md-block d-none">
                 <div class="w-75 mx-auto">
                     <p class="f-30 text-gray">Tell us about your Garment</p>
                     <p class="f-18 font-weight-light px-5">Let us know more about your clothes. It’ll give us more
                         insite into what have to do to get it looking good as new.</p>
                 </div>
             </div>
+            <div class="col-12 d-lg-none d-block text-center text-gold mt-3">
+                <p class="f-18 font-weight-light">Tell us about your Garment</p>
+                <p class="f-18 text-gray font-weight-light">Let us know more about your clothes. It’ll give us more
+                    insite into what have to do to get it looking good as new.</p>
+            </div>
             <!-- form 2-->
-            <div class="col-6" [formGroup]="garmentForm">
-                <div class="mx-5">
+            <div class="col-md-6 col-12" [formGroup]="garmentForm">
+                <div class="mx-md-5 mx-3">
                     <div class="form-group">
                         <input class="mb-2 w-100" formControlName="brand" placeholder="Brand*" type="text" name="brand"
                             [ngClass]="{ 'is-invalid': submitted && itemf.brand.errors }" id="brand" required>
@@ -89,13 +101,13 @@
                 </div>
             </div>
         </div>
-        <div class="row no-gutters mt-5">
+        <div class="row no-gutters mt-md-5 mx-3">
             <div class="col-12 text-center">
                 <img width="50px" height="50px" src="../../../assets/images/AKNY-LOGO_complete_gold.svg"
                     alt="logo-gold">
             </div>
         </div>
-        <div class="row no-gutters mt-5 mx-5">
+        <div class="row no-gutters mt-md-5 mt-3 mx-md-5 mx-3">
             <div class="col-12 text-center">
                 <p class="f-30 text-gray">Has this garment been previously repaired by a dry cleaner or anyone
                     else?<span class="text-danger f-30">*</span></p>
@@ -123,7 +135,8 @@
                     cost. Please let us examine your garment first. If you’ve already cleaned it, don’t worry.</p>
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
-                        [ngClass]="isCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'" (click)="isCleaned=true;">
+                        [ngClass]="isCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
+                        (click)="isCleaned=true;">
                         yes</div>
                     <div class="button-separator"></div>
                     <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
@@ -137,7 +150,7 @@
             <div class="col-12 text-center">
                 <button type="button" class="btn f-24 font-weight-light py-2 background-gray btn-sm text-white"
                     (click)="close.emit()">Cancel</button>
-                <button type="button" style="width: 15%"
+                <button type="button"
                     class="btn f-24 font-weight-light py-2 background-gold btn-sm text-white ml-2"
                     (click)="submit()">Next</button>
             </div>

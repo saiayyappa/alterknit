@@ -1,137 +1,125 @@
-<div class="row no-gutters">
-    <div class="col-12">
-        <section class="hero-image">
-            <app-header [theme]="headerThemes.WHITE"></app-header>
-            <div class="row no-gutters">
-                <div class="col-5 home-card text-white">
-                    <p class="home-title">Holes? We Fix them.</p>
-                    <p class="home-text font-weight-light">Garment Repair • Reweaving • Reknitting • Moth Hole Repair •
-                        Sweater Repair • Knits • Cashmeres Suits • Restyling • Cleaning • Knit Alteration</p>
-                    <div class="home-box-link-light p-3 d-inline-flex align-items-center">
-                        <p class="m-0 mr-3"><a [title]="'Sign In'" routerLink="/sign-in">Schedule your repair with
-                                us today</a></p>
-                        <img width="17px" src="../../../assets/images/rarrow-white.png">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="row no-gutters mt-5">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <div class="ml-5 mr-5">
-                    <div class="d-flex flex-column">
-                        <div>
-                            <p class="home-title">Dedicated to our craft</p>
-                            <p class="home-text font-weight-light text-gray">We have over 50 years of experience in reknitting and
-                                reweaving garments.</p>
-                            <p class="home-text font-weight-light text-gray">With equal care
-                                and attention to detail, we will communicate with you to determine the best steps in
-                                restoring your garment back to life</p>
-                        </div>
-                        <div class="home-box-link-dark p-3 d-flex justify-content-between align-items-center">
-                            <a [title]="'our-work'" routerLink="/our-work">
-                                <p class="m-0">See our work</p>
-                            </a>
-                            <a [title]="'our-work'" routerLink="/our-work">
-                                <img width="17px" src="../../../assets/images/rarrow-black.svg">
-                            </a>
+<div class="container-fluid px-0">
+    <div class="row no-gutters">
+        <div class="col">
+            <section class="hero-image">
+                <app-header [theme]="headerThemes.WHITE"></app-header>
+                <div class="row no-gutters">
+                    <div class="col-xl-5 col-12 text-white mt-5 ml-xl-5 text-xl-left text-center px-xl-0 px-2">
+                        <p class="home-title">Holes? We Fix them.</p>
+                        <p class="home-text font-weight-light">Garment Repair • Reweaving • Reknitting • Moth Hole Repair •
+                            Sweater Repair • Knits • Cashmeres Suits • Restyling • Cleaning • Knit Alteration</p>
+                        <div class="home-box-link-light p-3 d-inline-flex align-items-center">
+                            <p class="m-0 mr-3"><a [title]="'Sign In'" routerLink="/sign-in">Schedule your repair with
+                                    us today</a></p>
+                            <img width="17px" src="../../../assets/images/rarrow-white.png">
                         </div>
                     </div>
                 </div>
-                <img src="../../../assets/images/home-before-after.png">
+            </section>
+            <div class="row no-gutters mt-5">
+                <div class="col-12 d-flex justify-content-xl-between align-items-xl-center flex-xl-row flex-column">
+                    <div class="ml-5 mr-5">
+                        <div class="d-flex flex-column align-items-xl-start align-items-center">
+                            <div class="text-center text-xl-left">
+                                <p class="home-title">Dedicated to our craft</p>
+                                <p class="home-text font-weight-light text-gray">We have over 50 years of experience in reknitting and
+                                    reweaving garments.</p>
+                                <p class="home-text font-weight-light text-gray">With equal care
+                                    and attention to detail, we will communicate with you to determine the best steps in
+                                    restoring your garment back to life</p>
+                            </div>
+                            <div class="home-box-link-dark p-3 d-flex justify-content-between align-items-center w-50">
+                                <a [title]="'our-work'" routerLink="/our-work">
+                                    <p class="m-0">See our work</p>
+                                </a>
+                                <a [title]="'our-work'" routerLink="/our-work">
+                                    <img width="17px" src="../../../assets/images/rarrow-black.svg">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="mt-4 mt-xl-0" src="../../../assets/images/home-before-after.png">
+                </div>
             </div>
-        </div>
 
-        <div class="row no-gutters mt-5">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <img src="../../../assets/images/repair-dont-repair.png">
-                <div class="ml-5 mr-5">
-                    <p class="home-title">Repair. Don’t Replace</p>
-                    <p class="home-text font-weight-light text-gray">Did you know that the apparel industry accounts for 6.7% of
-                        the world’s greenhouse gas emissions?
-                        When you choose to repair with Alterknit, you automatically join the fashion revolution and its
-                        comittment to transparent and low carbon footprint </p>
+            <div class="row no-gutters mt-5">
+                <div class="col-12 d-flex justify-content-xl-between align-items-xl-center flex-xl-row flex-column-reverse">
+                    <img src="../../../assets/images/repair-dont-repair.png">
+                    <div class="ml-5 mr-5 text-center text-xl-left">
+                        <p class="home-title">Repair. Don’t Replace</p>
+                        <p class="home-text font-weight-light text-gray">Did you know that the apparel industry accounts for 6.7% of
+                            the world’s greenhouse gas emissions?<br>
+                            When you choose to repair with Alterknit, you automatically join the fashion revolution and its
+                            comittment to transparent and low carbon footprint </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <section class="sweater-bg mt-5">
-            <div class="row no-gutters m-5 pt-5 text-white">
-                <div class="col-5">
-                    <div class="f-36 margin-adjust">What do our Customers Say</div>
+            <section class="sweater-bg mt-5">
+                <div class="row no-gutters m-5 pt-5 text-white">
+                    <div class="col-xl-5 col-12">
+                        <div class="f-36 margin-adjust text-sm-center">What do our Customers Say</div>
+                    </div>
+                    <div class="col-md col-12 mt-4 mt-xl-0">
+                        <div class="feedback">
+                            <p>“When my tailor said they couldn't alter my sweater I found AlterKnit. They said they could
+                                fit it perfectly... and they did! They were very professional and knowledgeable.”</p>
+                            <p class="text-gold">Emily, Colorado</p>
+                        </div>
+                        <div class="feedback">
+                            <p>“My dog tore a huge hole in the chuky cable knit that I love. AlterKnit did a magnificient
+                                job repairing it. Impeccable work.”</p>
+                            <p class="text-gold">Sarah, Colorado</p>
+                        </div>
+                        <div class="feedback">
+                            <p>“I got a hole in the Hugo Boss tuxedoI got married in. I shipped it in to AlterKnit, they
+                                made me and my wife so happy. Thank you!”</p>
+                            <p class="text-gold">James, New York</p>
+                        </div>
+                        <div class="feedback">
+                            <p>“I send my sweaters to AlterKnit every year for cleaning and depilling, like a sweater spa
+                                retreat! Hand down the best investment I've made for my cashmere collection.”</p>
+                            <p class="text-gold">Christina, Ohio</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="feedback">
-                        <p>“When my tailor said they couldn't alter my sweater I found AlterKnit. They said they could
-                            fit it perfectly... and they did! They were very professional and knowledgeable.”</p>
-                        <p class="text-gold">Emily, Colorado</p>
-                    </div>
-                    <div class="feedback">
-                        <p>“My dog tore a huge hole in the chuky cable knit that I love. AlterKnit did a magnificient
-                            job repairing it. Impeccable work.”</p>
-                        <p class="text-gold">Sarah, Colorado</p>
-                    </div>
-                    <div class="feedback">
-                        <p>“I got a hole in the Hugo Boss tuxedoI got married in. I shipped it in to AlterKnit, they
-                            made me and my wife so happy. Thank you!”</p>
-                        <p class="text-gold">James, New York</p>
-                    </div>
-                    <div class="feedback">
-                        <p>“I send my sweaters to AlterKnit every year for cleaning and depilling, like a sweater spa
-                            retreat! Hand down the best investment I've made for my cashmere collection.”</p>
-                        <p class="text-gold">Christina, Ohio</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <div class="flow mt-5 mb-5">
-            <div class="row no-gutters">
-                <div class="col-12">
-                    <p class="home-title text-gray font-weight-bold text-center">The AfterKnit Process</p>
+            <div class="flow mt-5 mb-5">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        <p class="home-title text-gray font-weight-bold text-center">The AfterKnit Process</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row no-gutters">
-                <!-- <div class="col-4">
-                    1. What’s the Fix
-                    <p>We work with you to determine the scope of service you need</p>
-                </div>
-                <div class="col-4">
-                    2. We Repair it
-                    <p>
-                        Our unmatched team works diligently to repair and restore your items
-                    </p>
-                </div>
-                <div class="col-4">
-                    3. You get it back
-                    <p>We ship you order back to you fixed and ready to enjoy again</p>
-                </div> -->
-                <div class="d-inline-flex justify-content-center align-items-center p-4">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="mb-2" width="129px" height="129px" src="../../../assets/images/process-icon-1.svg">
-                        <div class="text-center home-text font-weight-bold">1. What’s the Fix</div>
-                        <p class="text-center text-gray">We work with you to determine the scope of service you need</p>
-                    </div>
-                    <div class="margin-spacer">
-                        <img width="163px" src="../../../assets/images/process-line.svg">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="mb-2" width="129px" height="129px" src="../../../assets/images/process-icon-2.svg">
-                        <div class="text-center home-text font-weight-bold">2. We Repair it</div>
-                        <p class="text-center text-gray">Our unmatched team works diligently to repair and restore your
-                            items</p>
-                    </div>
-                    <div class="margin-spacer">
-                        <img width="163px" src="../../../assets/images/process-line.svg">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="mb-2" width="129px" height="129px" src="../../../assets/images/process-icon-3.svg">
-                        <div class="text-center home-text font-weight-bold">3. You get it back</div>
-                        <p class="text-center text-gray">We ship you order back to you fixed and ready to enjoy again
-                        </p>
+                <div class="row no-gutters">
+                    <div class="d-inline-flex justify-content-center align-items-center p-4 flex-xl-row flex-column">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img class="mb-2" width="129px" height="129px" src="../../../assets/images/process-icon-1.svg">
+                            <div class="text-center home-text font-weight-bold">1. What’s the Fix</div>
+                            <p class="text-center text-gray">We work with you to determine the scope of service you need</p>
+                        </div>
+                        <div class="margin-spacer d-xl-block d-none">
+                            <img width="163px" src="../../../assets/images/process-line.svg">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img class="mb-2" width="129px" height="129px" src="../../../assets/images/process-icon-2.svg">
+                            <div class="text-center home-text font-weight-bold">2. We Repair it</div>
+                            <p class="text-center text-gray">Our unmatched team works diligently to repair and restore your
+                                items</p>
+                        </div>
+                        <div class="margin-spacer d-xl-block d-none">
+                            <img width="163px" src="../../../assets/images/process-line.svg">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img class="mb-2" width="129px" height="129px" src="../../../assets/images/process-icon-3.svg">
+                            <div class="text-center home-text font-weight-bold">3. You get it back</div>
+                            <p class="text-center text-gray">We ship you order back to you fixed and ready to enjoy again
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <app-footer></app-footer>
         </div>
-        <app-footer></app-footer>
     </div>
 </div>
