@@ -1,10 +1,20 @@
+.hero-image-spacer {
+  background-position: center center;
+}
+
 .hero-image {
-  background: url(../../../assets/images/home-bg.jpg) no-repeat center center;
+  background: url(../../../assets/images/home-bg.jpg) no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
+}
+
+@media only screen and (max-width: 420px) {
+  .hero-image-spacer {
+    background-position: 95% center;
+  }
 }
 
 .home-card {
@@ -13,8 +23,12 @@
 }
 
 .sweater-bg {
-  background: linear-gradient(rgba(29, 38, 47, 0.9), rgba(29, 38, 47, 0.9)),
-    url(../../../assets/images/sweater.png) no-repeat center center;
+  background: linear-gradient(
+      0deg,
+      rgba(81, 64, 95, 0.1),
+      rgba(81, 64, 95, 0.1)
+    ),
+    url(../../../assets/images/sweater-logo-bg.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -23,16 +37,12 @@
   position: relative;
 }
 
-.feedback {
+/* .feedback {
   font-size: 0.6rem;
   font-weight: 400;
   margin-bottom: 10%;
-}
+} */
 
 .margin-spacer {
   margin-bottom: 6.5rem;
-}
-
-.margin-adjust {
-  margin-top: -10px;
 }

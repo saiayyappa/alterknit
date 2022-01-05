@@ -30,6 +30,8 @@ import { LoaderComponent } from './common/loader/loader.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DragNDropImageComponent } from './common/drag-n-drop-image/drag-n-drop-image.component';
 import { ProgressComponent } from './common/drag-n-drop-image/progress/progress.component';
+import { OurStoryComponent } from './pages/our-story/our-story.component';
+import { GarmentTipsComponent } from './pages/garment-tips/garment-tips.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { ProgressComponent } from './common/drag-n-drop-image/progress/progress.
     LoaderComponent,
     ContactComponent,
     DragNDropImageComponent,
-    ProgressComponent
+    ProgressComponent,
+    OurStoryComponent,
+    GarmentTipsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,43 @@
 <div class="order-summary background-gray2 mx-auto p-3">
-    <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
-        Order Summary
-        <span class="f-14 font-weight-light ml-auto"><a routerLink="/orders/select-service">Edit</a></span>
-    </div>
-    <div class="row no-gutters mt-ld-5 mt-3" *ngFor="let garment of garments; let idx = index">
-        <div class="col-xl-2 col-lg-3 col-md-2 col-3 p-0">
-            <img src="../../../../assets/images/AKNY-LOGO_complete_gold.svg" width="50px" height="50px"
-                alt="AlterKnit Logo Gold">
+  <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
+    Order Summary
+    <span class="f-14 font-weight-light ml-auto"><a routerLink="/orders/select-service">Edit</a></span>
+  </div>
+  <div *ngFor="let garment of garments; let idx = index">
+    <div class="row no-gutters mt-3">
+      <div class="col-5">
+        <p class="f-24">Garment {{idx+1}}</p>
+      </div>
+      <div class="col-7 text-gray">
+        <div>
+          <p class="text-bold m-0">Service Needed</p>
+          <ul>
+            <li *ngFor="let service of getServiceList(garment.serviceNeeded)">
+              {{service}}
+            </li>
+          </ul>
         </div>
-        <div class="m-0 col-xl-10 col-lg-9 col-md-10 col text-gray p-0">
-            <div class="f-18 font-weight-bold">Garment #{{idx + 1}}</div>
-            <div class="f-14 font-weight-light">{{garment.brand}}</div>
-            <div class="f-14 font-weight-light">{{garment.color}}</div>
-            <ul class="f-14 font-weight-light">
-                <li class="f-14 font-weight-light"
-                    *ngFor="let service of getServiceList(garment.serviceNeeded)">
-                    {{service}}
-                </li>
-            </ul>
+        <div class="mt-2">
+          <p class="text-bold m-0">Brand</p>
+          <p class="m-0">{{garment.brand}}</p>
         </div>
+        <div class="mt-2">
+          <p class="text-bold m-0">Color</p>
+          <p class="m-0">{{garment.color}}</p>
+        </div>
+        <div class="mt-2">
+          <p class="text-bold m-0">Age of Garment</p>
+          <p class="m-0">{{garment.ageOfGarment}} years old</p>
+        </div>
+        <div class="mt-2">
+          <p class="text-bold m-0"># of Holes</p>
+          <p class="m-0">{{garment.noOfHoles}}</p>
+        </div>
+        <div class="mt-2">
+          <p class="text-bold m-0">Brief Description</p>
+          <p class="m-0">{{garment.briefDescription}}</p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

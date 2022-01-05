@@ -46,6 +46,16 @@
   height: 100vh;
 }
 
+@media only screen and (max-width: 768px) {
+  .brand-details {
+    text-align: center;
+    padding: 2em;
+    background-color: black;
+    margin: 3em auto;
+    height: unset;
+  }
+}
+
 .hide {
   visibility: hidden;
 }

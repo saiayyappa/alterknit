@@ -40,7 +40,7 @@
   border: 2px solid #b68c13;
 }
 
-.vertial-gold-separator {
+.vertical-gold-separator {
   border-right: 1px solid #b68c13;
 }
 
@@ -86,4 +86,30 @@ textarea:focus {
   height: 0px;
   border: 1px solid #b68c13;
   transform: rotate(90deg);
+}
+
+.garment-1 > img {
+  width: auto;
+  height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .f-64,
+  .f-48 {
+    font-size: 36px;
+  }
+  .f-36,
+  .f-30 {
+    font-size: 24px;
+  }
+  .f-24 {
+    font-size: 18px;
+  }
+  .garment-1 > img {
+    width: 40px;
+    height: 40px;
+  }
+  .vertical-gold-separator {
+    border-right: unset;
+  }
 }

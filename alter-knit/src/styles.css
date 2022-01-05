@@ -1,20 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-  font-family: Gramatika-Bold;
-  src: url(assets/fonts/Gramatika-Bold.ttf);
+  font-family: HindVadodara-SemiBold;
+  src: url(assets/fonts/HindVadodara-SemiBold.ttf);
 }
 
 @font-face {
-  font-family: Gramatika-Regular;
-  src: url(assets/fonts/Gramatika-Regular.ttf);
+  font-family: HindVadodara-Regular;
+  src: url(assets/fonts/HindVadodara-Regular.ttf);
 }
 
-* {
+*,
+body {
   box-sizing: border-box;
   font-size: 18px;
   margin: 0;
   padding: 0;
-  font-family: Gramatika-Regular, "Segoe UI", "Helvetica Neue", Arial,
+  font-family: HindVadodara-Regular, "Segoe UI", "Helvetica Neue", Arial,
     "Noto Sans", "Liberation Sans";
 }
 
@@ -43,6 +44,10 @@
   color: #b1b1b1 !important;
 }
 
+.text-gray3 {
+  color: #353535 !important;
+}
+
 .logo {
   background: url("assets/images/AKNY-LOGO_complete.svg");
   background-repeat: no-repeat;
@@ -64,12 +69,10 @@
 }
 
 .home-title {
-  font-size: 36px;
   line-height: 3.5rem;
 }
 
 .home-text {
-  font-size: 18px;
   line-height: 1.75rem;
 }
 
@@ -82,7 +85,16 @@
 .home-box-link-dark {
   border: 1px solid #000000;
   box-sizing: border-box;
-  /* width: 40%; */
+}
+
+.home-box-link-dark {
+  width: 50%;
+}
+
+@media only screen and (max-width: 480px) {
+  .home-box-link-dark {
+    width: 100%;
+  }
 }
 
 .f-12 {
@@ -109,6 +121,18 @@
   font-size: 36px;
 }
 
+.f-48 {
+  font-size: 48px;
+}
+
+.f-64 {
+  font-size: 64px;
+}
+
+.f-72 {
+  font-size: 72px;
+}
+
 .background-gold {
   background-color: #b68c13;
 }
@@ -119,6 +143,18 @@
 
 .background-gray2 {
   background: rgba(196, 196, 196, 0.2);
+}
+
+.background-gray3 {
+  background-color: #f3f3f3;
+}
+
+.background-light-purple {
+  background-color: #aea2b6;
+}
+
+.background-dark-purple {
+  background-color: #5e466e;
 }
 
 /* remove stying of anchor tag */
@@ -146,12 +182,13 @@ a:active {
 .navbar-brand {
   font-size: 36px;
   line-height: 42px;
-  font-family: Gramatika-Bold;
+  font-family: HindVadodara-SemiBold;
 }
-
+.nav-item {
+  font-family: HindVadodara-Regular;
+}
 .header {
   min-height: 165px;
-  background-color: #b68c13;
 }
 
 .header-white {
@@ -189,11 +226,11 @@ button {
 }
 
 .text-bold {
-  font-family: Gramatika-Bold;
+  font-family: HindVadodara-SemiBold;
 }
 
 .text-regular {
-  font-family: Gramatika-Regular;
+  font-family: HindVadodara-Regular;
 }
 
 .cursor-pointer {
@@ -221,7 +258,7 @@ input[type="checkbox"] {
   width: 1.15em !important;
   height: 1.15em !important;
   border: 0.15em solid #000000;
-  border-radius: 0.15em !important;
+  border-radius: 0em !important;
   transform: translateY(-0.075em);
 
   display: grid;

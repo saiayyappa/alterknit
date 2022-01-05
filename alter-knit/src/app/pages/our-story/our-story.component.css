@@ -1,0 +1,45 @@
+.section-bg {
+  /* height: 400px; */
+  background-color: #E9E7D9;
+}
+
+.our-story-image {
+  background: url(../../../assets/images/our-story.jpg) repeat-x center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 667px;
+}
+
+.content {
+  padding: 5rem 6.5rem;
+  line-height: 35.95px;
+  color: #5C5C5C;
+}
+
+.content-image {
+  padding: 5rem 0rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .f-64 {
+    font-size: 36px;
+  }
+  .f-36 {
+    font-size: 24px;
+  }
+  .f-24 {
+    font-size: 18px;
+  }
+  .content {
+    padding: 1rem;
+    line-height: normal;
+    color: #5C5C5C;
+    overflow: hidden;
+  }
+  .img-fluid {
+    max-width: unset;
+    height: 100vh;
+  }
+}

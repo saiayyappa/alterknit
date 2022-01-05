@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="col-1 d-flex justify-content-end align-items-center">
-                <a class="close-button text-white home-title mr-3" (click)="close.emit()">X</a>
+                <a class="close-button text-white home-title mr-3 text-bold" (click)="close.emit()">x</a>
             </div>
         </div>
         <div class="row no-gutters">
-            <div class="col-9">
+            <div class="col-lg-9 col-12 pt-lg-0 pt-5">
                 <div class="image-viewer d-flex justify-content-between align-items-center">
                     <div class="arrow d-flex justify-content-center align-items-center" [ngClass]="{'hide': lhide}"  (click)="before()">
                         <img width="27px" src="../../../assets/images/image-viewer/larrow.png">
@@ -25,12 +25,12 @@
                 </div>
                 <img class="image-viewer mx-auto" src="{{item.enlargedImagePath}}" />
             </div>
-            <div class="col-3 brand-details text-white d-flex flex-column justify-content-center pl-5">
+            <div class="col-lg-3 col-12 brand-details text-white d-flex flex-column justify-content-center pl-lg-5">
                 <div class="home-text">
-                    <p>Brand - <span class="font-weight-light">{{item.brand}}</span></p>
-                    <p>Material - <span class="font-weight-light">{{item.material}}</span></p>
-                    <p>Customer - <span class="font-weight-light">{{item.customer}}</span></p>
-                    <p>Work Completed - <span class="font-weight-light">{{item.workCompleted}}</span></p>
+                    <p><span class="text-bold">Brand - </span><span class="font-weight-light">{{item.brand}}</span></p>
+                    <p><span class="text-bold">Material - </span><span class="font-weight-light">{{item.material}}</span></p>
+                    <p><span class="text-bold">Customer - </span><span class="font-weight-light">{{item.customer}}</span></p>
+                    <p><span class="text-bold">Work Completed - </span><span class="font-weight-light">{{item.workCompleted}}</span></p>
                 </div>
             </div>
         </div>

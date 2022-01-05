@@ -1,89 +1,89 @@
 <section>
-    <!-- steps -->
-    <app-stepper class="d-none d-lg-block" [activeStep]="step"></app-stepper>
-    <div class="row no-gutters mt-5 w-75 mx-auto">
-        <!-- shipping address form -->
-        <div class="col-lg-8 col-12 px-lg-4 px-0">
-            <div class="f-24 font-weight-bold text-gray">Shipping<span class="f-24 font-weight-bold text-gray"
-                    *ngIf="order?.addressInfo?.isBillingAddressSame"> & Billing</span> Information</div>
-            <div class="f-18 font-weight-light home-text mt-4">
-                <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
-                <p class="m-0">{{order?.addressInfo?.address}}</p>
-                <p class="m-0">{{order?.addressInfo?.companyName}}</p>
-                <p class="m-0">{{order?.addressInfo?.city}},
-                    {{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
-                <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
-                    (click)="navigateToAddressinfo()">Change
-                    Shipping<span class="f-14 text-decoration-underline cursor-pointer"
-                        *ngIf="order?.addressInfo?.isBillingAddressSame">/Billing</span> Address</a>
-            </div>
-            <div *ngIf="!order?.addressInfo?.isBillingAddressSame" class="mt-2">
-                <div class="f-24 font-weight-bold text-gray">Billing Information</div>
-                <div class="f-18 font-weight-light home-text mt-4">
-                    <p class="m-0">{{order?.billingAddressInfo?.firstName}}&nbsp;{{order?.billingAddressInfo?.lastName}}
-                    </p>
-                    <p class="m-0">{{order?.billingAddressInfo?.address}}</p>
-                    <p class="m-0">{{order?.billingAddressInfo?.city}},
-                        {{order?.billingAddressInfo?.firstName}}&nbsp;{{order?.billingAddressInfo?.zipcode}}</p>
-                    <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
-                        (click)="navigateToAddressinfo()">Change
-                        Billing Address</a>
-                </div>
-            </div>
-            <div class="order-speed text-gray mt-4">
-                <div class="f-24 font-weight-bold">Choose your Speed</div>
-                <div class="form-check mt-4 p-0">
-                    <label for="exampleRadios1" class="w-100 d-flex container">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                            [(ngModel)]="deliverySpeed" [value]="deliverySpeeds.Rush">
-                        <span class="checkmark"></span>
-                        <label class="form-check-label" for="exampleRadios1">
-                            <p class="f-18 font-weight-bold">Rush order</p>
-                            <p class="f-18">We’ll set higher priority to finish asap <span class="f-14">(additional fee
-                                    will
-                                    be added)</span></p>
-                        </label>
-                    </label>
-                </div>
-                <div class="form-check p-0">
-                    <label for="exampleRadios2" class="w-100 d-flex container">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                            [(ngModel)]="deliverySpeed" [value]="deliverySpeeds.Standard">
-                        <span class="checkmark"></span>
-                        <label class="form-check-label" for="exampleRadios2">
-                            <p class="f-18 font-weight-bold">Standard order</p>
-                            <p class="f-18">Our normal time frame is 4 to 6 weeks</p>
-                        </label>
-                    </label>
-                </div>
-            </div>
+  <!-- steps -->
+  <app-stepper class="d-none d-lg-block" [activeStep]="step"></app-stepper>
+  <div class="row no-gutters mt-5 w-100 mx-auto">
+    <!-- shipping address form -->
+    <div class="col-lg-2"></div>
+    <div class="col-lg-5 col-12 px-lg-4 px-0">
+      <div class="f-24 text-bold text-gray">Shipping Information</div>
+      <div class="f-18 font-weight-light home-text mt-4">
+        <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
+        <p class="m-0">{{order?.addressInfo?.address}}</p>
+        <p class="m-0">{{order?.addressInfo?.companyName}}</p>
+        <p class="m-0">{{order?.addressInfo?.city}},
+          {{order?.addressInfo?.state}}&nbsp;{{order?.addressInfo?.zipcode}}</p>
+        <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
+          (click)="navigateToAddressinfo()">
+          Change Shipping Address</a>
+      </div>
+      <div *ngIf="!order?.addressInfo?.isBillingAddressSame" class="mt-2">
+        <div class="f-24 text-bold text-gray">Billing Information</div>
+        <div class="f-18 font-weight-light home-text mt-4">
+          <p class="m-0">{{order?.billingAddressInfo?.firstName}}&nbsp;{{order?.billingAddressInfo?.lastName}}
+          </p>
+          <p class="m-0">{{order?.billingAddressInfo?.address}}</p>
+          <p class="m-0">{{order?.billingAddressInfo?.city}},
+            {{order?.billingAddressInfo?.state}}&nbsp;{{order?.billingAddressInfo?.zipcode}}</p>
+          <a class="f-14 text-decoration-underline cursor-pointer" style="color: #C4C4C4;"
+            (click)="navigateToAddressinfo()">Change
+            Billing Address</a>
         </div>
-        <!-- order summary -->
-        <div class="col-lg-4 col-12">
-            <app-order-review [garments]="order.garments"></app-order-review>
-            <div class="review-submit mt-2">
-                <div class="d-inline-flex align-items-center">
-                    <div><input type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
-                            (change)="checkTermsError=false"></div>
-                    <span class="ml-2 f-14 font-weight-light" for="defaultCheck1">
-                        By checking the box, you agree to our
-                        <a class="f-14 font-weight-bold text-gold cursor-pointer"
-                            (click)="showTerms = true; check()">&nbsp;terms and
-                            conditions
-                        </a>
-                    </span>
-
-                </div>
-                <div *ngIf="checkTermsError">
-                    <div class="f-14 text-danger text-center">Please accept terms and condition</div>
-                </div>
-                <button type="button" (click)="submitOrder()"
-                    class="btn f-18 font-weight-light background-gold btn-sm text-white btn-block mt-2 mb-5">
-                    <span *ngIf="!loading">Submit</span>
-                    <app-loader *ngIf="loading"></app-loader>
-                </button>
-            </div>
-            <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
+      </div>
+      <div class="order-speed text-gray mt-4">
+        <div class="f-24 text-bold">Choose your Speed</div>
+        <div class="form-check mt-4 p-0">
+          <label for="exampleRadios1" class="w-100 d-flex container">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+              [(ngModel)]="deliverySpeed" [value]="deliverySpeeds.Rush">
+            <span class="checkmark"></span>
+            <label class="form-check-label" for="exampleRadios1">
+              <p class="f-18 text-bold">Rush order</p>
+              <p class="f-18">We'll set higher priority to finish asap <span class="f-14">(additional fee
+                  will
+                  be added)</span></p>
+            </label>
+          </label>
         </div>
+        <div class="form-check p-0">
+          <label for="exampleRadios2" class="w-100 d-flex container">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+              [(ngModel)]="deliverySpeed" [value]="deliverySpeeds.Standard">
+            <span class="checkmark"></span>
+            <label class="form-check-label" for="exampleRadios2">
+              <p class="f-18 text-bold">Standard order</p>
+              <p class="f-18">Our normal time frame is 4 to 6 weeks</p>
+            </label>
+          </label>
+        </div>
+      </div>
     </div>
+    <!-- order summary -->
+    <div class="col-lg-3 col-12">
+      <app-order-review [garments]="order.garments"></app-order-review>
+      <div class="review-submit mt-2">
+        <div class="d-inline-flex align-items-center">
+          <div><input type="checkbox" value="" id="defaultCheck1" [(ngModel)]="checkTerms"
+              (change)="checkTermsError=false"></div>
+          <span class="ml-2 f-14 font-weight-light" for="defaultCheck1">
+            By checking the box, you agree to our
+            <a class="f-14 font-weight-bold text-gold cursor-pointer" (click)="showTerms = true; check()">&nbsp;terms
+              and
+              conditions
+            </a>
+          </span>
+
+        </div>
+        <div *ngIf="checkTermsError">
+          <div class="f-14 text-danger text-center">Please accept terms and condition</div>
+        </div>
+        <button type="button" (click)="submitOrder()"
+          class="btn f-18 text-bold background-gold btn-sm text-white btn-block mt-2 mb-5">
+          <span *ngIf="!loading">Submit</span>
+          <app-loader *ngIf="loading"></app-loader>
+        </button>
+      </div>
+      <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
 </section>

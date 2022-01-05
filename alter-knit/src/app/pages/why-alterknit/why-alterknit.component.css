@@ -12,15 +12,6 @@
     height: 400px;
 }
 
-.suit-repair-image {
-    background: url(../../../assets/images/sewing-machine-monochrome.png) no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 665px;
-}
-
 .de-pill-image {
     background: url(../../../assets/images/sewing-machine-2.jpg) no-repeat center center;
     -webkit-background-size: cover;

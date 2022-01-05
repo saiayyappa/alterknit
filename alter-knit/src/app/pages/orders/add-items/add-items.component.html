@@ -1,56 +1,98 @@
 <section>
-    <!-- steps -->
-    <app-stepper class="d-none d-lg-block" [activeStep]="step"></app-stepper>
-    <!-- table of items -->
-    <table class="table table-hover table-borderless align-middle">
-        <thead>
-            <tr class="text-gray">
-                <th class="col-1 f-18 text-center">#</th>
-                <th class="col-2 f-18">Service Needed</th>
-                <th class="col-1 f-18">Brand</th>
-                <th class="col-1 f-18">Color</th>
-                <th class="col-2 f-18">Age of Garment</th>
-                <th class="col-1 f-18"># of Holes</th>
-                <th class="col-3 f-18">Brief Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let garment of garments; let idx = index">
-                <td class="text-gold font-weight-light text-center align-middle">
-                    <span class="cursor-pointer" (click)="removeItem(idx)">x</span><span class="pr-1 pl-1 text-black"> |
-                    </span><span class="cursor-pointer" (click)="editItem(idx)">Edit</span>
-                </td>
-                <td class="align-middle f-18 text-gray font-weight-light">{{getServiceNames(garment.serviceNeeded)}}
-                </td>
-                <td class="align-middle f-18 text-gray font-weight-light">{{garment.brand}}</td>
-                <td class="align-middle f-18 text-gray font-weight-light">{{garment.color}}</td>
-                <td class="align-middle f-18 text-gray font-weight-light">{{garment.ageOfGarment}} years old</td>
-                <td class="align-middle f-18 text-gray font-weight-light">{{garment.noOfHoles}}</td>
-                <td class="align-middle f-18 text-gray font-weight-light">{{garment.briefDescription}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div *ngIf="showNoGarmentError">
-        <div class="f-14 text-danger text-center">Please add some garments details</div>
-    </div>
-    <a class="text-gold f-24" (click)="addItem()"><strong>+ add additional Garment?</strong></a>
-    <!-- form to add item -->
-    <app-add-item-modal [action]="actionType" [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false"
-        (addItemFinal)="updateGarment($event)"></app-add-item-modal>
-    <div class="row no-gutters mt-5 mb-5">
-        <div class="col-12 text-center d-lg-block d-none">
-            <button type="button" class="go-back btn f-18 font-weight-light py-2 background-gray btn-sm text-white"
-                routerLink="/orders">Go Back</button>
-            <button type="button" (click)="proceedToShipping()"
-                class="all-done btn f-18 font-weight-light py-2 background-gold btn-sm text-white ml-2">All
-                Done</button>
+  <!-- steps -->
+  <app-stepper class="d-none d-lg-block" [activeStep]="step"></app-stepper>
+  <!-- table of items -->
+  <table class="table table-hover table-borderless align-middle d-lg-block d-none">
+    <thead>
+      <tr class="text-gray">
+        <th class="col-1 f-18 text-center">#</th>
+        <th class="col-2 f-18">Service Needed</th>
+        <th class="col-1 f-18">Brand</th>
+        <th class="col-1 f-18">Color</th>
+        <th class="col-2 f-18">Age of Garment</th>
+        <th class="col-1 f-18"># of Holes</th>
+        <th class="col-3 f-18">Brief Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let garment of garments; let idx = index">
+        <td class="text-gold font-weight-light text-center align-middle">
+          <span class="cursor-pointer" (click)="removeItem(idx)">x</span><span class="pr-1 pl-1 text-black"> |
+          </span><span class="cursor-pointer" (click)="editItem(idx)">Edit</span>
+        </td>
+        <td class="align-middle f-18 text-gray font-weight-light">{{getServiceNames(garment.serviceNeeded)}}
+        </td>
+        <td class="align-middle f-18 text-gray font-weight-light">{{garment.brand}}</td>
+        <td class="align-middle f-18 text-gray font-weight-light">{{garment.color}}</td>
+        <td class="align-middle f-18 text-gray font-weight-light">{{garment.ageOfGarment}} years old</td>
+        <td class="align-middle f-18 text-gray font-weight-light">{{garment.noOfHoles}}</td>
+        <td class="align-middle f-18 text-gray font-weight-light">{{garment.briefDescription}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Mobile view of items -->
+  <div class="d-lg-none d-block">
+    <div *ngFor="let garment of garments; let idx = index">
+      <div class="row no-gutters mt-3">
+        <div class="col-6">
+          <p class="f-36">Garment {{idx+1}}</p>
+          <p class="text-gold text-left align-middle">
+            <span class="cursor-pointer" (click)="removeItem(idx)">x</span><span class="pr-1 pl-1 text-black"> |
+            </span><span class="cursor-pointer" (click)="editItem(idx)">Edit</span>
+          </p>
         </div>
-        <div class="col-12 text-center d-lg-none d-block">
+        <div class="col-6 text-gray">
+          <div>
+            <p class="text-bold m-0">Service Needed</p>
+            <p class= "m-0">{{getServiceNames(garment.serviceNeeded)}}</p>
+          </div>
+          <div class="mt-2">
+            <p class="text-bold m-0">Brand</p>
+            <p class= "m-0">{{garment.brand}}</p>
+          </div>
+          <div class="mt-2">
+            <p class="text-bold m-0">Color</p>
+            <p class= "m-0">{{garment.color}}</p>
+          </div>
+          <div class="mt-2">
+            <p class="text-bold m-0">Age of Garment</p>
+            <p class= "m-0">{{garment.ageOfGarment}} years old</p>
+          </div>
+          <div class="mt-2">
+            <p class="text-bold m-0"># of Holes</p>
+            <p class= "m-0">{{garment.noOfHoles}}</p>
+          </div>
+          <div class="mt-2">
+            <p class="text-bold m-0">Brief Description</p>
+            <p class= "m-0">{{garment.briefDescription}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showNoGarmentError">
+    <div class="f-14 text-danger text-center">Please add some garments details</div>
+  </div>
+  <div class="row no-gutters mt-5 mb-5">
+    <div class="col-lg-3 col-8 text-center border-gold p-2 mx-auto">
+      <a class="text-gold f-24" (click)="addItem()"><strong>+ add additional Garment?</strong></a>
+      <!-- form to add item -->
+      <app-add-item-modal [action]="actionType" [item]="selectedGarment" [open]="modalOpen" (close)="modalOpen = false"
+        (addItemFinal)="updateGarment($event)"></app-add-item-modal>
+    </div>
+    <div class="col-12 text-center mt-lg-3 mt-2">
+      <button type="button" class="go-back btn f-18 font-weight-light py-2 background-gray btn-sm text-white"
+        routerLink="/orders">Go Back</button>
+      <button type="button" (click)="proceedToShipping()"
+        class="all-done btn f-18 font-weight-light py-2 background-gold btn-sm text-white ml-2">All
+        Done</button>
+    </div>
+    <!-- <div class="col-12 text-center d-lg-none d-block">
             <button type="button" class="btn f-18 font-weight-light py-2 background-gray btn-sm text-white"
                 routerLink="/orders">Go Back</button>
             <button type="button" (click)="proceedToShipping()"
                 class="btn f-18 font-weight-light py-2 background-gold btn-sm text-white ml-2">All
                 Done</button>
-        </div>
-    </div>
+        </div> -->
+  </div>
 </section>

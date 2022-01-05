@@ -2,6 +2,14 @@
     min-height: 400px
 }
 
-.sign-in-content {
-    width: 30%;
+@media only screen and (max-width: 768px) {
+  .f-64, .f-48 {
+    font-size: 36px;
+  }
+  .f-36 {
+    font-size: 24px;
+  }
+  .f-24 {
+    font-size: 18px;
+  }
 }

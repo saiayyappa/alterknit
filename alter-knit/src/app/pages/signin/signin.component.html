@@ -1,19 +1,21 @@
 <div class="row no-gutters">
-    <div class="col-12">
-        <div class="header">
-            <app-header [theme]="headerThemes.WHITE"></app-header>
-        </div>
-        <div class="m-5 sign-in">
-            <div class="row no-gutters">
-                <section class="col-md-6 col-12 m-auto text-center">
-                    <p class="title f-36">New Customers</p>
-                    <p class="font-weight-light f-18 text-gray">Don’t have an account? No problem, you can check out as a
-                        guest and create an account later.</p>
-                    <button type="button" class="btn background-gold btn-sm text-white btn-block"
-                        [title]="'Orders and Shipping'" routerLink="/orders">Continue as Guest</button>
-                </section>
-            </div>
-        </div>
-        <app-footer></app-footer>
+  <div class="col-12">
+    <div class="header">
+      <app-header [theme]="headerThemes.BLACK"></app-header>
     </div>
+    <div class="m-md-5 m-1 sign-in">
+      <div class="row no-gutters w-50 mx-auto">
+        <section class="col-md-6 col-12 m-auto text-center">
+          <p class="title f-36 text-bold text-gray">New Customers</p>
+          <p class="font-weight-light f-24 text-gray">Don't have an account? No problem, you can check out as a
+            guest and create an account later.
+            <button type="button" class="btn background-gold btn-sm text-white btn-block mt-3 f-24" [title]="'Orders and Shipping'"
+              routerLink="/orders">Continue as Guest</button>
+          </p>
+
+        </section>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
 </div>

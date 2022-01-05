@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HeaderTheme } from 'src/app/common/interfaces/header-theme';
+
 interface SweaterInfo {
   id: number;
   brand: string;
@@ -17,13 +18,19 @@ interface SweaterInfo {
 })
 
 export class OurWorkComponent implements OnInit {
+  isHover: number;
 
-  constructor() { }
+  constructor() {
+    this.isHover = -1;
+  }
 
   headerThemes = HeaderTheme;
 
   selectedSweater!: SweaterInfo;
 
+  print(i: any){
+    console.log(i);
+  }
   sweaters: SweaterInfo[] = [
     {
       id: 1,

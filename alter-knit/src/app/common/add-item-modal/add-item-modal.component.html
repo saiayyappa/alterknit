@@ -1,164 +1,162 @@
 <div *ngIf="open" class="viewer-container pb-5 pt-5">
-    <!-- form container -->
-    <section class="form-container mx-auto">
-        <div class="row no-gutters mt-lg-5 mt-2">
-            <!-- what kind of service do you need -->
-            <div class="col-lg-6 col-12 text-center vertial-gold-separator d-lg-block d-none">
-                <p class="text-gold f-36">Garment #1</p>
-                <p class="f-30 text-gray">What kind of service do you need?</p>
-                <p class="f-18 font-weight-light">Select all that apply, must select at least one<span
-                        class="text-danger">*</span></p>
-                <div class="d-flex justify-content-center align-items-center flex-column flex-lg-row">
-                    <img class="mx-4" width="79px" height="79px" src="../../../assets/images/garment-icons/shirt.svg">
-                    <img class="mx-4" width="79px" height="79px" src="../../../assets/images/garment-icons/wool.svg">
-                    <img class="mx-4" width="79px" height="79px"
-                        src="../../../assets/images/garment-icons/washing-machince.svg">
-                </div>
-            </div>
-            <div class="col-12 d-lg-none d-block text-center text-gold mt-3">
-                <p class="f-18 font-weight-light">What kind of service do you need?</p>
-                <p class="f-18 text-gray font-weight-light">Select all that apply, must select at least one<span
-                        class="text-danger">*</span></p>
-            </div>
-            <!-- form 1-->
-            <div class="col-lg-6 col-12">
-                <div class="d-flex align-items-center mb-2" *ngFor="let service of serviceList;">
-                    <div>
-                        <input class="ml-lg-5 ml-3" [ngClass]="{ 'is-invalid': submitted && showServiceListError }"
-                            type="checkbox" [(ngModel)]="service.checked">
-                    </div>
-                    <span class="ml-lg-3 ml-2 mb-0">{{service.name}}</span>
-                </div>
-                <div *ngIf="submitted && showServiceListError">
-                    <div class="ml-lg-5 ml-3 f-14 text-danger">Please select services you want</div>
-                </div>
-            </div>
+  <!-- form container -->
+  <section class="form-container mx-auto">
+    <div class="row no-gutters mt-lg-5 mt-2">
+      <!-- what kind of service do you need -->
+      <div
+        class="col-lg-6 col-12 text-center vertical-gold-separator d-flex flex-column align-items-center justify-content-center">
+        <p class="text-gold f-36 text-bold">Garment #1</p>
+        <p class="f-30 text-gray text-bold">What kind of service do you need?</p>
+        <p class="f-18 text-gray">Select all that apply, must select at least one<span class="text-danger">*</span></p>
+        <div class="d-flex justify-content-center align-items-center justify-content-center garment-1">
+          <img class="mx-lg-4 mx-2" src="../../../assets/images/garment-icons/shirt.svg">
+          <img class="mx-lg-4 mx-2" src="../../../assets/images/garment-icons/wool.svg">
+          <img class="mx-lg-4 mx-2" src="../../../assets/images/garment-icons/washing-machince.svg">
         </div>
-        <div class="row no-gutters mt-lg-5 mt-3">
-            <!-- what kind of service do you need -->
-            <div class="col-lg-6 col-12 text-center vertial-gold-separator d-lg-block d-none">
-                <div class="w-75 mx-auto">
-                    <p class="f-30 text-gray">Tell us about your Garment</p>
-                    <p class="f-18 font-weight-light px-5">Let us know more about your clothes. It’ll give us more
-                        insite into what have to do to get it looking good as new.</p>
-                </div>
-            </div>
-            <div class="col-12 d-lg-none d-block text-center text-gold mt-3">
-                <p class="f-18 font-weight-light">Tell us about your Garment</p>
-                <p class="f-18 text-gray font-weight-light">Let us know more about your clothes. It’ll give us more
-                    insite into what have to do to get it looking good as new.</p>
-            </div>
-            <!-- form 2-->
-            <div class="col-lg-6 col-12" [formGroup]="garmentForm">
-                <div class="mx-lg-5 mx-3">
-                    <div class="form-group">
-                        <input class="mb-2 w-100" formControlName="brand" placeholder="Brand*" type="text" name="brand"
-                            [ngClass]="{ 'is-invalid': submitted && itemf.brand.errors }" id="brand" required>
-                        <div *ngIf="submitted && itemf.brand.errors" class="invalid-feedback">
-                            <div class="f-14 p-0 m-0" *ngIf="itemf.brand.errors.required">Please provide a
-                                brand name</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="mb-2 w-100" formControlName="color" placeholder="Color*" type="text" name="color"
-                            [ngClass]="{ 'is-invalid': submitted && itemf.color.errors }" id="color">
-                        <div *ngIf="submitted && itemf.color.errors" class="invalid-feedback">
-                            <div class="f-14 p-0 m-0" *ngIf="itemf.color.errors.required">Please provide
-                                color of garment</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="mb-2 w-100" formControlName="ageOfGarment"
-                            placeholder="Age of garment* (in years)"
-                            [ngClass]="{ 'is-invalid': submitted && itemf.ageOfGarment.errors }" type="text"
-                            name="ageOfGarment" id="ageOfGarment">
-                        <div *ngIf="submitted && itemf.ageOfGarment.errors" class="invalid-feedback">
-                            <div class="f-14 p-0 m-0" *ngIf="itemf.ageOfGarment.errors.required">Please
-                                provide age of garment</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="mb-2 w-100" formControlName="noOfHoles"
-                            placeholder="Number of Holes* (Don’t worry if you don’t catch all of the holes. We will thoroughly inspect your garment.)"
-                            [ngClass]="{ 'is-invalid': submitted && itemf.noOfHoles.errors }" type="text"
-                            name="noOfHoles" id="noOfHoles">
-                        <div *ngIf="submitted && itemf.noOfHoles.errors" class="invalid-feedback">
-                            <div class="f-14 p-0 m-0" *ngIf="itemf.noOfHoles.errors.required">Please provide
-                                number of holes in garment</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows=5 class="mb-2 w-100" formControlName="briefDescription"
-                            placeholder="Brief decription of what you need or anything else you’d like to tell us?*"
-                            [ngClass]="{ 'is-invalid': submitted && itemf.briefDescription.errors }" type="text"
-                            name="briefDescription" id="briefDescription"></textarea>
-                        <div *ngIf="submitted && itemf.briefDescription.errors" class="invalid-feedback">
-                            <div class="f-14 p-0 m-0" *ngIf="itemf.briefDescription.errors.required">Please
-                                provide a brief description of what you need or anything else you’d like to tell us?
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <!-- form 1-->
+      <div class="col-lg-6 col-12 mt-lg-0 mt-4">
+        <div class="d-flex align-items-lg-start align-items-center mb-2" *ngFor="let service of serviceList;">
+          <div>
+            <input class="ml-lg-5 ml-3 mt-lg-1 mt-0" [ngClass]="{ 'is-invalid': submitted && showServiceListError }"
+              type="checkbox" [(ngModel)]="service.checked">
+          </div>
+          <span class="ml-lg-3 ml-2 mb-0">{{service.name}}</span>
         </div>
-        <div class="row no-gutters mt-lg-5 mx-3">
-            <div class="col-12 text-center">
-                <img width="50px" height="50px" src="../../../assets/images/AKNY-LOGO_complete_gold.svg"
-                    alt="logo-gold">
-            </div>
+        <div *ngIf="submitted && showServiceListError">
+          <div class="ml-lg-5 ml-3 f-14 text-danger">Please select services you want</div>
         </div>
-        <div class="row no-gutters mt-lg-5 mt-3 mx-lg-5 mx-3">
-            <div class="col-12 text-center">
-                <p class="f-30 text-gray">Has this garment been previously repaired by a dry cleaner or anyone
-                    else?<span class="text-danger f-30">*</span></p>
-                <p class="f-18 font-weight-light text-gold">Our craft isn’t a ordinary patch job. We pride ourselves in
-                    the best restoration techniques that make holes and rips nearly invisible. Fixing a previous attempt
-                    may cause a delay or additional work in trying to restore your garment.</p>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
-                        [ngClass]="isDryCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
-                        (click)="isDryCleaned=true;">
-                        yes</div>
-                    <div class="button-separator"></div>
-                    <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
-                        [ngClass]="isDryCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
-                        (click)="isDryCleaned=false;">
-                        no</div>
-                </div>
-            </div>
-        </div>
-        <div class="row no-gutters mt-5 mx-5">
-            <div class="col-12 text-center">
-                <p class="f-30 text-gray">Has this garment been recently cleaned?<span class="text-danger f-30">*</span>
-                </p>
-                <p class="f-18 font-weight-light text-gold">Cleaning will only make holes bigger and incur higher repair
-                    cost. Please let us examine your garment first. If you’ve already cleaned it, don’t worry.</p>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
-                        [ngClass]="isCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
-                        (click)="isCleaned=true;">
-                        yes</div>
-                    <div class="button-separator"></div>
-                    <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
-                        [ngClass]="isCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
-                        (click)="isCleaned=false;">
-                        no</div>
-                </div>
-            </div>
-        </div>
-        <div class="row no-gutters mt-5 mb-5">
-            <div class="col-12 text-center">
-                <button type="button" class="btn f-24 font-weight-light py-2 background-gray btn-sm text-white"
-                    (click)="close.emit()">Cancel</button>
-                <button type="button"
-                    class="btn f-24 font-weight-light py-2 background-gold btn-sm text-white ml-2"
-                    (click)="submit()">Next</button>
-            </div>
-        </div>
-    </section>
-    <div class="row no-gutters w-100 fixed-top">
-        <div class="col-12 text-right pr-3">
-            <a class="close-viewer text-white home-title cursor-pointer" (click)="close.emit()">X</a>
-        </div>
+      </div>
     </div>
+    <div class="row no-gutters mt-lg-5 mt-3">
+      <!-- what kind of service do you need -->
+      <div class="col-lg-6 col-12 text-center vertical-gold-separator d-lg-block d-none">
+        <div class="w-75 mx-auto">
+          <p class="f-30 text-gray text-bold">Tell us about your Garment</p>
+          <p class="f-18 text-gray px-lg-5 px-3">Let us know more about your clothes. It'll give us more
+            insite into what have to do to get it looking good as new.</p>
+        </div>
+      </div>
+      <div class="col-12 d-lg-none d-block text-center mt-3">
+        <p class="f-30 text-gray text-bold">Tell us about your Garment</p>
+        <p class="f-18 text-gray px-lg-5 px-3">Let us know more about your clothes. It'll give us more
+          insite into what have to do to get it looking good as new.</p>
+      </div>
+      <!-- form 2-->
+      <div class="col-lg-6 col-12" [formGroup]="garmentForm">
+        <div class="mx-lg-5 mx-3">
+          <div class="form-group">
+            <input class="mb-2 w-100" formControlName="brand" placeholder="Brand*" type="text" name="brand"
+              [ngClass]="{ 'is-invalid': submitted && itemf.brand.errors }" id="brand" required>
+            <div *ngIf="submitted && itemf.brand.errors" class="invalid-feedback">
+              <div class="f-14 p-0 m-0" *ngIf="itemf.brand.errors.required">Please provide a
+                brand name</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="mb-2 w-100" formControlName="color" placeholder="Color*" type="text" name="color"
+              [ngClass]="{ 'is-invalid': submitted && itemf.color.errors }" id="color">
+            <div *ngIf="submitted && itemf.color.errors" class="invalid-feedback">
+              <div class="f-14 p-0 m-0" *ngIf="itemf.color.errors.required">Please provide
+                color of garment</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="mb-2 w-100" formControlName="ageOfGarment" placeholder="Age of garment* (in years)"
+              [ngClass]="{ 'is-invalid': submitted && itemf.ageOfGarment.errors }" type="text" name="ageOfGarment"
+              id="ageOfGarment">
+            <div *ngIf="submitted && itemf.ageOfGarment.errors" class="invalid-feedback">
+              <div class="f-14 p-0 m-0" *ngIf="itemf.ageOfGarment.errors.required">Please
+                provide age of garment</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- <input class="mb-2 w-100" formControlName="noOfHoles"
+              placeholder="Number of Holes* (Don't worry if you don't catch all of the holes. We will thoroughly inspect your garment.)"
+              [ngClass]="{ 'is-invalid': submitted && itemf.noOfHoles.errors }" type="text" name="noOfHoles"
+              id="noOfHoles"> -->
+            <textarea rows=2 class="mb-2 w-100" formControlName="noOfHoles"
+              placeholder="Number of Holes* (Don't worry if you don't catch all of the holes. We will thoroughly inspect your garment.)"
+              [ngClass]="{ 'is-invalid': submitted && itemf.noOfHoles.errors }" type="text" name="noOfHoles"
+              id="briefDescription">
+            </textarea>
+            <div *ngIf="submitted && itemf.noOfHoles.errors" class="invalid-feedback">
+              <div class="f-14 p-0 m-0" *ngIf="itemf.noOfHoles.errors.required">Please provide
+                number of holes in garment</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea rows=5 class="mb-2 w-100" formControlName="briefDescription"
+              placeholder="Brief decription of what you need or anything else you'd like to tell us?*"
+              [ngClass]="{ 'is-invalid': submitted && itemf.briefDescription.errors }" type="text"
+              name="briefDescription" id="briefDescription">
+            </textarea>
+            <div *ngIf="submitted && itemf.briefDescription.errors" class="invalid-feedback">
+              <div class="f-14 p-0 m-0" *ngIf="itemf.briefDescription.errors.required">Please
+                provide a brief description of what you need or anything else you'd like to tell us?
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters mt-5 mx-3">
+      <div class="col-12 text-center">
+        <img width="50px" height="50px" src="../../../assets/images/AKNY-LOGO_complete_gold.svg" alt="logo-gold">
+      </div>
+    </div>
+    <div class="row no-gutters mt-5 mx-lg-5 mx-3">
+      <div class="col-12 text-center">
+        <p class="f-30 text-gray text-bold">Has this garment been previously repaired by a dry cleaner or anyone
+          else?<span class="text-danger f-30">*</span></p>
+        <p class="f-18 font-weight-light text-gold">Our craft isn't a ordinary patch job. We pride ourselves in
+          the best restoration techniques that make holes and rips nearly invisible. Fixing a previous attempt
+          may cause a delay or additional work in trying to restore your garment.</p>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
+            [ngClass]="isDryCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
+            (click)="isDryCleaned=true;">
+            yes</div>
+          <div class="button-separator"></div>
+          <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
+            [ngClass]="isDryCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
+            (click)="isDryCleaned=false;">
+            no</div>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters mt-5 mx-5">
+      <div class="col-12 text-center">
+        <p class="f-30 text-gray text-bold">Has this garment been recently cleaned?<span
+            class="text-danger f-30">*</span>
+        </p>
+        <p class="f-18 font-weight-light text-gold">Cleaning will only make holes bigger and incur higher repair
+          cost. Please let us examine your garment first. If you've already cleaned it, don't worry.</p>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
+            [ngClass]="isCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
+            (click)="isCleaned=true;">
+            yes</div>
+          <div class="button-separator"></div>
+          <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
+            [ngClass]="isCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
+            (click)="isCleaned=false;">
+            no</div>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters mt-5 mb-5">
+      <div class="col-12 text-center">
+        <button type="button" class="btn f-24 font-weight-light py-2 background-gray btn-sm text-white"
+          (click)="close.emit()">Cancel</button>
+        <button type="button" class="btn f-24 font-weight-light py-2 background-gold btn-sm text-white ml-2"
+          (click)="submit()">Next</button>
+      </div>
+    </div>
+  </section>
+  <div class="row no-gutters w-100 fixed-top">
+    <div class="col-12 text-right pr-3">
+      <a class="close-viewer text-white home-title cursor-pointer text-bold f-36" (click)="close.emit()">x</a>
+    </div>
+  </div>
 </div>

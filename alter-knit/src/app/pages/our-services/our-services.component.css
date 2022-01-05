@@ -1,14 +1,6 @@
 .section-intro {
     /* height: 400px; */
-    background-color: #B68C13;
-}
-
-.f-18 {
-    font-size: 18px;
-}
-
-.f-36  {
-    font-size: 36px
+    background-color: #E9E7D9;
 }
 
 .section-image-sewing {
@@ -21,11 +13,10 @@
 }
 
 .question {
-    font-size: 18px;
     color: #B68C13;
 }
 
-.faq-section {
+.faq-background {
     background: #1D262F;
 }
 
@@ -42,4 +33,23 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.service {
+  padding-bottom: 2em;
+}
+
+@media only screen and (max-width: 768px) {
+  .f-64, .f-48 {
+    font-size: 36px;
+  }
+  .f-36 {
+    font-size: 24px;
+  }
+  .f-24-2 {
+    font-size: 18px;
+  }
+  .service {
+    padding-bottom: 0.5em;
+  }
 }
