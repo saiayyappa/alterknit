@@ -338,18 +338,18 @@ export class DataService {
   order: Order;
   orderSubject: BehaviorSubject<Order>;
   localStorage: Storage = window.localStorage;;
-  private _addressInfo: AddressInfo = {
-    "firstName": "Saiayyappa",
-    "lastName": "O R",
-    "address": "19/6G, JeyasriRamesh Illam, Kamarajar 3rd street",
-    "companyName": "",
-    "city": "New York",
-    "state": "New York",
-    "zipcode": "10001",
-    "phone": "+918526108714",
-    "email": "saiayyappa1996@gmail.com",
-    "isBillingAddressSame": true
-  };
+  // private _addressInfo: AddressInfo = {
+  //   "firstName": "Saiayyappa",
+  //   "lastName": "O R",
+  //   "address": "19/6G, JeyasriRamesh Illam, Kamarajar 3rd street",
+  //   "companyName": "",
+  //   "city": "New York",
+  //   "state": "New York",
+  //   "zipcode": "10001",
+  //   "phone": "+918526108714",
+  //   "email": "saiayyappa1996@gmail.com",
+  //   "isBillingAddressSame": true
+  // };
   public getOrder(): Order {
     return JSON.parse(localStorage.getItem('order') || '{}') as Order;
   }
@@ -359,67 +359,67 @@ export class DataService {
 
   constructor() {
     this.order = new Order();
-    this.order = {
-      "orderMethod": 0,
-      "garments": [
-        {
-          "serviceNeeded": [
-            {
-              "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
-              "checked": false
-            },
-            {
-              "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
-              "checked": false
-            },
-            {
-              "name": "Knit Alteration",
-              "checked": true
-            },
-            {
-              "name": "Knit Restyling",
-              "checked": true
-            },
-            {
-              "name": "Depilling",
-              "checked": true
-            },
-            {
-              "name": "Cleaning",
-              "checked": false
-            },
-            {
-              "name": "Custom Knit Work",
-              "checked": false
-            },
-            {
-              "name": "Other Fabric Repair",
-              "checked": false
-            }
-          ],
-          "isDryCleaned": false,
-          "isCleaned": false,
-          "brand": "J Balvin",
-          "color": "Grey",
-          "ageOfGarment": 3,
-          "noOfHoles": 9,
-          "briefDescription": "This is a J Balvin Grey Sweater from my grandmother."
-        }
-      ],
-      "deliverySpeed": 0,
-      "addressInfo": this._addressInfo,
-      "billingAddressInfo": {
-        "firstName": "",
-        "lastName": "",
-        "address": "",
-        "companyName": "",
-        "city": "",
-        "state": "",
-        "zipcode": "",
-        "phone": "",
-        "email": "",
-      }
-    };
+    // this.order = {
+    //   "orderMethod": 0,
+    //   "garments": [
+    //     {
+    //       "serviceNeeded": [
+    //         {
+    //           "name": "Reknitting of holes on your sweaters, hats, gloves, scarves, blanket, exc...",
+    //           "checked": false
+    //         },
+    //         {
+    //           "name": "Reweaving for suits, blazers, slacks, overcoat, exc...",
+    //           "checked": false
+    //         },
+    //         {
+    //           "name": "Knit Alteration",
+    //           "checked": true
+    //         },
+    //         {
+    //           "name": "Knit Restyling",
+    //           "checked": true
+    //         },
+    //         {
+    //           "name": "Depilling",
+    //           "checked": true
+    //         },
+    //         {
+    //           "name": "Cleaning",
+    //           "checked": false
+    //         },
+    //         {
+    //           "name": "Custom Knit Work",
+    //           "checked": false
+    //         },
+    //         {
+    //           "name": "Other Fabric Repair",
+    //           "checked": false
+    //         }
+    //       ],
+    //       "isDryCleaned": false,
+    //       "isCleaned": false,
+    //       "brand": "J Balvin",
+    //       "color": "Grey",
+    //       "ageOfGarment": 3,
+    //       "noOfHoles": 9,
+    //       "briefDescription": "This is a J Balvin Grey Sweater from my grandmother."
+    //     }
+    //   ],
+    //   "deliverySpeed": 0,
+    //   "addressInfo": this._addressInfo,
+    //   "billingAddressInfo": {
+    //     "firstName": "",
+    //     "lastName": "",
+    //     "address": "",
+    //     "companyName": "",
+    //     "city": "",
+    //     "state": "",
+    //     "zipcode": "",
+    //     "phone": "",
+    //     "email": "",
+    //   }
+    // };
     this.orderSubject = new BehaviorSubject(this.order);
     this.setOrder(this.order);
   }
