@@ -1,9 +1,10 @@
 <section>
     <!-- steps -->
     <app-stepper [activeStep]="step"></app-stepper>
-    <div class="row no-gutters mt-5 w-75 mx-auto">
+    <div class="row no-gutters mt-lg-5 mt-3">
         <!-- shipping address form -->
-        <div class="col-8 px-4">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
             <form [formGroup]="addressForm">
                 <div class="f-24 font-weight-bold text-gray">Pick up Information</div>
                 <div class="mt-4">
@@ -245,9 +246,6 @@
                 Continue to Order Review
             </button>
         </div>
-        <!-- order summary -->
-        <div class="col-4">
-            <app-order-review [garments]="garments"></app-order-review>
-        </div>
+        <div class="col-lg-3"></div>
     </div>
 </section>
