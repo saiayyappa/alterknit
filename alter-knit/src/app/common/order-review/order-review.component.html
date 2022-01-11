@@ -1,7 +1,7 @@
 <div class="order-summary background-gray2 mx-auto p-3">
   <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
     Order Summary
-    <span class="f-14 font-weight-light ml-auto"><a routerLink="/orders/select-service">Edit</a></span>
+    <span class="f-14 font-weight-light ml-auto"><u><a routerLink="/orders/select-service">Edit</a></u></span>
   </div>
   <div *ngFor="let garment of garments; let idx = index">
     <div class="row no-gutters mt-3">
@@ -19,23 +19,33 @@
         </div>
         <div class="mt-2">
           <p class="text-bold m-0">Brand</p>
-          <p class="m-0">{{garment.brand}}</p>
+          <ul class="m-0">
+            <li>{{garment.brand}}</li>
+          </ul>
         </div>
         <div class="mt-2">
           <p class="text-bold m-0">Color</p>
-          <p class="m-0">{{garment.color}}</p>
+          <ul class="m-0">
+            <li>{{garment.color}}</li>
+          </ul>
         </div>
         <div class="mt-2">
           <p class="text-bold m-0">Age of Garment</p>
-          <p class="m-0">{{garment.ageOfGarment}} years old</p>
+          <ul class="m-0">
+            <li>{{garment.ageOfGarment}} years old</li>
+          </ul>
         </div>
         <div class="mt-2">
           <p class="text-bold m-0"># of Holes</p>
-          <p class="m-0">{{garment.noOfHoles}}</p>
+          <ul class="m-0">
+            <li>{{garment.noOfHoles}}</li>
+          </ul>
         </div>
         <div class="mt-2">
           <p class="text-bold m-0">Brief Description</p>
-          <p class="m-0">{{garment.briefDescription}}</p>
+          <ul class="m-0">
+            <li>{{garment.briefDescription}}</li>
+          </ul>
         </div>
       </div>
     </div>
