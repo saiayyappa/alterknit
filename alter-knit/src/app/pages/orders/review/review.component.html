@@ -3,8 +3,8 @@
   <app-stepper [activeStep]="step"></app-stepper>
   <div class="row no-gutters mt-5 w-100 mx-auto">
     <!-- shipping address form -->
-    <div class="col-lg-2"></div>
-    <div class="col-lg-5 col-12 px-lg-4 px-0">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-6 col-12 px-lg-4 px-0">
       <div class="f-24 text-bold text-gray">Shipping Information</div>
       <div class="f-18 font-weight-light home-text mt-4">
         <p class="m-0">{{order?.addressInfo?.firstName}}&nbsp;{{order?.addressInfo?.lastName}}</p>
@@ -58,7 +58,7 @@
       </div>
     </div>
     <!-- order summary -->
-    <div class="col-lg-3 col-12">
+    <div class="col-lg-4 col-12">
       <app-order-review [garments]="order.garments"></app-order-review>
       <div class="review-submit mt-2">
         <div class="d-inline-flex align-items-center">
@@ -84,6 +84,6 @@
       </div>
       <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
     </div>
-    <div class="col-lg-2"></div>
+    <div class="col-lg-1"></div>
   </div>
 </section>

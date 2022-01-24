@@ -34,11 +34,16 @@
         </div>
         <div class="form-group">
           <label for="address" class="f-18 font-weight-bold text-gray">Address</label>
-          <input class="mb-2 w-100 form-control" placeholder="Street Address or PO Box" type="text" name="address"
+          <input class="mb-2 w-100 form-control" placeholder="Street Address or Apt/Suite #" type="text" name="address"
             formControlName="address" [ngClass]="{ 'is-invalid': submitted && form.address.errors }" id="address">
-          <div *ngIf="submitted && form.address.errors" class="invalid-feedback">
-            <div class="f-14 p-0 m-0" *ngIf="form.address.errors.required">
+          <div *ngIf="submitted && form.address.errors && form.address.errors.required" class="invalid-feedback">
+            <div class="f-14 p-0 m-0">
               Please enter address
+            </div>
+          </div>
+          <div *ngIf="submitted && form.address.errors && form.address.errors.maxlength" class="invalid-feedback">
+            <div class="f-14 p-0 m-0">
+              Maximum character limit is 35
             </div>
           </div>
         </div>
@@ -154,12 +159,17 @@
         </div>
         <div class="form-group">
           <label for="address" class="f-18 font-weight-bold text-gray">Address</label>
-          <input class="mb-2 w-100 form-control" placeholder="Street Address or PO Box" type="text" name="address"
+          <input class="mb-2 w-100 form-control" placeholder="Street Address or Apt/Suite #" type="text" name="address"
             formControlName="address" [ngClass]="{ 'is-invalid': submitted && billingForm.address.errors }"
             id="address">
-          <div *ngIf="submitted && billingForm.address.errors" class="invalid-feedback">
-            <div class="f-14 p-0 m-0" *ngIf="billingForm.address.errors.required">
+          <div *ngIf="submitted && billingForm.address.errors && billingForm.address.errors.required" class="invalid-feedback">
+            <div class="f-14 p-0 m-0">
               Please enter address
+            </div>
+          </div>
+          <div *ngIf="submitted && billingForm.address.errors && billingForm.address.errors.maxlength" class="invalid-feedback">
+            <div class="f-14 p-0 m-0">
+              Maximum character limit is 35
             </div>
           </div>
         </div>

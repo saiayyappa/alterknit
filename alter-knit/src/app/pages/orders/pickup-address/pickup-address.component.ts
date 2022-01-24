@@ -23,7 +23,7 @@ export class PickupAddressComponent implements OnInit {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     buildingType: ['0', Validators.required],
-    address: ['', Validators.required],
+    address: ['', [Validators.required, Validators.maxLength(35)]],
     companyName: [''],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -38,7 +38,7 @@ export class PickupAddressComponent implements OnInit {
   billingAddressForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    address: ['', Validators.required],
+    address: ['', [Validators.required, Validators.maxLength(35)]],
     city: ['', Validators.required],
     state: ['', Validators.required],
     zipcode: ['', Validators.required],
