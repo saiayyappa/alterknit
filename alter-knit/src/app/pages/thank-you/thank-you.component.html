@@ -1,7 +1,7 @@
 <div class="row no-gutters">
     <div class="col-12">
         <div class="header">
-            <app-header [theme]="headerThemes.WHITE"></app-header>
+            <app-header [theme]="headerThemes.BLACK"></app-header>
         </div>
         <div class="thank-you-content">
             <div class="m-5">
@@ -24,6 +24,7 @@
         <figure class="text-center">
             <img src="../../../assets/images/AKNY-LOGO_complete_gold.svg" height="60" />
         </figure>
+        <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
         <app-footer></app-footer>
     </div>
 </div>

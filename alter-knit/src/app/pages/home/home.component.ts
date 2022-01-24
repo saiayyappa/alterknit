@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from 'aws-amplify';
 
 import { HeaderTheme } from 'src/app/common/interfaces/header-theme';
 
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    // console.log(await Auth.currentAuthenticatedUser());
   }
 
 }

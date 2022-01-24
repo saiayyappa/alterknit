@@ -14,7 +14,8 @@ export class AddItemModalComponent implements OnInit, OnChanges {
   @Output() close = new EventEmitter();
   @Output() addItemFinal = new EventEmitter();
   @Input() item!: Garment;
-
+  @Input() items!: Garment[];
+  @Input() currentIdx!: number;
   submitted: boolean = false;
   serviceList: Service[] = ServiceList();
   selectedServices!: string[];
@@ -25,6 +26,7 @@ export class AddItemModalComponent implements OnInit, OnChanges {
     noOfHoles: ['', Validators.required],
     briefDescription: ['', Validators.required],
   });
+  noOfGarments = 1;
   get itemf() { return this.garmentForm.controls; }
   showServiceListError: boolean = false;
   isDryCleaned: boolean = false;
@@ -36,9 +38,11 @@ export class AddItemModalComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if (this.action === ActionType.ADD) {
+      this.noOfGarments = this.items.length + 1;
       this.resetForm();
     } else if (this.action === ActionType.EDIT) {
       this.serviceList = this.item.serviceNeeded;
+      this.noOfGarments = this.currentIdx + 1;
       this.garmentForm.setValue({
         brand: this.item.brand,
         color: this.item.color,

@@ -38,6 +38,9 @@
 .service {
   padding-bottom: 2em;
 }
+/* .price-images {
+  height: 130px;
+} */
 
 @media only screen and (max-width: 768px) {
   .f-64, .f-48 {

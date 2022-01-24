@@ -5,7 +5,7 @@
       <!-- what kind of service do you need -->
       <div
         class="col-lg-6 col-12 text-center vertical-gold-separator d-flex flex-column align-items-center justify-content-center">
-        <p class="text-gold f-36 text-bold">Garment #1</p>
+        <p class="text-gold f-36 text-bold">Garment #{{noOfGarments}}</p>
         <p class="f-30 text-gray text-bold">What kind of service do you need?</p>
         <p class="f-18 text-gray">Select all that apply, must select at least one<span class="text-danger">*</span></p>
         <div class="d-flex justify-content-center align-items-center justify-content-center garment-1">
@@ -109,9 +109,6 @@
       <div class="col-12 text-center">
         <p class="f-30 text-gray text-bold">Has this garment been previously repaired by a dry cleaner or anyone
           else?<span class="text-danger f-30">*</span></p>
-        <p class="f-18 font-weight-light text-gold">Our craft isn't a ordinary patch job. We pride ourselves in
-          the best restoration techniques that make holes and rips nearly invisible. Fixing a previous attempt
-          may cause a delay or additional work in trying to restore your garment.</p>
         <div class="d-flex justify-content-center align-items-center">
           <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
             [ngClass]="isDryCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"

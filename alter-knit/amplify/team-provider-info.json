@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-alterknit-dev-130513-authRole",
+      "UnauthRoleArn": "arn:aws:iam::722399669416:role/amplify-alterknit-dev-130513-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::722399669416:role/amplify-alterknit-dev-130513-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-alterknit-dev-130513-deployment",
+      "UnauthRoleName": "amplify-alterknit-dev-130513-unauthRole",
+      "StackName": "amplify-alterknit-dev-130513",
+      "StackId": "arn:aws:cloudformation:us-east-1:722399669416:stack/amplify-alterknit-dev-130513/052b7fd0-7c1f-11ec-8503-0ea8ceb84bab",
+      "AmplifyAppId": "d2b9pztfrf4r7j"
+    },
+    "categories": {
+      "auth": {
+        "alterknit2b01b546": {}
+      }
+    }
+  }
+}

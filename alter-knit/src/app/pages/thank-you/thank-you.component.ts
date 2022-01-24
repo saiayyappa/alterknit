@@ -10,6 +10,7 @@ import { HeaderTheme } from 'src/app/common/interfaces/header-theme';
 export class ThankYouComponent implements OnInit {
 
   headerThemes = HeaderTheme;
+  showTerms: boolean = true;
 
   constructor() { }
 

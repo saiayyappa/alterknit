@@ -27,8 +27,8 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactComponent },
   {
     path: 'orders', component: OrdersComponent, children: [
-      { path: '', component: ShipmentMethodComponent }, // choose shipment method
-      { path: 'select-service', component: AddItemsComponent }, // select service and sweater items
+      { path: '', component: AddItemsComponent }, // select service and sweater items
+      { path: 'select-shipment-method', component: ShipmentMethodComponent }, // choose shipment method
       // when shipment is selected
       { path: 'shipping', component: ShippingAddressComponent }, // add billing and shipping address
       // when pick up is selected

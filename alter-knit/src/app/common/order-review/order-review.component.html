@@ -1,14 +1,14 @@
 <div class="order-summary background-gray2 mx-auto p-3">
   <div class="font-weight-bold f-24 text-gray d-flex justify-content-between align-items-center">
     Order Summary
-    <span class="f-14 font-weight-light ml-auto"><u><a routerLink="/orders/select-service">Edit</a></u></span>
+    <span class="f-14 font-weight-light ml-auto"><u><a routerLink="/orders">Edit</a></u></span>
   </div>
   <div *ngFor="let garment of garments; let idx = index">
     <div class="row no-gutters mt-3">
       <div class="col-5">
         <p class="f-24">Garment {{idx+1}}</p>
       </div>
-      <div class="col-7 text-gray">
+      <div class="col-7 text-gray pl-3">
         <div>
           <p class="text-bold m-0">Service Needed</p>
           <ul>

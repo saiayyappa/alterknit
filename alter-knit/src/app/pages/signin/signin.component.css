@@ -1,9 +1,59 @@
 .sign-in {
-    min-height: 400px
+  min-height: 400px;
+  width: 80%;
+  margin: 0 auto !important;
+  margin-bottom: 5em !important;
+}
+
+.span-or-vertical {
+  font-size: 16px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  background-color: #fff;
+  text-align: center;
+  color: #a3a3a3;
+  padding: 15px 5px;
+  z-index: 99999;
+}
+
+.vertical-line {
+  display: block;
+  position: absolute;
+  border-left: 2px solid #b68c13;
+  margin: 0 10px;
+  height: 385px;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid #b68c13;
+  line-height: 0.1em;
+  margin: 15px 0;
+}
+
+h2 span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+input {
+  border-radius: 0px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .sign-in {
+    min-height: 400px;
+    width: 90%;
+    margin: 0 auto !important;
+    margin-bottom: 5em !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-  .f-64, .f-48 {
+  .f-64,
+  .f-48 {
     font-size: 36px;
   }
   .f-36 {
@@ -11,5 +61,11 @@
   }
   .f-24 {
     font-size: 18px;
+  }
+  .sign-in {
+    min-height: 400px;
+    width: 100%;
+    margin: 0 auto !important;
+    margin-bottom: 5em !important;
   }
 }

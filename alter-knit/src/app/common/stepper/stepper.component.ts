@@ -48,7 +48,7 @@ export class StepperComponent implements OnInit, OnChanges {
           break;
         case 2:
           console.log('step3');
-          this.router.navigate(['orders/select-service']);
+          this.router.navigate(['orders/select-shipment-method']);
           break;
         case 3:
           console.log('step4');

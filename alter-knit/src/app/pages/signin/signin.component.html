@@ -3,16 +3,79 @@
     <div class="header">
       <app-header [theme]="headerThemes.BLACK"></app-header>
     </div>
-    <div class="m-md-5 m-1 sign-in">
-      <div class="row no-gutters w-50 mx-auto">
-        <section class="col-md-6 col-12 m-auto text-center">
-          <p class="title f-36 text-bold text-gray">New Customers</p>
-          <p class="font-weight-light f-24 text-gray">Don't have an account? No problem, you can check out as a
-            guest and create an account later.
-            <button type="button" class="btn background-gold btn-sm text-white btn-block mt-3 f-24" [title]="'Orders and Shipping'"
-              routerLink="/orders">Continue as Guest</button>
-          </p>
+    <div class="m-5 sign-in">
+      <div class="row no-gutters">
+        <section class="col-md-6 col-12">
+          <div class="p-md-5 px-4">
+            <p class="title f-36 text-bold text-gray text-center">Sign in to AlterKnit</p>
+            <form [formGroup]="signInForm">
 
+              <div class="form-group">
+                <!-- <label for="username" class="f-18 font-weight-bold text-gray">Email Address</label> -->
+                <input class="mb-2 w-100 form-control" placeholder="Email Address" type="text" name="username"
+                  formControlName="username" [ngClass]="{ 'is-invalid': submitted && form.username.errors }"
+                  id="username">
+                <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form.username.errors.required">
+                    Please enter email address
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="password" class="f-18 font-weight-bold text-gray">Password</label> -->
+                <div class="text-right text-blue cursor-pointer" (click)="togglePasswordVisibility()">
+                  Show Password
+                </div>
+                <input class="mb-2 w-100 form-control" placeholder="Password"
+                  [type]="showPassword ? 'text' : 'password'" name="password" formControlName="password"
+                  [ngClass]="{ 'is-invalid': submitted && form.password.errors }" id="password">
+                <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form.password.errors.required">
+                    Please enter password
+                  </div>
+                </div>
+                <div class="text-blue cursor-pointer">
+                  Forgot your password?
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn background-gold btn-sm text-white btn-block f-24"
+                  (click)="submit()">Sign In</button>
+                <div class="text-gray py-3">
+                  <div class="d-inline-flex align-items-center">
+                    <div><input type="checkbox" value="" id="defaultCheck1"></div>
+                    <span class="ml-2 f-18 font-weight-light" for="defaultCheck1">
+                      Keep me signed in.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <h2><span>or</span></h2>
+            <div class="home-box-link-dark mt-4 p-2 d-flex justify-content-center align-items-center">
+              <a class="text-gray f-18" (click)="googleSignIn()"><img src="../../../assets/images/google_logo.svg"
+                  alt="Google">
+                Sign in with Google</a>
+            </div>
+            <div class="my-3">
+              Don't have an account?<span class="text-blue cursor-pointer"> Create and account</span>
+            </div>
+          </div>
+        </section>
+        <section class="col-md-6 col-12 m-auto text-center">
+          <div class="d-md-block d-none">
+            <span class="span-or-vertical">or</span>
+            <span class="vertical-line"></span>
+          </div>
+          <div class="p-md-5 px-4">
+            <h2 class="d-block d-md-none"><span>or</span></h2>
+            <p class="title f-36 text-bold text-gray">New Customers</p>
+            <p class="font-weight-light f-18 text-gray">Don't have an account? No problem, you can check out as a guest
+              and create an account later.
+              <button type="button" class="btn background-gold btn-sm text-white btn-block mt-3 f-24"
+                [title]="'Orders and Shipping'" routerLink="/orders">Continue as Guest</button>
+            </p>
+          </div>
         </section>
       </div>
     </div>

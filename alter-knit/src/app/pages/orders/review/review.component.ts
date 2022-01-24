@@ -4,6 +4,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { HttpApiService } from 'src/app/http-api.service';
 import { LoaderComponent } from '../../../common/loader/loader.component';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-review',
@@ -56,10 +57,21 @@ export class ReviewComponent implements OnInit, OnChanges {
     let serviceNames = serviceList.filter(service => service.checked).map(service => service.name);
     return serviceNames;
   }
-  submitOrder() {
+  async submitOrder() {
     if (!this.checkTerms) {
       this.checkTermsError = true;
       return;
+    }
+    let user;
+    try {
+      user = await Auth.currentAuthenticatedUser();
+    } catch (e) {
+      console.log('continuing as guest');
+    }
+    if (user && user.attributes && user.attributes.email) {
+      this.dataService.order.username = user.attributes.email;
+    } else {
+      this.dataService.order.username = 'guest';
     }
     this.dataService.updateDeliverySpeed(this.deliverySpeed);
     let payload: any = JSON.parse(JSON.stringify(this.dataService.order));

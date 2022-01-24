@@ -48,6 +48,10 @@ body {
   color: #353535 !important;
 }
 
+.text-blue {
+  color: #0075FF !important;
+}
+
 .logo {
   background: url("assets/images/AKNY-LOGO_complete.svg");
   background-repeat: no-repeat;
@@ -69,7 +73,7 @@ body {
 }
 
 .home-title {
-  line-height: 3.5rem;
+  line-height: 1.2em;
 }
 
 .home-text {
@@ -87,7 +91,7 @@ body {
   box-sizing: border-box;
 }
 
-.home-box-link-dark {
+/* .home-box-link-dark {
   width: 100%;
 }
 
@@ -95,7 +99,7 @@ body {
   .home-box-link-dark {
     width: 100%;
   }
-}
+} */
 
 .f-12 {
   font-size: 12px;

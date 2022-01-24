@@ -17,7 +17,7 @@ export class AddItemsComponent implements OnInit {
   updateItemIdx!: number;
   actionType: ActionType = ActionType.ADD;
   showNoGarmentError = false;
-  step = FormSteps[2];
+  step = FormSteps[1];
 
   constructor(
     private dataService: DataService,
@@ -69,11 +69,7 @@ export class AddItemsComponent implements OnInit {
       this.showNoGarmentError = true;
       return;
     }
-    if (this.dataService.order.orderMethod === OrderMethod.Ship) {
-      this.router.navigate(['orders/shipping']);
-    } else if (this.dataService.order.orderMethod === OrderMethod.Pickup) {
-      this.router.navigate(['orders/pick-up']);
-    }
+    this.router.navigate(['orders/select-shipment-method']);
   }
 
 }

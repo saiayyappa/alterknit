@@ -17,7 +17,7 @@ export class ShipmentMethodComponent implements OnInit {
       this.orderMethod = order.orderMethod;
     });
   }
-  step = FormSteps[1];
+  step = FormSteps[2];
   orderMethods = OrderMethod;
   orderMethod = this.orderMethods.Ship;
 
@@ -27,7 +27,11 @@ export class ShipmentMethodComponent implements OnInit {
   submit() {
     this.dataService.changeOrderMethod(this.orderMethod);
     console.log('Shipment Method ', this.dataService.order)
-    this.router.navigate(['orders/select-service']);
+    if (this.dataService.order.orderMethod === OrderMethod.Ship) {
+      this.router.navigate(['orders/shipping']);
+    } else if (this.dataService.order.orderMethod === OrderMethod.Pickup) {
+      this.router.navigate(['orders/pick-up']);
+    }
   }
 
 }
