@@ -8,7 +8,7 @@ const awsmobile = {
   "aws_user_pools_id": "us-east-1_YAfvB8mNL",
   "aws_user_pools_web_client_id": "385mhfjo4heeskmngrq9s4hf2s",
   "oauth": {
-      "domain": "alterknit1a0d329e-1a0d329e-dev.auth.us-east-1.amazoncognito.com",
+      "domain": "alterknit-sso-dev.auth.us-east-1.amazoncognito.com",
       "scope": [
           "phone",
           "email",
@@ -16,8 +16,8 @@ const awsmobile = {
           "profile",
           "aws.cognito.signin.user.admin"
       ],
-      "redirectSignIn": "http://localhost:4200/",
-      "redirectSignOut": "http://localhost:4200/thank-you/",
+      "redirectSignIn": "http://localhost:4200/orders/",
+      "redirectSignOut": "http://localhost:4200/",
       "responseType": "code"
   },
   "federationTarget": "COGNITO_USER_POOLS",

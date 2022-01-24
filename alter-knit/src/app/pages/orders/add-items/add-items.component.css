@@ -7,6 +7,11 @@
   border: none;
 }
 
+table {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .go-back {
   width: 10% !important;
 }
@@ -21,7 +26,16 @@
   box-sizing: border-box;
   width: 30%;
 }
-
+@media only screen and (max-width: 1440px) {
+  table {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  table {
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .f-64,
   .f-48 {
@@ -40,5 +54,8 @@
 
   .all-done {
     width: 40% !important;
+  }
+  table {
+    width: 100%;
   }
 }
