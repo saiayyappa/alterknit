@@ -27,6 +27,7 @@ interface Garment {
 
 export interface Order {
     id?: number;
+    username: string;
     orderMethod: string;
     orderNumber: string;
     garments: Garment[];

@@ -36,6 +36,11 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
   console.log('Event', event);
   const partialOrder: Order = JSON.parse(event.body) as Order;
   const id = uuid.v4();
+
+  if (partialOrder.username === 'guest') {
+    partialOrder.username = 'guest_' + id;
+  }
+
   const order: Order = {
     id: id,
     createdAt: moment.utc().format(), // YYYY-MM-DDThh:mm:ssZ
