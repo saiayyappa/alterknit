@@ -1,15 +1,15 @@
 <div class="row no-gutters">
   <div class="col-12">
-    <div class="header">
-      <app-header [theme]="headerThemes.BLACK"></app-header>
+    <div class="header background-gold">
+      <app-header [theme]="headerThemes.WHITE"></app-header>
     </div>
     <div class="m-5 sign-in">
-      <div class="row no-gutters">
+      <!-- Sign In  -->
+      <div class="row no-gutters" *ngIf="!showSignUpForm">
         <section class="col-md-6 col-12">
           <div class="p-md-5 px-4">
             <p class="title f-36 text-bold text-gray text-center">Sign in to AlterKnit</p>
             <form [formGroup]="signInForm">
-
               <div class="form-group">
                 <!-- <label for="username" class="f-18 font-weight-bold text-gray">Email Address</label> -->
                 <input class="mb-2 w-100 form-control" placeholder="Email Address" type="text" name="username"
@@ -40,7 +40,10 @@
               </div>
               <div class="form-group">
                 <button type="button" class="btn background-gold btn-sm text-white btn-block f-24"
-                  (click)="submit()">Sign In</button>
+                  (click)="submit()">
+                  <span *ngIf="!loading">Sign In</span>
+                  <app-loader *ngIf="loading"></app-loader>
+                </button>
                 <div class="text-gray py-3">
                   <div class="d-inline-flex align-items-center">
                     <div><input type="checkbox" value="" id="defaultCheck1"></div>
@@ -48,6 +51,9 @@
                       Keep me signed in.
                     </span>
                   </div>
+                </div>
+                <div class="text-danger text-center f-14" *ngIf="showErrorMessage">
+                  {{errorMessage}}
                 </div>
               </div>
             </form>
@@ -58,7 +64,8 @@
                 Sign in with Google</a>
             </div>
             <div class="my-3">
-              Don't have an account?<span class="text-blue cursor-pointer"> Create and account</span>
+              Don't have an account?<span class="text-blue cursor-pointer" (click)="showSignUpForm=true;showErrorMessage=false;errorMessage=''"> Create and
+                account</span>
             </div>
           </div>
         </section>
@@ -75,6 +82,66 @@
               <button type="button" class="btn background-gold btn-sm text-white btn-block mt-3 f-24"
                 [title]="'Orders and Shipping'" routerLink="/orders">Continue as Guest</button>
             </p>
+          </div>
+        </section>
+      </div>
+      <div class="row no-gutters sign-up" *ngIf="showSignUpForm">
+        <section class="col-12">
+          <div class="p-md-5 px-4">
+            <p class="title f-36 text-bold text-gray text-center">Create account in AlterKnit</p>
+            <form [formGroup]="signUpForm">
+              <div class="form-group">
+                <!-- <label for="name" class="f-18 font-weight-bold text-gray">Name</label> -->
+                <input class="mb-2 w-100 form-control" placeholder="Name" type="text" name="name" formControlName="name"
+                  [ngClass]="{ 'is-invalid': signUpSubmitted && form2.name.errors }" id="name">
+                <div *ngIf="signUpSubmitted && form2.name.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form2.name.errors.required">
+                    Please enter name
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="emailAddress" class="f-18 font-weight-bold text-gray">Email Address</label> -->
+                <input class="mb-2 w-100 form-control" placeholder="Email Address" type="text" name="emailAddress"
+                  formControlName="emailAddress"
+                  [ngClass]="{ 'is-invalid': signUpSubmitted && form2.emailAddress.errors }" id="emailAddress2">
+                <div *ngIf="signUpSubmitted && form2.emailAddress.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form2.emailAddress.errors.required">
+                    Please enter email address
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="password" class="f-18 font-weight-bold text-gray">Password</label> -->
+                <input class="mb-2 w-100 form-control" placeholder="Password"
+                  [type]="showPassword ? 'text' : 'password'" name="password" formControlName="password"
+                  [ngClass]="{ 'is-invalid': signUpSubmitted && form2.password.errors }" id="password2">
+                <div *ngIf="signUpSubmitted && form2.password.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form2.password.errors.required">
+                    Please enter password
+                  </div>
+                </div>
+                <div class="text-right text-blue cursor-pointer" (click)="togglePasswordVisibility()">
+                  Show Password
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn background-gold btn-sm text-white btn-block f-24"
+                  (click)="signUp()">
+                  <span *ngIf="!loading">Sign Up</span>
+                  <app-loader *ngIf="loading"></app-loader>
+                </button>
+                <div class="text-gray py-3">
+                  <div class="my-3">
+                    Have an account?<span class="text-blue cursor-pointer" (click)="showSignUpForm=false;showErrorMessage=false;errorMessage=''"> Click
+                      here</span>
+                  </div>
+                </div>
+                <div class="text-danger text-center f-14" *ngIf="showErrorMessage">
+                  {{errorMessage}}
+                </div>
+              </div>
+            </form>
           </div>
         </section>
       </div>

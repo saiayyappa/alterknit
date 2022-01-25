@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } 
 import { DataService, FormSteps, Order, OrderMethod } from 'src/app/data.service';
 
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-stepper',
@@ -20,6 +21,7 @@ export class StepperComponent implements OnInit, OnChanges {
   constructor(
     private router: Router,
     private dataService: DataService,
+    private authService: AuthService
   ) { }
 
   ngOnChanges(): void {
@@ -40,7 +42,11 @@ export class StepperComponent implements OnInit, OnChanges {
       switch (idx) {
         case 0:
           console.log('step1');
-          this.router.navigate(['sign-in']);
+          if(this.authService.signedInState){
+            this.router.navigate(['orders']);
+          } else {
+            this.router.navigate(['sign-in']);
+          }
           break;
         case 1:
           console.log('step2');

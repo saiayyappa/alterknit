@@ -137,6 +137,10 @@ body {
   font-size: 72px;
 }
 
+.background-white {
+  background-color: white;
+}
+
 .background-gold {
   background-color: #b68c13;
 }
@@ -195,9 +199,8 @@ a:active {
   min-height: 165px;
 }
 
-.header-white {
+.header-fix-height {
   min-height: 165px;
-  background-color: white;
 }
 
 /* stepper styles */

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 import { HeaderTheme } from 'src/app/common/interfaces/header-theme';
 
@@ -11,9 +12,10 @@ export class OrdersComponent implements OnInit {
 
   headerThemes = HeaderTheme;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.authService.setAsSignedInAndCurrentUser();
   }
 
 }

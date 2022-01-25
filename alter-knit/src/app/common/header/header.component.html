@@ -35,6 +35,10 @@
             <a [title]="'Schedule Repair'" routerLink="/sign-in" class="nav-link font-weight-light pl-3 pr-3"
               [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Schedule a Repair</a>
           </li>
+          <li class="nav-item" *ngIf="user">
+            <a [title]="'Logout'" (click)="logout()" class="nav-link font-weight-light pl-3 pr-3"
+              [ngClass]="theme === headerThemes.WHITE ? 'text-white' : 'text-gray'" href="#">Logout</a>
+          </li>
         </ul>
       </div>
     </nav>

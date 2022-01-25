@@ -342,12 +342,12 @@ export class DataService {
   // private _addressInfo: AddressInfo = {
   //   "firstName": "Saiayyappa",
   //   "lastName": "O R",
-  //   "address": "19/6G, JeyasriRamesh Illam, Kamarajar 3rd street",
+  //   "address": "19/6G, Kamarajar 3rd street",
   //   "companyName": "",
   //   "city": "New York",
-  //   "state": "New York",
+  //   "state": "NY",
   //   "zipcode": "10001",
-  //   "phone": "+918526108714",
+  //   "phone": "8526108714",
   //   "email": "saiayyappa1996@gmail.com",
   //   "isBillingAddressSame": true
   // };
