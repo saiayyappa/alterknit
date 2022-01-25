@@ -16,8 +16,8 @@ const awsmobile = {
           "profile",
           "aws.cognito.signin.user.admin"
       ],
-      "redirectSignIn": "https://staging.alterknitnewyork.com/orders/",
-      "redirectSignOut": "https://staging.alterknitnewyork.com/home/",
+      "redirectSignIn": "http://localhost:4200/orders/",
+      "redirectSignOut": "http://localhost:4200/",
       "responseType": "code"
   },
   "federationTarget": "COGNITO_USER_POOLS",
