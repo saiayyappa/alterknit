@@ -46,10 +46,10 @@ export class AuthService {
     try {
       const user = await Auth.signIn(username, password);
       console.log(user);
-      return true;
+      return user;
     } catch (error) {
       console.log('error signing in: ', error);
-      return false;
+      return error;
     }
   }
 
@@ -81,6 +81,29 @@ export class AuthService {
       console.log('Logged out')
     } catch (error) {
       console.log('error signing out: ', error);
+    }
+  }
+
+  // Send confirmation code to user's email
+  async forgotPassword(username: string) {
+    try {
+      const response = await Auth.forgotPassword(username);
+      console.log('response', response);
+      return response;
+    } catch (error) {
+      console.log('error', error);
+      return error;
+    }
+  }
+
+  // Collect confirmation code and new password, then
+  async forgotPasswordSubmit(username: string, code: string, newPassword: string) {
+    try {
+      const response = await Auth.forgotPasswordSubmit(username, code, newPassword);
+      return response;
+    } catch (error) {
+      console.log('error', error);
+      return error;
     }
   }
 

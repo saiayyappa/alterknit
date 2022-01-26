@@ -5,7 +5,7 @@
     </div>
     <div class="m-5 sign-in">
       <!-- Sign In  -->
-      <div class="row no-gutters" *ngIf="!showSignUpForm">
+      <div class="row no-gutters" *ngIf="!showSignUpForm && !showForgotPasswordForm">
         <section class="col-md-6 col-12 mt-md-0 mt-3">
           <div class="p-md-5 px-4">
             <p class="title f-36 text-bold text-gray text-center">Sign in to AlterKnit</p>
@@ -34,7 +34,7 @@
                     Please enter password
                   </div>
                 </div>
-                <div class="text-blue cursor-pointer">
+                <div class="text-blue cursor-pointer" (click)="forgotPassword()">
                   Forgot your password?
                 </div>
               </div>
@@ -138,6 +138,49 @@
                   </div>
                 </div>
                 <div class="text-danger text-center f-16 mt-1" *ngIf="showErrorMessage">
+                  {{errorMessage}}
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+      <div class="row no-gutters sign-up" *ngIf="showForgotPasswordForm">
+        <section class="col-12">
+          <div class="p-md-5 px-4">
+            <p class="title f-36 text-bold text-gray text-center">Change Password</p>
+            <form [formGroup]="forgotPasswordForm">
+              <div class="form-group">
+                <!-- <label for="code" class="f-18 font-weight-bold text-gray">Verification Code</label> -->
+                <input class="mb-2 w-100 form-control" placeholder="Verification Code" type="text" name="code" formControlName="code"
+                  [ngClass]="{ 'is-invalid': newPasswordSubmitted && form3.code.errors }" id="code">
+                <div *ngIf="newPasswordSubmitted && form3.code.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form3.code.errors.required">
+                    Please enter verification code
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="password" class="f-18 font-weight-bold text-gray">Password</label> -->
+                <input class="mb-2 w-100 form-control" placeholder="New Password"
+                  [type]="showPassword ? 'text' : 'password'" name="newPassword" formControlName="newPassword"
+                  [ngClass]="{ 'is-invalid': newPasswordSubmitted && form3.newPassword.errors }" id="password3">
+                <div *ngIf="newPasswordSubmitted && form3.newPassword.errors" class="invalid-feedback">
+                  <div class="f-14 p-0 m-0" *ngIf="form3.newPassword.errors.required">
+                    Please enter password
+                  </div>
+                </div>
+                <div class="text-right text-blue cursor-pointer" (click)="togglePasswordVisibility()">
+                  Show Password
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn background-gold btn-sm text-white btn-block f-24"
+                  (click)="changePassword()">
+                  <span *ngIf="!loading">Change Password</span>
+                  <app-loader *ngIf="loading"></app-loader>
+                </button>
+                <div class="text-danger text-center f-16 mt-3" *ngIf="showErrorMessage">
                   {{errorMessage}}
                 </div>
               </div>
