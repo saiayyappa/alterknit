@@ -29,8 +29,8 @@ export class AddItemModalComponent implements OnInit, OnChanges {
   noOfGarments = 1;
   get itemf() { return this.garmentForm.controls; }
   showServiceListError: boolean = false;
-  isDryCleaned: boolean = false;
-  isCleaned: boolean = false;
+  isDryCleaned: any = null;
+  isCleaned: any = null;
   constructor(
     private dataService: DataService,
     private fb: FormBuilder
@@ -39,6 +39,8 @@ export class AddItemModalComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (this.action === ActionType.ADD) {
       this.noOfGarments = this.items.length + 1;
+      this.isDryCleaned = null;
+      this.isCleaned = null;
       this.resetForm();
     } else if (this.action === ActionType.EDIT) {
       this.serviceList = this.item.serviceNeeded;
@@ -52,6 +54,12 @@ export class AddItemModalComponent implements OnInit, OnChanges {
       });
       this.isDryCleaned = this.item.isDryCleaned;
       this.isCleaned = this.item.isCleaned;
+      if(this.item.isDryCleaned === null){
+        this.isDryCleaned = false;
+      }
+      if(this.item.isCleaned === null) {
+        this.isCleaned = false;
+      }
     }
   }
 
