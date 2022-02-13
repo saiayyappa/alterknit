@@ -121,9 +121,15 @@ function instantiateFedex() {
 
 // sending email using SendGrid service
 async function sendEmail(order: Order, attachments: Array<any>) {
+  sgMail.setApiKey(secret.SendGridApiKey);
   const msg = {
-    to: secret.EmailToAddress, // TODO :: input correct input email in final change
-    from: secret.EmailFromAddress, // TODO :: set the verfied email sender (will be AlterKnit's prod sendgrid verifed sender email)
+    personalizations: [
+      {
+        to: [{ "email": order.addressInfo.email }], // customer email address
+        bcc: [{ "email": secret.BccEmailToAddress }], // bcc to alterknit/any custom email set from secrets manager - BccEmailToAddress
+      }
+    ],
+    from: secret.EmailFromAddress, // verified email sender (will be AlterKnit's prod sendgrid verifed sender email)
     subject: `AlterKnit Order Summary - Order #${order.orderNumber}`,
     text: 'AlterKnit Order Summary',
     html: renderHTML(order, "orderTemplate.hbs"),
@@ -170,7 +176,7 @@ async function placeOrder(order: Order) {
         {
           "contact": {
             "personName": "AlterKnit",
-            "emailAddress": "saiayyappa1996@gmail.com", // TODO :: set AlterKnit's email address here
+            "emailAddress": secret.EmailFromAddress, // set AlterKnit's email address here
             "phoneNumber": "2124736363",
             "companyName": "AlterKnit New York"
           },
@@ -196,7 +202,7 @@ async function placeOrder(order: Order) {
           "responsibleParty": {
             "contact": {
               "personName": "AlterKnit",
-              "emailAddress": "saiayyappa1996@gmail.com", // TODO :: set AlterKnit's email address here
+              "emailAddress": secret.EmailFromAddress, // setting AlterKnit's email address here - EmailFromAddress
               "phoneNumber": "2124736363",
               "companyName": "AlterKnit New York"
             },
@@ -211,7 +217,7 @@ async function placeOrder(order: Order) {
               "residential": false
             },
             "accountNumber": {
-              "value": "510087860", // TODO :: change to correct acc no
+              "value": secret.FedexAccNumber, // change to correct acc no (value) in Secrets manager key is -> FedexAccNumber
             }
           }
         }
@@ -233,7 +239,7 @@ async function placeOrder(order: Order) {
       ]
     },
     "accountNumber": {
-      "value": "510087860" // TODO :: change to correct acc no
+      "value": secret.FedexAccNumber
     }
   }
   console.log("Shipement Payload: ", JSON.stringify(createShipmentPayload))
