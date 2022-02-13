@@ -62,7 +62,7 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
   const docClient = createDynamoDBClient();
   await getSecretsFromAWS();
   secret = JSON.parse(secret);
-  console.log('secret', secret); // TODO :: remove this log in final deploy
+  // console.log('secret', secret);
   await docClient.put({
     TableName: process.env.ALTERKNIT_TABLE,
     Item: order
