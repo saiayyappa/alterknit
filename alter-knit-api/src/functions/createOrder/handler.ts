@@ -1,12 +1,12 @@
-import 'source-map-support/register'
+import 'source-map-support/register';
 
-import * as AWS from 'aws-sdk'
+import * as AWS from 'aws-sdk';
 import * as moment from 'moment-timezone';
-import * as uuid from 'uuid'
+import * as uuid from 'uuid';
 
-import { FedexTokenResponse, Order } from 'src/models'
+import { FedexTokenResponse, Order } from 'src/models/models';
 
-import { APIGatewayProxyResult } from 'aws-lambda'
+import { APIGatewayProxyResult } from 'aws-lambda';
 
 const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
@@ -15,11 +15,19 @@ const fs = require('fs');
 const https = require('https');
 
 const Handlebars = require("handlebars");
+const pdf = require("html-pdf-lambda");
+
 Handlebars.registerHelper('ifCond', function (v1, v2, options) {
   if (v1 === v2) {
     return options.fn(this);
   }
   return options.inverse(this);
+});
+Handlebars.registerHelper("inc", function (value) {
+  return parseInt(value) + 1;
+});
+Handlebars.registerHelper('services', function (items, options) {
+  return options.fn(items.join(', '));
 });
 moment.tz.add("America/New_York|EST EDT EWT EPT|50 40 40 40|01010101010101010101010101010101010101010101010102301010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-261t0 1nX0 11B0 1nX0 11B0 1qL0 1a10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 RB0 8x40 iv0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1qN0 WL0 1qN0 11z0 1o10 11z0 1o10 11z0 1o10 11z0 1o10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1a10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1cN0 1cL0 1cN0 1cL0 s10 1Vz0 LB0 1BX0 1cN0 1fz0 1a10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 1cN0 1fz0 1a10 1fz0 1cN0 1cL0 1cN0 1cL0 1cN0 1cL0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 14p0 1lb0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 14p0 1lb0 14p0 1lb0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 14p0 1lb0 14p0 1lb0 14p0 1nX0 11B0 1nX0 11B0 1nX0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0|21e6")
 
@@ -56,10 +64,20 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
     TableName: process.env.ALTERKNIT_TABLE,
     Item: order
   }).promise();
-  order.createdAt = moment.tz(order.createdAt, 'America/New_York').format('ll'); // re-formatted to human readable date
+  order.createdAt = moment.tz(order.createdAt, 'America/New_York').format('MMM DD, YYYY hh:mm:ss A'); // e.g for format: Aug 15,2019 12:22:51 PM
   const fedexResponse = await placeOrder(order);
-  const attachments = await createAttachment(fedexResponse.output?.transactionShipments[0]?.pieceResponses[0]?.packageDocuments[0]?.url)
+  const attachments: any[] = await createAttachment(fedexResponse.output?.transactionShipments[0]?.pieceResponses[0]?.packageDocuments[0]?.url);
+  const orderCopyHTML = renderHTML(order, "orderCopy.hbs");
+  // fs.writeFileSync(__dirname + "/orderCopy.html", orderCopyHTML); // -- use only for local testing/development
+  const PDF = await createPDF(orderCopyHTML);
+  attachments.push({
+    filename: `OrderCopy.pdf`,
+    content: PDF,
+    type: 'application/pdf',
+    disposition: 'attachment'
+  });
   await sendEmail(order, attachments);
+  console.log("Resolving from createOrder");
   return {
     headers: {
       "Access-Control-Allow-Headers": "Accept,Origin,DNT,User-Agent,Referer,Content-Type,X-Amz-Date,x-amz-date,Authorization,X-Api-Key,X-Amz-Security-Token",
@@ -92,25 +110,24 @@ function instantiateFedex() {
       secret: '3902d93046c14ddaaefe7ddaaf1d0304'
     };
   } else {
-    // TODO :: get from secrets -> for now use sandbox for staging and prod
+    // setting from secrets
     return {
-      url: 'https://apis-sandbox.fedex.com',
-      apiKey: 'l7ad07a4c615344cbaa6c9a907aae5f2b6',
-      secret: '3902d93046c14ddaaefe7ddaaf1d0304'
+      url: secret.FedexURL, // FedexURL
+      apiKey: secret.FedexApiKey, // FedexApiKey
+      secret: secret.FedexSecret // FedexSecret
     };
   }
 }
 
 // sending email using SendGrid service
-async function sendEmail(order: Order, attachemnts: Array<any>) {
-  sgMail.setApiKey(secret.SendGridApiKey);
+async function sendEmail(order: Order, attachments: Array<any>) {
   const msg = {
     to: secret.EmailToAddress, // TODO :: input correct input email in final change
     from: secret.EmailFromAddress, // TODO :: set the verfied email sender (will be AlterKnit's prod sendgrid verifed sender email)
     subject: `AlterKnit Order Summary - Order #${order.orderNumber}`,
     text: 'AlterKnit Order Summary',
-    html: renderHTML(order),
-    attachments: attachemnts
+    html: renderHTML(order, "orderTemplate.hbs"),
+    attachments: attachments
   };
   console.log('msg', msg);
   await sgMail
@@ -266,9 +283,9 @@ async function getFedexTokens() {
   }
 }
 
-function renderHTML(order): string {
+function renderHTML(order, fileName): string {
   const template = Handlebars.compile(
-    fs.readFileSync(__dirname + "/orderTemplate.hbs", { flag: 'r' }).toString('utf8'),
+    fs.readFileSync(__dirname + "/" + fileName, { flag: 'r' }).toString('utf8'),
     { noEscape: true }
   );
   const html = template(order);
@@ -296,7 +313,7 @@ async function getSecretsFromAWS() {
 
 function createAttachment(url: string): Promise<Array<any>> {
   return new Promise(async (resolve) => {
-    let attachemnts = [];
+    let attachments = [];
     const file = fs.createWriteStream("/tmp/ShipmentOrder.pdf");
     await https.get(url, function (response) {
       response.pipe(file);
@@ -304,14 +321,26 @@ function createAttachment(url: string): Promise<Array<any>> {
         console.log(__dirname)
         let bitmap = fs.readFileSync('/tmp/ShipmentOrder.pdf');
         let base64String = Buffer.from(bitmap).toString('base64');
-        attachemnts = [{
+        attachments = [{
           filename: `ShipmentOrder.pdf`,
           content: base64String,
           type: 'application/pdf',
           disposition: 'attachment'
         }];
-        resolve(attachemnts);
+        resolve(attachments);
       });
     });
   });
 }
+
+const createPDF = (html) => new Promise((resolve, reject) => {
+  pdf
+    .create(html)
+    .then((res) => {
+      resolve(res.toString('base64'));
+    })
+    .catch((error) => {
+      console.error(error);
+      reject(error);
+    });
+});

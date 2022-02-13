@@ -63,6 +63,10 @@ module.exports = {
           to: './src/functions/createOrder',
         },
         {
+          from: path.resolve(__dirname, 'src/functions/createOrder/orderCopy.hbs'),
+          to: './src/functions/createOrder',
+        },
+        {
           from: path.resolve(__dirname, 'src/functions/contactUs/contactUs.hbs'),
           to: './src/functions/contactUs',
         },

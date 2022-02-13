@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 25px auto;
+        }
+
+        .f-10 {
+            font-size: 8px;
+        }
+
+        .f-12 {
+            font-size: 10px;
+        }
+
+        .f-14 {
+            font-size: 12px;
+        }
+
+        .f-16 {
+            font-size: 16px;
+        }
+
+        .f-18 {
+            font-size: 18px;
+        }
+
+        .f-20 {
+            font-size: 20px;
+        }
+
+        .f-24 {
+            font-size: 24px;
+        }
+
+        .f-32 {
+            font-size: 32px;
+        }
+
+        .f-36 {
+            font-size: 36px;
+        }
+
+        .f-48 {
+            font-size: 48px;
+        }
+
+        .mt-2 {
+            margin-top: 2em;
+        }
+
+        .mt-4 {
+            margin-top: 4em;
+        }
+
+        .mb-2 {
+            margin-bottom: 2em;
+        }
+
+        .mb-4 {
+            margin-bottom: 4em;
+        }
+
+        header {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        #billing-address-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #billing-address-table td,
+        #billing-address-table th {
+            border: 1px solid white;
+            padding: 8px;
+        }
+
+        #billing-address-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #cccccc;
+            color: white;
+        }
+
+        .orders-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .orders-table td {
+            border: 1px solid #cccccc;
+            padding: 8px;
+            background-color: #cccccc;
+        }
+
+        .orders-table th {
+            border: 1px solid #333333;
+            padding: 8px;
+            background-color: #333333;
+            color: white;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .logo-title {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            -webkit-align-items: flex-start;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .background-grey {
+            background-color: #cccccc;
+        }
+
+        .shipping {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: space-between;
+            align-items: center;
+        }
+
+        .p-1 {
+            padding: 0.5em;
+        }
+
+        .py-1 {
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        .text-bold {
+            font-weight: bold;
+        }
+
+        .d-flex {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        footer {
+            height: 5em;
+        }
+
+        footer div {
+            width: 50%;
+        }
+
+        @media print {
+
+            footer,
+            header,
+            .orders-table, section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body class="container">
+    <header class="d-flex">
+        <div class="d-flex">
+            <h1 class="f-24 logo-title">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M30.8976 15.8796L26.4192 18.6732C26.4192 18.6732 24.8928 17.7612 24.0216 15.72C23.1492 13.6788 23.13 10.2312 24.0216 8.46723C24.9132 6.70323 28.0044 2.44323 34.2672 4.08723C39.816 5.59323 40.1484 11.3796 40.1484 11.3796C40.1484 11.3796 40.7664 16.5912 36.0108 19.4652C31.2552 22.7148 27.9456 23.8644 28.302 26.2428C26.9196 27.1404 24.9084 28.6152 24.0024 29.7108C23.928 29.6172 23.1348 28.6668 23.214 26.4672C23.214 24.9228 24.0024 23.4888 24.0024 23.4888C24.0024 23.4888 24.9336 20.814 31.632 17.1672C32.1276 16.89 36.546 14.8284 35.3376 11.0832C35.2188 10.7064 33.9708 8.36883 31.3344 8.80443C31.116 8.84403 28.6788 9.30003 28.302 11.9556C28.2816 12.174 27.9252 14.67 30.8976 15.8796Z"
+                        fill="black" />
+                    <path
+                        d="M17.0884 15.8796L21.5668 18.6732C21.5668 18.6732 23.0932 17.7612 23.9644 15.72C24.8356 13.6788 24.856 10.2312 23.9644 8.46723C23.0728 6.70323 19.9816 2.44323 13.7188 4.08723C8.16998 5.59443 7.83758 11.3808 7.83758 11.3808C7.83758 11.3808 7.21958 16.5924 11.9752 19.4664C16.7308 22.716 20.0404 23.8656 19.684 26.244C21.0664 27.1416 23.0776 28.6164 23.9836 29.712C24.058 29.6184 24.8512 28.668 24.772 26.4684C24.772 24.924 23.9836 23.49 23.9836 23.49C23.9836 23.49 23.0524 20.8152 16.354 17.1684C15.8584 16.8912 11.44 14.8296 12.6484 11.0844C12.7672 10.7076 14.0152 8.37003 16.6516 8.80563C16.87 8.84523 19.3072 9.30123 19.684 11.9568C19.7032 12.174 20.0608 14.67 17.0884 15.8796Z"
+                        fill="black" />
+                    <path
+                        d="M32.628 32.1204L37.1064 29.3268C37.1064 29.3268 38.6328 30.2388 39.504 32.28C40.3764 34.3212 40.3956 37.7688 39.504 39.5328C38.6124 41.2968 35.5212 45.5568 29.2584 43.9128C23.7096 42.4068 23.3772 36.6204 23.3772 36.6204C23.3772 36.6204 22.7592 31.4088 27.5148 28.5348C32.2704 25.2852 35.58 24.1356 35.2236 21.7572C36.606 20.8596 38.6172 19.3848 39.5232 18.2892C39.5976 18.3828 40.272 19.4256 40.1928 21.6252C40.1928 23.1696 39.5232 24.5112 39.5232 24.5112C39.5232 24.5112 38.592 27.186 31.8936 30.8328C31.398 31.11 26.9796 33.1716 28.188 36.9168C28.3068 37.2936 29.5548 39.6312 32.1912 39.1956C32.4096 39.156 34.8468 38.7 35.2236 36.0444C35.244 35.826 35.6004 33.33 32.628 32.1204Z"
+                        fill="black" />
+                    <path
+                        d="M15.372 32.1204L10.8936 29.3268C10.8936 29.3268 9.36718 30.2388 8.49598 32.28C7.62358 34.3212 7.60438 37.7688 8.49598 39.5328C9.38758 41.2968 12.4788 45.5568 18.7416 43.9128C24.2904 42.4068 24.6228 36.6204 24.6228 36.6204C24.6228 36.6204 25.2408 31.4088 20.4852 28.5348C15.7296 25.2852 12.42 24.1356 12.7764 21.7572C11.394 20.8596 9.38278 19.3848 8.47678 18.2892C8.40238 18.3828 7.72797 19.4256 7.80717 21.6252C7.80717 23.1696 8.47678 24.5112 8.47678 24.5112C8.47678 24.5112 9.40798 27.186 16.1064 30.8328C16.602 31.11 21.0204 33.1716 19.812 36.9168C19.6932 37.2936 18.4452 39.6312 15.8088 39.1956C15.5904 39.156 13.1532 38.7 12.7764 36.0444C12.756 35.826 12.3996 33.33 15.372 32.1204Z"
+                        fill="black" />
+                </svg>
+                <div class="text-bold">AlterKnit</div>
+            </h1>
+        </div>
+        <div class="f-12">
+            <p class="text-bold">SHIP ALL ITEMS TO</p>
+            <p>ALTERKNIT NEW YORK</p>
+            <p>C/O MANHATTAN WARDOBE SUPPLY</p>
+            <p>request@alterknitnewyork.com</p>
+        </div>
+        <div class="f-12">
+            <p>245 WEST 29th SUITE 900</p>
+            <p>NEW YORK,NY 10001</p>
+            <p>212-473-6363</p>
+        </div>
+    </header>
+    <hr color="#e1e1e1">
+    <section class="f-14 mt-2 mb-2">
+        <p>Form Generated on <span class="text-bold">{{createdAt}} EST</span></p>
+        {{!-- <p><span class="text-bold">RETURNING CUSTOMER</span> YES</p> --}}
+    </section>
+    <section class="background-grey shipping f-14 p-1">
+        <p class="text-bold">I AM</p>
+        <p>{{#ifCond orderMethod 'Ship'}}Shipping in{{else}}Picking up{{/ifCond}}</p>
+        <p class="text-bold">RETURN OPTION</p>
+        <p>{{#ifCond orderMethod 'Ship'}}Ship it{{else}}Pick up{{/ifCond}}</p>
+    </section>
+    <section class="f-14 mt-2">
+        <div class="background-grey p-1">
+            <p class="text-bold">SHIPPING INFORMATION</p>
+        </div>
+        <table class="mt-2 mb-2 p-1" id="billing-address-table">
+            <tr>
+                <td>FIRST NAME</td>
+                <td>{{addressInfo.firstName}}</td>
+                <td>EMAIL</td>
+                <td>{{addressInfo.email}}</td>
+            </tr>
+            <tr>
+                <td>LAST NAME</td>
+                <td>{{addressInfo.lastName}}</td>
+                <td>TEL</td>
+                <td>{{addressInfo.phone}}</td>
+            </tr>
+            <tr>
+                <td>ADDRESS</td>
+                <td>{{addressInfo.address}}</td>
+                {{!-- <td>CARD #</td>
+                <td>5522605000901854</td> --}}
+            </tr>
+            {{!-- <tr>
+                <td>APT #</td>
+                <td>skjvbsjd</td>
+                <td>CARD EXP</td>
+                <td>1021</td>
+            </tr> --}}
+            <tr>
+                <td>STATE &amp; ZIP</td>
+                <td>{{addressInfo.state}}, {{addressInfo.zipcode}}</td>
+            </tr>
+            {{#ifCond orderMethod 'Pickup'}}
+            <tr>
+                <td>BUILDING TYPE</td>
+                <td>{{addressInfo.buildingType}}</td>
+            </tr>
+            <tr>
+                <td>PICKUP DATE</td>
+                <td>{{addressInfo.pickUpDate}}</td>
+                <td>PICKUP TIME</td>
+                <td>{{addressInfo.pickUpTime}}</td>
+            </tr>
+            {{/ifCond}}
+        </table>
+        <div class="background-grey d-flex p-1 mb-2">
+            <p class="text-bold">BILLING INFORMATION</p>
+            <p style="margin-left: auto;">
+                <span class="text-bold">SAME AS SHIPPING INFORMATION?</span>
+                {{#if addressInfo.isBillingAddressSame}}YES{{else}}NO{{/if}}
+            </p>
+        </div>
+        {{#if addressInfo.isBillingAddressSame}}{{else}}
+        <table class="mt-2 mb-2 p-1" id="billing-address-table">
+            <tr>
+                <td>FIRST NAME</td>
+                <td>{{billingAddressInfo.firstName}}</td>
+                <td>EMAIL</td>
+                <td>{{billingAddressInfo.email}}</td>
+            </tr>
+            <tr>
+                <td>LAST NAME</td>
+                <td>{{billingAddressInfo.lastName}}</td>
+                <td>TEL</td>
+                <td>{{billingAddressInfo.phone}}</td>
+            </tr>
+            <tr>
+                <td>ADDRESS</td>
+                <td>{{billingAddressInfo.address}}</td>
+                {{!-- <td>CARD #</td>
+                <td>5522605000901854</td> --}}
+            </tr>
+            <tr>
+                <td>STATE &amp; ZIP</td>
+                <td>{{billingAddressInfo.state}}, {{billingAddressInfo.zipcode}}</td>
+            </tr>
+        </table>
+        {{/if}}
+    </section>
+    <section class="f-12 mt-2 mb-4">
+        <hr color="#e1e1e1">
+        <p class="py-1"><span class="text-bold">Note:</span> AlterKnit can only work on clean garments. Garments that
+            require
+            cleaning may incur additional charges. Please <strong>do not</strong> use tape to mark holes.
+        </p>
+        <hr color="#e1e1e1">
+    </section>
+    <section>
+        <table class="orders-table f-12">
+            <tr>
+                <th>S. No</th>
+                <th>SERVICE</th>
+                <th>PRE-REPAIRED</th>
+                <th>BRAND</th>
+                <th>COLOR</th>
+                <th>DAMAGE DESCRIPTION</th>
+            </tr>
+            {{#each garments}}
+            {{#with this}}
+            <tr>
+                <td>{{inc @index}}</td>
+                <td>
+                    {{#services serviceNeeded}}{{this}}{{/services}}
+                </td>
+                <td>FALSE</td>
+                <td>{{brand}}</td>
+                <td>{{color}}</td>
+                <td>{{briefDescription}}</td>
+            </tr>
+            {{/with}}
+            {{/each}}
+        </table>
+    </section>
+    <section class="f-12 mt-2 mb-2">
+        <p class="mt-4">
+            I accept the terms and conditions associated with AlterKnit New York's repair service. AlterKnit
+            New York will always use its best judgement and craftmanshit when repairing items. While we work with
+            extreme care and attention, we cannot guarantee that all repairs will meet products original condition. We
+            cannot assume any responsibility for inherent damanges, weaknesses, and defects in fabrics and their fibers
+            that are not apparent prior to being repaired or cleaned. During the repair process members of our repair
+            team will work with their faces very close to the garment Becaue of this<span class="text-bold">
+                WE RESERVE THE RIGHT TO CLEAN YOUR GARMENT WHERE THERE IS A
+                VISIBLE PET OR HUMAN HAIR OR AN EXCESSIVE SMELL
+            </span>. Additional fees may be incurred if laundering services are
+            required and for additional holes. Any additional holes found will be fixed. There are <span
+                class="text-bold">NO REFUNDS</span> on any/all repairs, cleaning, alterations, etc.
+        </p>
+        <p class="mt-4">*Surcharge for delivery and Manhattan non-residential buildings may apply. <span
+                class="text-bold">ALL
+                SERVICES ARE FINAL SALE.</span></p>
+    </section>
+    <footer style="margin:4em 0em;" class="text-bold d-flex background-grey">
+        <div class="p-1">SIGN</div>
+        <div class="p-1">DATE</div>
+    </footer>
+</body>
+
+</html>

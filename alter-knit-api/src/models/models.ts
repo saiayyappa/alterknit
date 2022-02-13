@@ -9,7 +9,7 @@ interface AddressInfo {
     phone: string;
     email: string;
     isBillingAddressSame?: boolean;
-    buildingType?: number;
+    buildingType?: string;
     pickUpDate?: string;
     pickUpTime?: string;
 }
@@ -18,23 +18,23 @@ interface Garment {
     serviceNeeded: string[];
     brand: string;
     color: string;
-    ageOfGarment: number;
-    noOfHoles: number;
+    ageOfGarment: string;
+    noOfHoles: string;
     briefDescription: string;
     isDryCleaned: boolean;
     isCleaned: boolean;
 }
 
 export interface Order {
-    id?: number;
+    id?: string;
     username: string;
     orderMethod: string;
-    orderNumber: string;
+    orderNumber?: string;
     garments: Garment[];
     addressInfo: AddressInfo;
     billingAddressInfo?: AddressInfo;
     deliverySpeed: string;
-    createdAt: string;
+    createdAt?: string;
 }
 
 export interface FedexTokenResponse {
