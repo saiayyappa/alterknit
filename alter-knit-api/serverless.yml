@@ -62,7 +62,8 @@ functions:
 
   createOrder:
     handler: src/functions/createOrder/handler.handler
-    timeout: 10
+    timeout: 30
+    memorySize: 1024
     events:
       - http:
           method: post

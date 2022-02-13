@@ -7,6 +7,7 @@ import * as uuid from 'uuid';
 import { FedexTokenResponse, Order } from 'src/models/models';
 
 import { APIGatewayProxyResult } from 'aws-lambda';
+import { mockOrderPickUp, mockOrderShipIt } from './mock';
 
 const sgMail = require('@sendgrid/mail');
 const axios = require('axios');
@@ -43,6 +44,8 @@ let fedex: { url: string, apiKey: string, secret: string };
 export const handler = async (event: { body: string; }): Promise<APIGatewayProxyResult> => {
   console.log('Event', event);
   const partialOrder: Order = JSON.parse(event.body) as Order;
+  // const partialOrder: Order = { ...mockOrderShipIt } as Order;
+  // const partialOrder: Order = { ...mockOrderPickUp } as Order;
   const id = uuid.v4();
 
   if (partialOrder.username === 'guest') {
