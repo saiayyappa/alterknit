@@ -73,6 +73,7 @@ export const handler = async (event: { body: string; }): Promise<APIGatewayProxy
   const orderCopyHTML = renderHTML(order, "orderCopy.hbs");
   // fs.writeFileSync(__dirname + "/orderCopy.html", orderCopyHTML); // -- use only for local testing/development
   const PDF = await createPDF(orderCopyHTML);
+  // let attachments = [];
   attachments.push({
     filename: `OrderCopy.pdf`,
     content: PDF,

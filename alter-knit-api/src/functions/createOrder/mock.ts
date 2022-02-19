@@ -30,6 +30,143 @@ export const mockOrderShipIt = {
       "ageOfGarment": "1",
       "noOfHoles": "1",
       "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning",
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning",
+        "Depilling",
+        "Cleaning",
+        "Depilling",
+        "Cleaning",
+        "Depilling",
+        "Cleaning",
+        "Reweaving for suits, blazers, slacks, overcoat, etc..., Knit Alteration, Knit Restyling",
+        "Reweaving for suits, blazers, slacks, overcoat, etc..., Knit Alteration, Knit Restyling"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side, Left side pocket and turtle neck collar right side Left side pocket and turtle neck collar right sideLeft side pocket and turtle neck collar right side, Left side pocket and turtle neck collar right side"
+    },
+    {
+      "serviceNeeded": [
+        "Knit Alteration",
+        "Depilling",
+        "Cleaning"
+      ],
+      "isDryCleaned": false,
+      "isCleaned": false,
+      "brand": "J Balvin",
+      "color": "Blue",
+      "ageOfGarment": "1",
+      "noOfHoles": "1",
+      "briefDescription": "Left side pocket and turtle neck collar right side"
     }
   ],
   "deliverySpeed": "Rush",
