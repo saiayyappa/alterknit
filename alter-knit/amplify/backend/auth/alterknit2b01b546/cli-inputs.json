@@ -59,12 +59,12 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "hostedUIDomainName": "alterknit-sso-google",
+    "hostedUIDomainName": "alterknit-ny-sso",
     "authProvidersUserPool": [
       "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/orders/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://staging.alterknitnewyork.com/sign-in/\"],\"LogoutURLs\":[\"https://staging.alterknitnewyork.com/\"]}",
     "authProviders": []
   }
 }
