@@ -117,6 +117,14 @@ body {
   font-size: 18px;
 }
 
+.f-20 {
+  font-size: 20px;
+}
+
+.f-22 {
+  font-size: 20px;
+}
+
 .f-24 {
   font-size: 24px;
 }
@@ -162,7 +170,7 @@ body {
 }
 
 .background-light-purple {
-  background-color: #aea2b6;
+  background-color: #D6D0DB;
 }
 
 .background-dark-purple {
@@ -229,7 +237,7 @@ a:active {
 }
 
 .stepper {
-  width: 70%;
+  width: 50%;
 }
 
 button {

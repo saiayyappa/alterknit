@@ -2,14 +2,35 @@
   <div class="col-12">
     <section class="section-intro">
       <app-header [theme]="headerThemes.BLACK"></app-header>
-      <div class="row no-gutters p-lg-5 p-3">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="text-bold f-36 text-gray p-5 text-xl-left text-center" style="padding-bottom: 0px!important;">What we can do for you</div>
+          <!-- <p class="text-gray3 font-weight-light p-5">
+            Our Process is straightforward - every garment and repair is unique and requires an in-person exam to determine the
+            best
+            route back to perfect health. AlterKnit is a service business, and we do not sell fixed products. All our final
+            pricing
+            is determined through a hands-on professional assessment at our work studio.
+          </p> -->
+        </div>
+        <div class="col-md-7">
+          <div class="m-0 text-center">
+            <img class="img-fluid" src="../../../assets/images/our-services-2.jpg" alt="our-story">
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row no-gutters p-lg-5 p-3">
         <div class="col-lg-5 col-12">
           <p class="f-48 text-gray text-bold text-lg-left text-center">What we can do for you</p>
         </div>
         <div class="col-lg-7 col-12">
-          <p class="text-gray3 font-weight-light f-24-2 pb-5"></p>
+          <p class="text-gray3 font-weight-light f-24-2 pb-5">
+            Our Process is straightforward - every garment and repair is unique and requires an in-person exam to determine the best
+            route back to perfect health. AlterKnit is a service business, and we do not sell fixed products. All our final pricing
+            is determined through a hands-on professional assessment at our work studio.
+          </p>
         </div>
-      </div>
+      </div> -->
     </section>
     <section>
       <!-- Services -->
@@ -84,14 +105,14 @@
               replace a zipper or the lining of a coat to more major adjustments.
             </p>
           </div>
-          <div class="service">
+          <!-- <div class="service">
             <p class="f-24 text-bold">Bridal services</p>
             <p>
               Getting married? In a wedding? Our team will give your dress alteration the attention to
               detail that it
               deserves. We have years of experience and we want to help you look and feel beautiful.
             </p>
-          </div>
+          </div> -->
           <div class="service">
             <p class="f-24 text-bold">Garment cleaning</p>
             <p>
@@ -134,39 +155,47 @@
       <!-- Factors -->
       <div class="row no-gutters">
         <div
-          class="p-lg-5 p-3 col-lg-5 col-12 f-48 text-bold text-white background-light-purple text-lg-left text-center">
-          Pricing</div>
-        <div class="p-lg-5 p-4 col-lg-7 col-12 f-24 text-white background-dark-purple">
-          <div class="f-18 mb-4 text-white text-center">Factors we consider when pricing</div>
+          class="p-lg-5 p-3 col-lg-5 col-12 f-48 text-bold text-white background-light-purple text-lg-left text-center" style="display: flex; align-items: center;">
+          <div class="row">
+            <div class="col-12 f-36 text-bold text-gray background-light-purple text-lg-left text-center">
+              Factors we consider when repairing
+            </div>
+            <!-- <div class="col-12 f-18 mb-4 mt-3 text-gray">
+              Factors we consider when pricing
+            </div> -->
+          </div>        
+        </div>
+        <div class="p-lg-5 p-4 col-lg-7 col-12 f-16 text-white background-dark-purple">
+          <!-- <div class="f-18 mb-4 text-white text-center">Factors we consider when pricing</div> -->
           <div class="row my-xl-5 my-xl-2 align-items-baseline">
             <div class="col-xl col-6 d-flex flex-column align-items-center justify-content-end">
               <figure class="text-center f-24">
                 <img src="../../../assets/images/shirtIcon 1.svg" width=127 height=127 />
-                <figcaption class="pt-4 text-bold">1. Size and Extent of Damage</figcaption>
+                <figcaption class="pt-4 text-bold f-16">1. Size and Extent of Damage</figcaption>
               </figure>
             </div>
             <div class="col-xl col-6 d-flex flex-column align-items-center justify-content-end">
               <figure class="text-center f-24">
                 <img src="../../../assets/images/wool.svg" width=127 height=127 />
-                <figcaption class="pt-4 text-bold">2. Difficulty Harvesting Yarn or Thread</figcaption>
+                <figcaption class="pt-4 text-bold f-16">2. Difficulty Harvesting Yarn or Thread</figcaption>
               </figure>
             </div>
             <div class="col-xl col-6 d-flex flex-column align-items-center justify-content-end">
               <figure class="text-center f-24">
                 <img src="../../../assets/images/locationIcon 1.svg" width=127 height=127 />
-                <figcaption class="pt-4 text-bold">3. Location of Damage</figcaption>
+                <figcaption class="pt-4 text-bold f-16">3. Location of Damage</figcaption>
               </figure>
             </div>
             <div class="col-xl col-6 d-flex flex-column align-items-center justify-content-end">
               <figure class="text-center f-24">
                 <img src="../../../assets/images/thickness 1.svg" width=127 height=127 />
-                <figcaption class="pt-4 text-bold">4. Thickness of Garment</figcaption>
+                <figcaption class="pt-4 text-bold f-16">4. Thickness of Garment</figcaption>
               </figure>
             </div>
           </div>
-          <div class="f-18 mt-2 text-white">
-            <p>Price of repairs are not based on the original cost of the garment</p>
-            <p>
+          <div class="f-12 mt-2 text-white">
+            <p class="f-16">Price of repairs are not based on the original cost of the garment</p>
+            <p class="f-16">
               All prices are based on the time and required solution. Estimates are for labor only
               and do not include material costs, shipping/delivery fees, or additional services. Every garment has
               unique
@@ -177,8 +206,31 @@
           </div>
         </div>
       </div>
-      <!-- Timing -->
+      <!-- Want a Ball Park -->
       <div class="p-lg-5 p-3 row no-gutters text-gray background-gray3">
+        <div class="col-lg-5 col-12 f-48 text-bold text-lg-left text-center">
+          <div class="row">
+            <div class="col-12 f-48 text-bold text-lg-left text-center">Want a Ballpark Estimate?</div>
+            <!-- <div class="col-12 col-lg-6 m-2 p-1 text-center">
+              <img class="aknyocher" src="../../../assets/images/baseball-diamond-svgrepo-com.svg" width=150 height=150 />
+            </div> -->
+          </div>
+        </div>
+        <div class="col-lg-7 col-12 f-24 mt-lg-0 mt-4">
+          <p>
+            We like ballparks too but we don't give them.
+          </p>
+          <p>
+            Why not? Because everyone sends us something different. We need to see your item with its particular damage on your
+            particular item in our work studio.
+          </p>
+          <p>Our repair service starts at $50.00. Bear in mind that this is the minimum you can expect to pay for a repair.</p>
+          <p>There are factors that go into the pricing that we simply cannot determine without a thorough exam. So we ask you for
+          the opportunity to look at your items. Once we check the entire garment we will call you with pricing for your approval.</p>
+        </div>
+      </div>
+      <!-- Timing -->
+      <div class="p-lg-5 p-3 row no-gutters text-gray">
         <div class="col-lg-5 col-12 f-48 text-bold text-lg-left text-center">Timing</div>
         <div class="col-lg-7 col-12 f-24 mt-lg-0 mt-4">
           <p>
@@ -201,19 +253,19 @@
           <div class="question f-18 text-bold mb-2 mt-3">Can I send in my items from outside of the United States?</div>
           <div class="answer f-18 mb-2">Yes!</div>
 
-          <div class="question f-18 text-bold mb-2 mt-4">Can I get a repair estimate before I mail in my item?</div>
+          <!-- <div class="question f-18 text-bold mb-2 mt-4">Can I get a repair estimate before I mail in my item?</div>
           <div class="answer f-18 mb-2">We cannot offer exact pricing without having the item in our shop, and this
             price range cannot be considered final; prices may vary once we receive the item and properly evaluate it.
-          </div>
+          </div> -->
 
           <div class="question f-18 text-bold mb-2 mt-4">Can I send in more than one item?</div>
-          <div class="answer f-18 mb-2">**To be given**</div>
+          <div class="answer f-18 mb-2">Yes, the more the merrier!</div>
 
           <div class="question f-18 text-bold mb-2 mt-4">What brands do you repair?</div>
-          <div class="answer f-18 mb-2">Our highly skilled team has the capability to repair any brand.</div>
+          <div class="answer f-18 mb-2">Each item receives the same care and attention to detail regardless of the manufacturer.</div>
 
-          <div class="question f-18 text-bold mb-2 mt-4">Do you guarantee your repairs?</div>
-          <div class="answer f-18 mb-2">**To be given**</div>
+          <!-- <div class="question f-18 text-bold mb-2 mt-4">Can you send in more than one item?</div>
+          <div class="answer f-18 mb-2">Yes, the more the merrier!</div> -->
 
           <div class="question f-18 text-bold mb-2 mt-4">What will a garment repair look like afterward?</div>
           <div class="answer f-18 mb-2">We use a process called reweaving or reknitting (depending on the fabric) which
@@ -243,7 +295,7 @@
           <div class="answer f-18 mb-2">Yes, it is fixable.</div>
 
           <div class="question f-18 text-bold mb-2 mt-4">Do you shorten sweaters?</div>
-          <div class="answer f-18 mb-2">Yes, we shorten all body lengths including sleeves.</div>
+          <div class="answer f-18 mb-2">Yes, we shorten all body lengths as well as sleeve length while maintaining the original hem detail.</div>
 
           <div class="question f-18 text-bold mb-2 mt-4">My sweater is stretched out on the sides, is that fixable?
           </div>

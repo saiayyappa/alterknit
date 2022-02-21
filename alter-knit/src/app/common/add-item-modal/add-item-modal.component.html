@@ -108,24 +108,23 @@
     <div class="row no-gutters mt-5 mx-lg-5 mx-3">
       <div class="col-12 text-center">
         <p class="f-30 text-gray text-bold">Has this garment been previously repaired by a dry cleaner or anyone
-          else?<span class="text-danger f-30">*</span></p>
+          else?</p>
         <div class="d-flex justify-content-center align-items-center">
           <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
             [ngClass]="isDryCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
             (click)="isDryCleaned=true;">
-            yes</div>
+            Yes</div>
           <div class="button-separator"></div>
           <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
             [ngClass]="isDryCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
             (click)="isDryCleaned=false;">
-            no</div>
+            No</div>
         </div>
       </div>
     </div>
     <div class="row no-gutters mt-5 mx-5">
       <div class="col-12 text-center">
-        <p class="f-30 text-gray text-bold">Has this garment been recently cleaned?<span
-            class="text-danger f-30">*</span>
+        <p class="f-30 text-gray text-bold">Has this garment been recently cleaned?
         </p>
         <p class="f-18 font-weight-light text-gold">Cleaning will only make holes bigger and incur higher repair
           cost. Please let us examine your garment first. If you've already cleaned it, don't worry.</p>
@@ -133,12 +132,12 @@
           <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
             [ngClass]="isCleaned === true ? 'active-circle text-white' : 'inactive-circle text-gray'"
             (click)="isCleaned=true;">
-            yes</div>
+            Yes</div>
           <div class="button-separator"></div>
           <div class="mx-1 f-18 font-weight-light d-flex justify-content-center align-items-center cursor-pointer"
             [ngClass]="isCleaned === false ? 'active-circle text-white' : 'inactive-circle text-gray'"
             (click)="isCleaned=false;">
-            no</div>
+            No</div>
         </div>
       </div>
     </div>

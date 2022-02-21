@@ -2,12 +2,22 @@
   <div class="col-12 overflow-hidden">
     <section class="section-bg">
       <app-header [theme]="headerThemes.BLACK"></app-header>
-      <div class="text-bold f-64 text-gray p-5 text-xl-left text-center">Our Story</div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="text-bold f-48 text-gray p-5 text-xl-left text-center d-none d-lg-block d-xl-block">Our Story</div>
+        </div>
+        <div class="col-md-8">
+          <div class="m-0 text-center d-none d-lg-block d-xl-block">
+            <img class="img-fluid" src="../../../assets/images/our-story.jpg" alt="our-story">
+          </div>
+        </div>
+      </div>
+      <div class="text-bold f-64 text-gray p-5 text-xl-left text-center d-lg-none d-xl-none">Our Story</div>
     </section>
-    <div class="m-0 text-center">
+    <div class="m-0 text-center d-lg-none d-xl-none">
       <img class="img-fluid" src="../../../assets/images/our-story.jpg" alt="our-story">
     </div>
-    <section class="section-bg">
+    <section class="">
       <div class="row no-gutters">
         <div class="col-xl-6">
           <div class="f-18 content">
@@ -49,6 +59,9 @@
               while you wait for them to return home to you. You will be very pleased with the results. If you have used
               us before thank you and welcome back!
             </p>
+            <p>
+              <b>Founder, Miriam Mades</b>
+            </p>
           </div>
         </div>
         <div class="col-xl-6 mt-xl-0 mt-4 content-image pr-0 img-fluid d-xl-block d-none">
@@ -57,10 +70,10 @@
         </div>
       </div>
     </section>
-    <div class="m-xl-5 m-0">
+    <!-- <div class="m-xl-5 m-0">
       <img class="img-fluid" style="width: 100%;height: 100%;object-fit: contain;"
-        src="../../../assets/images/Group_29.jpg" alt="garment-tips-image">
-    </div>
+        src="../../../assets/images/Group_29-2.jpeg" alt="garment-tips-image">
+    </div> -->
     <app-footer></app-footer>
   </div>
 </div>

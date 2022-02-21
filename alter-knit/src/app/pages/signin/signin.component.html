@@ -64,7 +64,7 @@
                 Sign in with Google</a>
             </div>
             <div class="my-3">
-              Don't have an account?<span class="text-blue cursor-pointer" (click)="showSignUpForm=true;showErrorMessage=false;errorMessage=''"> Create and
+              Don't have an account?<span class="text-blue cursor-pointer" (click)="showSignUpForm=true;showErrorMessage=false;errorMessage=''"> Create an
                 account</span>
             </div>
           </div>
@@ -88,11 +88,11 @@
       <div class="row no-gutters sign-up" *ngIf="showSignUpForm">
         <section class="col-12">
           <div class="p-md-5 px-4">
-            <p class="title f-36 text-bold text-gray text-center">Create account in AlterKnit</p>
+            <p class="title f-36 text-bold text-gray text-center">Create AlterKnit account</p>
             <form [formGroup]="signUpForm">
               <div class="form-group">
                 <!-- <label for="name" class="f-18 font-weight-bold text-gray">Name</label> -->
-                <input class="mb-2 w-100 form-control" placeholder="Name" type="text" name="name" formControlName="name"
+                <input class="mb-2 w-100 form-control" placeholder="First name and last name" type="text" name="name" formControlName="name"
                   [ngClass]="{ 'is-invalid': signUpSubmitted && form2.name.errors }" id="name">
                 <div *ngIf="signUpSubmitted && form2.name.errors" class="invalid-feedback">
                   <div class="f-14 p-0 m-0" *ngIf="form2.name.errors.required">

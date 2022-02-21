@@ -4,26 +4,39 @@
             <app-header [theme]="headerThemes.WHITE"></app-header>
         </div>
         <div class="thank-you-content">
-            <div class="m-5">
-                <h3>Thank you for choosing Alterknit! </h3>
-                <div class="mt-3">We will be receiving an email with further instructions and an estimate for our service.</div>
-                <h6 class="mt-3">Preparing your Garment for Shipping</h6>
-                <ol class="pl-3 mt-3">
-                    <li class="mt-2">Please DO NOT put tape anywhere on your garment(s) to indicate holes. As part of your service with
-                        us, we will thoroughly examine the item for all damages.</li>
-                    <li class="mt-2">Please DO NOT clean your garment(s) before submitting. Any cleaning process will make the hole or
-                        holes bigger incurring you additional costs.</li>
-                    <li class="mt-2">If you need an item to be rewoven and it is a part of a suit, please provide us with both pieces.
-                    </li>
-                    <li class="mt-2">Due to the heavy amount of orders we receive and limited studio space, please DO NOT include any
-                        hangers, hanging bags, or reusable bags that you want returned as we cannot store them for you while
-                        you are in line for repair.</li>
-                </ol>
+            <div class="row no-gutters">
+                <div class="p-lg-5 p-3 col-lg-5 col-12 f-48 text-bold text-white background-light-purple text-lg-left text-center"
+                    style="display: flex; align-items: center;">
+                    <div class="row">
+                        <div class="col-12 f-36 text-bold text-gray background-light-purple text-lg-left text-center">
+                            Thank you for Choosing Alterknit!
+                        </div>
+                    </div>
+                </div>
+                <div class="p-lg-5 p-4 col-lg-7 col-12 f-16 text-white background-dark-purple">
+                    <div class="row my-xl-5 my-xl-2 f-12 mt-2 text-white">
+                        <div class="mt-3">You will be receiving an email with a copy of your order summary and your FedEx shipping label. Please remember to
+                        include your order summary with your items and sign the agreement, so we know who you are and what you are sending to
+                        us. Please check your junk/spam for this email as it can end up in there.</div>
+                        <h6 class="mt-3"><u>Preparing your Garment for Shipping</u></h6>
+                        <ol class="pl-3 mt-3">
+                            <li class="mt-2">Please <u>DO NOT</u> put tape anywhere on your garment(s) to indicate holes. As part of your service with
+                                us, we will thoroughly examine the item for all damages.</li>
+                            <li class="mt-2">Please <u>DO NOT</u> clean your garment(s) before submitting. Any cleaning process will make the hole or
+                                holes bigger incurring you additional costs.</li>
+                            <li class="mt-2">If you need an item to be rewoven and it is a part of a suit, please provide us with both pieces.
+                            </li>
+                            <li class="mt-2">Due to the heavy amount of orders we receive and limited studio space, please <u>DO NOT</u> include any
+                                hangers, hanging bags, or reusable bags that you want returned as we cannot store them for you while
+                                you are in line for repair.</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- <figure class="text-center">
+        <figure class="text-center mt-3">
             <img src="../../../assets/images/AKNY-LOGO_complete_gold.svg" height="60" />
-        </figure> -->
+        </figure>
         <app-terms-modal [open]="showTerms" (close)="showTerms=false"></app-terms-modal>
         <app-footer></app-footer>
     </div>

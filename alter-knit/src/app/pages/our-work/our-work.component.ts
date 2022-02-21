@@ -44,7 +44,7 @@ export class OurWorkComponent implements OnInit {
     {
       id: 2,
       brand: 'J Crew x Creatures of the Wind',
-      material: 'merino wool',
+      material: 'MERINO wool',
       customer: 'Kendall F, Ft. Myers, FL',
       workCompleted: '2018',
       imagePath: '../../../assets/images/sweater-collection/2.png',
@@ -98,7 +98,7 @@ export class OurWorkComponent implements OnInit {
     {
       id: 8,
       brand: 'Michael Kors',
-      material: 'merino wool',
+      material: 'MERINO wool',
       customer: 'Shane Y., Clovis, NM',
       workCompleted: '2015',
       imagePath: '../../../assets/images/sweater-collection/8.png',
@@ -116,7 +116,7 @@ export class OurWorkComponent implements OnInit {
     {
       id: 10,
       brand: 'Gucci',
-      material: 'merino wool ',
+      material: 'MERINO wool ',
       customer: 'Melissa B., Phoenix, AZ',
       workCompleted: '2019',
       imagePath: '../../../assets/images/sweater-collection/10.png',

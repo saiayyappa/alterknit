@@ -7,12 +7,12 @@
       <thead>
         <tr class="text-gray">
           <th class="f-18"></th>
-          <th class="f-18">Service Needed</th>
-          <th class="f-18">Brand</th>
-          <th class="f-18">Color</th>
-          <th class="f-18">Age of Garment</th>
-          <th class="f-18"># of Holes</th>
-          <th class="f-18">Brief Description</th>
+          <th class="f-22">Service Needed</th>
+          <th class="f-22">Brand</th>
+          <th class="f-22">Color</th>
+          <th class="f-22">Age of Garment</th>
+          <th class="f-22"># of Holes</th>
+          <th class="f-22">Brief Description</th>
           <th class="f-18"></th>
         </tr>
       </thead>
@@ -26,7 +26,7 @@
           <td class="align-middle f-18 text-gray font-weight-light">{{garment.ageOfGarment}} years old</td>
           <td class="align-middle f-18 text-gray font-weight-light">{{garment.noOfHoles}}</td>
           <td class="align-middle f-18 text-gray font-weight-light">{{garment.briefDescription}}</td>
-          <td style="width: 10%;" class="align-middle">
+          <td style="width: 12%;" class="align-middle">
             <div class="text-gold font-weight-light text-center">
               <span class="cursor-pointer" (click)="editItem(idx)">Edit</span>
               <span class="pr-1 pl-1 text-black"> | </span>
@@ -93,8 +93,8 @@
         [open]="modalOpen" (close)="modalOpen = false" (addItemFinal)="updateGarment($event)"></app-add-item-modal>
     </div>
     <div class="col-12 text-center mt-lg-3 mt-2">
-      <!-- <button type="button" class="go-back btn f-18 font-weight-light py-2 background-gray btn-sm text-white"
-        routerLink="/orders">Go Back</button> -->
+      <button type="button" (click)="addItem()" class="go-back btn f-18 font-weight-light py-2 background-gray btn-sm text-white"
+        routerLink="/orders">Previous</button>
       <button type="button" (click)="proceedToShipping()"
         class="all-done btn f-18 font-weight-light py-2 background-gold btn-sm text-white ml-2">Next</button>
     </div>
