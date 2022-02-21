@@ -3,22 +3,27 @@
     <section class="section-bg">
       <app-header [theme]="headerThemes.BLACK"></app-header>
       <div class="row no-gutters p-5">
-        <div class="col-lg-5 col-12">
+        <div class="col-12">
           <p class="f-64 text-gray text-bold text-lg-left text-center">Our Work</p>
         </div>
-        <div class="col-lg-7 col-12 d-inline-flex align-items-center justify-content-md-start justify-content-center">
+        <div class="col-4 d-inline-flex align-items-center justify-content-md-start justify-content-center">
           <p class="text-gray f-24 pt-2 d-lg-block d-none">
             See what we have done for others, and know what we can do for you.
           </p>
-          <p class="text-gray f-24 pt-2 d-block d-lg-none">
+          <!-- <p class="text-gray f-24 pt-2 d-block d-lg-none">
             We let our work speak for itself. Take a look at some of our past works.
-          </p>
+          </p> -->
         </div>
       </div>
     </section>
     <!-- sweater collection -->
     <section class="sweater-collection">
       <div class="row no-gutters w-100">
+        <div class="col-12">
+          <p class="text-gray f-24 pt-2 d-lg-none d-block text-center">
+            See what we have done for others, and know what we can do for you.
+          </p>
+        </div>
         <div class="col-12 sweater-images">
           <div *ngFor="let sweater of sweaters;" class="sweater-panel m-1 sweater">
             <img width="100%" src="{{sweater.imagePath}}">

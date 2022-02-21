@@ -88,7 +88,7 @@ export class SigninComponent implements OnInit {
     if (response && !response.Session) {
       console.log("User Created Successfully");
       this.showErrorMessage = true;
-      this.errorMessage = "User Created Successfully. Verify the user using the verification email you received in your mail.";
+      this.errorMessage = "User Created Successfully. Verify your account using the verification email you received in your mail from AlterKnit.";
     }
     if (response && response.code === 'UsernameExistsException') {
       console.log("An account with the given email already exists.")

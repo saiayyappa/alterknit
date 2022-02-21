@@ -39,7 +39,7 @@
     overflow: hidden;
   }
   .img-fluid {
-    max-width: unset;
-    height: 100vh;
+    max-width: 100vh;
+    height: 50vw;
   }
 }

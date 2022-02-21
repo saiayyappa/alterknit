@@ -4,7 +4,7 @@
 }
 
 .section-image-sewing {
-    background: url(../../../assets/images/sewing-machine.jpg) no-repeat center center;
+    background: url(../../../assets/images/sewing-machine-1.jpeg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -41,6 +41,14 @@
 /* .price-images {
   height: 130px;
 } */
+
+.inverted-img {
+  transform: rotate(90deg);
+}
+
+.aknyocher {
+  filter: invert(70%) sepia(51%) saturate(5729%) hue-rotate(18deg) brightness(94%) contrast(85%);
+}
 
 @media only screen and (max-width: 768px) {
   .f-64, .f-48 {
