@@ -14,9 +14,8 @@ interface SweaterInfo {
 @Component({
   selector: 'app-our-work',
   templateUrl: './our-work.component.html',
-  styleUrls: ['./our-work.component.css']
+  styleUrls: ['./our-work.component.css'],
 })
-
 export class OurWorkComponent implements OnInit {
   isHover: number;
 
@@ -28,113 +27,163 @@ export class OurWorkComponent implements OnInit {
 
   selectedSweater!: SweaterInfo;
 
-  print(i: any){
+  print(i: any) {
     console.log(i);
   }
   sweaters: SweaterInfo[] = [
     {
       id: 1,
-      brand: 'Balmain',
+      brand: 'Ralph Lauren',
       material: 'Cashmere',
-      customer: 'Farrah G., New York, NY',
-      workCompleted: '2021',
+      customer: 'Adam T., Short Hills, NJ',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/1.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/1.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/1e.png',
     },
     {
       id: 2,
-      brand: 'J Crew x Creatures of the Wind',
-      material: 'MERINO wool',
-      customer: 'Kendall F, Ft. Myers, FL',
-      workCompleted: '2018',
+      brand: 'Chanel',
+      material: 'Cashmere',
+      customer: 'Michelle B. New York, NY  2022',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/2.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/2.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/2e.png',
     },
     {
       id: 3,
-      brand: 'Johnstons of Elgin',
+      brand: 'Dear Cashmere',
       material: 'Cashmere',
-      customer: 'Clary McCall, Asheville, NC',
-      workCompleted: '2019',
+      customer: 'Thomas B., Long Beach, CA',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/3.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/3.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/3e.png',
     },
     {
       id: 4,
-      brand: 'The Fisher Project',
-      material: 'Alpaca wool blend',
-      customer: 'Alyson V., New York, NY',
-      workCompleted: '2017',
+      brand: 'Marimekko',
+      material: 'Wool',
+      customer: 'Aletta S.,Chevy Chase, MD',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/4.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/4.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/4e.png',
     },
     {
       id: 5,
-      brand: 'Bergdorf Goodman',
+      brand: 'Gucci',
       material: 'Cashmere',
-      customer: 'Ken, S., Jersey City, NJ',
-      workCompleted: '2018',
+      customer: 'Natsuki, K. Rye, NY',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/5.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/5.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/5e.png',
     },
     {
       id: 6,
-      brand: 'Autumn Cashmere',
-      material: 'Cashmere',
-      customer: 'Lisa F., Berwyn, PA',
-      workCompleted: '2020',
+      brand: 'Britches',
+      material: 'Wool',
+      customer: 'Suzanne M. Silver Springs, MD',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/6.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/6.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/6e.png',
     },
     {
       id: 7,
-      brand: 'J crew',
-      material: 'Wool blend',
-      customer: 'Melissa B., Phoenix, AZ',
-      workCompleted: '2019',
+      brand: 'Wyett',
+      material: 'Wool',
+      customer: 'Francine K., New York, NY',
+      workCompleted: '2021',
       imagePath: '../../../assets/images/sweater-collection/7.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/7.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/7e.png',
     },
     {
       id: 8,
-      brand: 'Michael Kors',
-      material: 'MERINO wool',
-      customer: 'Shane Y., Clovis, NM',
-      workCompleted: '2015',
+      brand: 'Woolovers',
+      material: 'Wool',
+      customer: 'David B. Leavenworth, KS',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/8.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/8.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/8e.png',
     },
     {
       id: 9,
-      brand: 'H&M',
+      brand: 'Patagonia',
       material: 'Cashmere',
-      customer: 'Mari D., Brooklyn, NY',
-      workCompleted: '2017',
+      customer: 'Evan S. Charlotte, NC',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/9.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/9.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/9e.png',
     },
     {
       id: 10,
-      brand: 'Gucci',
-      material: 'MERINO wool ',
-      customer: 'Melissa B., Phoenix, AZ',
-      workCompleted: '2019',
+      brand: 'Reese',
+      material: 'Cashmere',
+      customer: 'Tina I. New York, NY',
+      workCompleted: '2021',
       imagePath: '../../../assets/images/sweater-collection/10.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/10.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/10e.png',
     },
     {
       id: 11,
-      brand: 'Felicite',
+      brand: 'Theory',
       material: 'Cashmere',
-      customer: 'Collene S., Gig Harbor, WA',
-      workCompleted: '2017',
+      customer: 'Beth K. New York, NY',
+      workCompleted: '2022',
       imagePath: '../../../assets/images/sweater-collection/11.png',
-      enlargedImagePath: '../../../assets/images/sweater-collection-enlarged/11.png',
-    }
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/11e.png',
+    },
+    {
+      id: 12,
+      brand: 'Prada',
+      material: 'Cashmere',
+      customer: 'Dane D. Brooklyn, NY',
+      workCompleted: '2022',
+      imagePath: '../../../assets/images/sweater-collection/12.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/12e.png',
+    },
+    {
+      id: 13,
+      brand: 'Unknown',
+      material: 'Cashmere',
+      customer: 'Joseph G., Ithaca, NY',
+      workCompleted: '2022',
+      imagePath: '../../../assets/images/sweater-collection/13.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/13e.png',
+    },
+    {
+      id: 14,
+      brand: 'Vince',
+      material: 'Cashmere',
+      customer: 'Jen V. Greenwich, CT',
+      workCompleted: '2022',
+      imagePath: '../../../assets/images/sweater-collection/14.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/14e.png',
+    },
+    {
+      id: 15,
+      brand: 'Cotelac',
+      material: 'Cashmere',
+      customer: 'Dianna G.,Columbus, OH',
+      workCompleted: '2021',
+      imagePath: '../../../assets/images/sweater-collection/15.png',
+      enlargedImagePath:
+        '../../../assets/images/sweater-collection-enlarged/15e.png',
+    },
   ];
   viewerOpen: boolean = false;
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   showViewer(item: SweaterInfo) {
     console.log(item);
@@ -145,5 +194,4 @@ export class OurWorkComponent implements OnInit {
   close() {
     this.viewerOpen = false;
   }
-
 }

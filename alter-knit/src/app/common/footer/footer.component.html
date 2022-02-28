@@ -65,9 +65,11 @@
       </div>
       <div class="row no-gutters mt-5">
         <div class="col-12 d-flex justify-content-center align-items-center copyright f-12 text-center">
-          © Copyright 2022 AlterKnit NY. All Rights Reserved. Terms and Conditions | Privacy Policy
+          © Copyright 2022 AlterKnit NY. All Rights Reserved | <a class="f-12 text-gold cursor-pointer" (click)="showTerms = true;">&nbsp;Terms and Conditions</a>&nbsp;| <a class="f-12 text-gold cursor-pointer" (click)="showPrivacy = true;">&nbsp;Privacy Policy</a>
         </div>
       </div>
     </div>
   </div>
+  <app-tconditions-modal [open]="showTerms" (close)="showTerms=false"></app-tconditions-modal>
+  <app-privacy-modal [open]="showPrivacy" (close)="showPrivacy=false"></app-privacy-modal>
 </footer>
