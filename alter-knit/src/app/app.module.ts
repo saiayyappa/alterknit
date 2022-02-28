@@ -6,18 +6,26 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ConditionsModalComponent } from './common/tconditions-modal/tconditions-modal.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { DataService } from './data.service';
+import { DragNDropImageComponent } from './common/drag-n-drop-image/drag-n-drop-image.component';
 import { FooterComponent } from './common/footer/footer.component';
+import { GarmentTipsComponent } from './pages/garment-tips/garment-tips.component';
 import { HeaderComponent } from './common/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageViewerComponent } from './common/image-viewer/image-viewer.component';
+import { LoaderComponent } from './common/loader/loader.component';
 import { NgModule } from '@angular/core';
 import { OrderReviewComponent } from './common/order-review/order-review.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { OurServicesComponent } from './pages/our-services/our-services.component';
+import { OurStoryComponent } from './pages/our-story/our-story.component';
 import { OurWorkComponent } from './pages/our-work/our-work.component';
 import { PickupAddressComponent } from './pages/orders/pickup-address/pickup-address.component';
+import { PrivacyModalComponent } from './common/privacy-modal/privacy-modal.component';
+import { ProgressComponent } from './common/drag-n-drop-image/progress/progress.component';
 import { ReviewComponent } from './pages/orders/review/review.component';
 import { ShipmentMethodComponent } from './pages/orders/shipment-method/shipment-method.component';
 import { ShippingAddressComponent } from './pages/orders/shipping-address/shipping-address.component';
@@ -26,12 +34,6 @@ import { StepperComponent } from './common/stepper/stepper.component';
 import { TermsModalComponent } from './common/terms-modal/terms-modal.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { WhyAlterknitComponent } from './pages/why-alterknit/why-alterknit.component';
-import { LoaderComponent } from './common/loader/loader.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { DragNDropImageComponent } from './common/drag-n-drop-image/drag-n-drop-image.component';
-import { ProgressComponent } from './common/drag-n-drop-image/progress/progress.component';
-import { OurStoryComponent } from './pages/our-story/our-story.component';
-import { GarmentTipsComponent } from './pages/garment-tips/garment-tips.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { GarmentTipsComponent } from './pages/garment-tips/garment-tips.componen
     DragNDropImageComponent,
     ProgressComponent,
     OurStoryComponent,
-    GarmentTipsComponent
+    GarmentTipsComponent,
+    ConditionsModalComponent,
+    PrivacyModalComponent
   ],
   imports: [
     BrowserModule,
